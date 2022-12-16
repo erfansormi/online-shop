@@ -8,14 +8,14 @@ import { auth } from '../../firebase/app';
 
 // formik & yup
 import { Formik } from 'formik';
-import { SignupSchema } from '../../components/form/signup/signupValidation';
+import { SignupSchema } from '../../components/form/signupData/signupValidation';
 
 // mui
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 
 // data
-import { signupData } from '../../components/form/signup/signupData';
+import { signupData } from '../../components/form/signupData/signupData';
 
 // components
 import Input from '../../components/form/input';
@@ -117,7 +117,7 @@ const Signup: React.FC = () => {
                             <Button
                                 // disabled={isSubmitting}
                                 type='submit'
-                                className="w-full h-10 rounded-2xl"
+                                className="w-full h-10 rounded-3xl"
                                 variant={"contained"}
                             >
                                 sign up
