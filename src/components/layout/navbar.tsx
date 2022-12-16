@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -14,17 +14,14 @@ interface Props {
 }
 
 const Navbar = ({ className }: Props) => {
+    const [isLoggedin, setIsLoggedin] = useState(false);
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
+            setIsLoggedin(true);
             console.log(user);
-            // ...
         } else {
-            // User is signed out
-            // ...
-            console.log(null);
-
+            setIsLoggedin(false);
         }
     });
 
@@ -59,7 +56,7 @@ const Navbar = ({ className }: Props) => {
                     </div>
                 </div>
                 <div className='flex'>
-                    {navbarData(null).map((item, index) =>
+                    {navbarData(isLoggedin).map((item, index) =>
                         <div
                             key={index * 7}
                             className='text-2xl ml-5'

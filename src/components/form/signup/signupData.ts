@@ -1,12 +1,30 @@
-import { SignupKeys } from "../../../pages/signup"
+// types
+export interface SignupInitialValues {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+}
+type SignupKeys = keyof SignupInitialValues;
 
-interface Signup {
+// signup initial values
+export const signupInitialValues: SignupInitialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+}
+
+// inputs
+interface SignupInputs {
     name: SignupKeys,
     placeholder: string,
     type: React.HTMLInputTypeAttribute
 }
 
-export const signupData: Signup[] = [
+export const signupInputs: SignupInputs[] = [
     {
         name: "firstName",
         placeholder: "first name",

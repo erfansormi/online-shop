@@ -7,7 +7,7 @@ interface Props {
 
 const Layout = ({ children, className }: Props) => {
     return (
-        <div className={`container mx-auto my-10 px-6 ${className}`}>
+        <div className={`container mx-auto my-2 px-6 ${className}`}>
             {children}
         </div>
     )

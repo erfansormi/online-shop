@@ -10,7 +10,7 @@ interface Data {
     link: string
 }
 
-export const navbarData = (isLoggedIn: User | null) => {
+export const navbarData = (isLoggedIn: boolean) => {
     const data: Data[] = isLoggedIn ?
         [
             {

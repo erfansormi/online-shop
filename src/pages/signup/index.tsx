@@ -1,50 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 // authentication
-import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../../firebase/app';
 
 // formik & yup
 import { Formik } from 'formik';
-import { SignupSchema } from '../../components/form/signupData/signupValidation';
+import { SignupSchema } from '../../components/form/signup/signupValidation';
 
 // mui
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 
-// data
-import { signupData } from '../../components/form/signupData/signupData';
+// toatify
+import { toastify } from '../../components/utils/toastify/toastifyFunc';
+
+//signup data
+import { signupInputs, SignupInitialValues, signupInitialValues } from '../../components/form/signup/signupData';
 
 // components
 import Input from '../../components/form/input';
 import Layout from '../../components/layout/layout';
 import InputError from '../../components/form/inputError';
+import Loading from '../../components/utils/loading/loading';
 
-// ts
-interface SignupInitialValues {
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    confirmPassword: string
-}
-
-const initialValues: SignupInitialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-}
-
-export type SignupKeys = keyof SignupInitialValues;
 
 const Signup: React.FC = () => {
+    const [loading, setLoading] = useState(false)
+    const router = useRouter();
 
-    // handle signup form submit 
+    // handle form submit 
     const handleSubmit = (values: SignupInitialValues) => {
+        setLoading(true)
         createUserWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 // Signed in 
@@ -53,28 +42,33 @@ const Signup: React.FC = () => {
                     displayName: `${values.firstName} ${values.lastName}`
                 })
 
+                // alert 
+                toastify("Signup successfuly!", "dark", "success")
+
                 // verification
-                sendEmailVerification(user);
-                auth.signOut();
-                // ...
+                router.push("/account/verification");
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
-                // ..
-            });
+                const errorCode: string = error.code;
+                const message = errorCode.replace("auth/", "").replaceAll("-", " ");
+
+                // alert
+                toastify(message, "dark", "error")
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
-        <Layout className='flex flex-col justify-center px-11 sm:px-40 md:px-60'>
+        <Layout className='flex flex-col justify-center px-10 max-w-xl shadow-xl py-8 rounded-xl'>
             <div className='text-center mb-5'>
                 <h2>
                     sign up
                 </h2>
             </div>
             <Formik
-                initialValues={initialValues}
+                initialValues={signupInitialValues}
                 validationSchema={SignupSchema}
                 onSubmit={handleSubmit}
             >
@@ -85,18 +79,16 @@ const Signup: React.FC = () => {
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    isSubmitting,
-                    /* and other goodies */
                 }) => (
                     <Box
                         component="form"
                         noValidate
                         autoComplete="off"
-                        className="w-full flex justify-center items-center flex-col"
                         onSubmit={handleSubmit}
+                        className="w-full flex justify-center items-center flex-col"
                     >
-                        {signupData.map((item, index) =>
-                            <div key={index * 9} className="mb-1 w-full h-16 lg:w-1/2">
+                        {signupInputs.map((item, index) =>
+                            <div key={index * 9} className="mb-1 w-full h-16">
                                 <Input
                                     placeholder={item.placeholder}
                                     name={item.name}
@@ -104,7 +96,8 @@ const Signup: React.FC = () => {
                                     value={values[item.name]}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-
+                                    error={errors[item.name]}
+                                    touched={touched[item.name]}
                                 />
                                 {
                                     errors[item.name] && touched[item.name] ?
@@ -113,17 +106,16 @@ const Signup: React.FC = () => {
                                 }
                             </div>
                         )}
-                        <div className="mb-3 w-full lg:w-1/2">
+                        <div className="mb-3 w-full">
                             <Button
-                                // disabled={isSubmitting}
                                 type='submit'
-                                className="w-full h-10 rounded-3xl"
+                                className="w-full h-10 rounded-md"
                                 variant={"contained"}
                             >
                                 sign up
                             </Button>
                         </div>
-                        <div className='w-full lg:w-1/2 text-sm'>
+                        <div className='w-full text-sm'>
                             <span className='text-gray-500 mr-2'>
                                 Already have an account?
                             </span>
@@ -134,6 +126,7 @@ const Signup: React.FC = () => {
                     </Box>
                 )}
             </Formik>
+            <Loading loading={loading} />
         </Layout>
     );
 };
