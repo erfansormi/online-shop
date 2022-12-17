@@ -61,9 +61,8 @@ const Navbar = ({ className }: Props) => {
                 </div>
                 <div className='flex items-center'>
                     {navbarData(isLoggedin).map((item, index) =>
-                        <Tooltip title={item.title}>
+                        <Tooltip title={item.title} key={index * 7}>
                             <div
-                                key={index * 7}
                                 className='text-2xl ml-3'
                             >
                                 <Link href={item.link} className="flex">
