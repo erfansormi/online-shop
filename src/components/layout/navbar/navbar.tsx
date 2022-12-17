@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// mui
+import { IconButton, Tooltip } from '@mui/material';
+
 // authentication
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../firebase/app';
+import { auth } from '../../../firebase/app';
 
 // navbar data
 import { navbarData } from './navbarData';
+import Profile from './profile/profile';
 
 interface Props {
     className: string
@@ -55,17 +59,29 @@ const Navbar = ({ className }: Props) => {
                         </Link>
                     </div>
                 </div>
-                <div className='flex'>
+                <div className='flex items-center'>
                     {navbarData(isLoggedin).map((item, index) =>
-                        <div
-                            key={index * 7}
-                            className='text-2xl ml-5'
-                        >
-                            <Link href={item.link}>
-                                {item.icon}
-                            </Link>
-                        </div>
+                        <Tooltip title={item.title}>
+                            <div
+                                key={index * 7}
+                                className='text-2xl ml-3'
+                            >
+                                <Link href={item.link} className="flex">
+                                    <IconButton
+                                        sx={{ margin: 0 }}
+                                        className='text-gray-700 text-2xl'
+                                    >
+                                        {item.icon}
+                                    </IconButton>
+                                </Link>
+                            </div>
+                        </Tooltip>
                     )}
+                    {
+                        isLoggedin ?
+                            <Profile />
+                            : null
+                    }
                 </div>
             </nav>
         </>

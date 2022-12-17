@@ -4,27 +4,27 @@ import { useRouter } from 'next/router';
 
 // authentication
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from '../../firebase/app';
+import { auth } from '../../../firebase/app';
 
 // formik & yup
 import { Formik } from 'formik';
-import { SignupSchema } from '../../components/form/signup/signupValidation';
+import { SignupSchema } from '../../../components/form/signup/signupValidation';
 
 // mui
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 
 // toatify
-import { toastify } from '../../components/utils/toastify/toastifyFunc';
+import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 //signup data
-import { signupInputs, SignupInitialValues, signupInitialValues } from '../../components/form/signup/signupData';
+import { signupInputs, SignupInitialValues, signupInitialValues } from '../../../components/form/signup/signupData';
 
 // components
-import Input from '../../components/form/input';
-import Layout from '../../components/layout/layout';
-import InputError from '../../components/form/inputError';
-import Loading from '../../components/utils/loading/loading';
+import Input from '../../../components/form/input/input';
+import Layout from '../../../components/layout/layout';
+import InputError from '../../../components/form/input/inputError';
+import Loading from '../../../components/utils/loading/loading';
 
 
 const Signup: React.FC = () => {
@@ -46,7 +46,7 @@ const Signup: React.FC = () => {
                 toastify("Signup successfuly!", "dark", "success")
 
                 // verification
-                router.push("/account/verification");
+                router.push("/auth/verification");
             })
             .catch((error) => {
                 const errorCode: string = error.code;
@@ -119,7 +119,7 @@ const Signup: React.FC = () => {
                             <span className='text-gray-500 mr-2'>
                                 Already have an account?
                             </span>
-                            <Link href={"/login"} className="text-blue-600">
+                            <Link href={"/auth/login"} className="text-blue-600">
                                 Login
                             </Link>
                         </div>

@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Fredoka } from "@next/font/google";
 
 // components
-import Navbar from '../components/layout/navbar';
+import Navbar from '../components/layout/navbar/navbar';
 
 const fredoka = Fredoka({
   subsets: ['latin'],

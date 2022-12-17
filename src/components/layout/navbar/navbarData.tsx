@@ -1,13 +1,12 @@
 import React from "react";
-import { FiUser } from "react-icons/fi";
 import { BsCart3, BsBoxArrowInRight } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
-import { User } from "firebase/auth";
 
 // ts
 interface Data {
     icon: React.ReactElement,
-    link: string
+    link: string,
+    title: string
 }
 
 export const navbarData = (isLoggedIn: boolean) => {
@@ -15,25 +14,25 @@ export const navbarData = (isLoggedIn: boolean) => {
         [
             {
                 icon: <AiOutlineHeart />,
-                link: "/favorite"
+                link: "/account/favorite",
+                title:"Favorite list"
             },
             {
                 icon: <BsCart3 />,
-                link: "/cart"
-            },
-            {
-                icon: <FiUser />,
-                link: "/profile"
+                link: "/cart",
+                title:"Cart"
             }
         ] :
         [
             {
                 icon: <BsCart3 />,
-                link: "/cart"
+                link: "/cart",
+                title:"Cart"
             },
             {
                 icon: <BsBoxArrowInRight />,
-                link: "/signup"
+                link: "/auth/signup",
+                title:"Signup / Login"
             },
         ]
 
