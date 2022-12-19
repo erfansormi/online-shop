@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link';
+
+// mui
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -8,28 +10,52 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
+// toastify
+import { toastify } from '../../../utils/toastify/toastifyFunc';
+
 // authentication
 import { auth } from "../../../../firebase/app";
 
 // icons
 import { MdLogout } from "react-icons/md";
-import { IoMdSettings } from "react-icons/io"
-import { BsBagFill } from 'react-icons/bs';
 import { FiUser } from "react-icons/fi";
 
-// menu items
+// menu items data
 import { profileMenuItem } from './profileData';
-import Link from 'next/link';
+
+// redux
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../../../redux/user/authSlice';
+
+// components
+import Modal from '../../../utils/modal/modal';
 
 const Profile = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    // redux
+    const dispatch = useDispatch();
+
+    // logout modal
+    const [modal, setModal] = useState(false);
+
+    // is menu open?
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+
+    // menu func
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleLogout = () => {
+        auth.signOut();
+        setModal(false);
+        handleClose();
+        dispatch(logoutUser());
+        toastify("logout successfuly!", "dark", "success");
+    }
 
     return (
         <React.Fragment>
@@ -55,7 +81,6 @@ const Profile = () => {
                 id="account-menu"
                 open={open}
                 onClose={handleClose}
-                onClick={handleClose}
                 PaperProps={{
                     elevation: 0,
                     sx: {
@@ -106,7 +131,7 @@ const Profile = () => {
                         }
                     </div>
                 )}
-                <MenuItem onClick={() => auth.signOut()}>
+                <MenuItem onClick={() => setModal(true)}>
                     <ListItemIcon className='text-gray-500 text-2xl'>
                         <MdLogout />
                     </ListItemIcon>
@@ -114,6 +139,15 @@ const Profile = () => {
                         Logout
                     </span>
                 </MenuItem>
+
+                {/* logout modal */}
+                <Modal
+                    buttonFunc={handleLogout}
+                    description={"are you sure to logout to your account?"}
+                    open={modal}
+                    setOpen={setModal}
+                    title={"logout account?"}
+                />
             </Menu>
         </React.Fragment>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,6 +9,10 @@ import { auth } from '../../../firebase/app';
 // formik & yup
 import { Formik } from 'formik';
 import { SignupSchema } from '../../../components/form/signup/signupValidation';
+
+// redux
+import { useSelector } from 'react-redux';
+import { State } from '../../../redux/store';
 
 // mui
 import Box from '@mui/material/Box';
@@ -28,8 +32,20 @@ import Loading from '../../../components/utils/loading/loading';
 
 
 const Signup: React.FC = () => {
-    const [loading, setLoading] = useState(false)
     const router = useRouter();
+
+    // redux
+    const user = useSelector((state: State) => state.auth.user);
+
+    // state
+    const [loading, setLoading] = useState(false);
+
+    // if user logedd in, navigate to home
+    useEffect(() => {
+        if (user != null) {
+            router.push("/");
+        }
+    }, [user])
 
     // handle form submit 
     const handleSubmit = (values: SignupInitialValues) => {

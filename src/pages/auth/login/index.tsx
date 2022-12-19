@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -17,6 +17,10 @@ import { Button } from '@mui/material';
 // toatify
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
+// redux
+import { useSelector } from 'react-redux';
+import { State } from '../../../redux/store';
+
 //signup data
 import { loginInputs, loginInitialValues, LoginInitialValues } from '../../../components/form/login/loginData';
 
@@ -28,17 +32,28 @@ import Loading from '../../../components/utils/loading/loading';
 
 
 const Login = () => {
-    const [loading, setLoading] = useState(false)
     const router = useRouter();
 
+    // redux
+    const user = useSelector((state: State) => state.auth.user);
+
+    // state
+    const [loading, setLoading] = useState(false);
+
+    // if user logedd in, navigate to home
+    useEffect(() => {
+        if (user != null) {
+            router.push("/");
+        }
+    }, [user])
+
     // handle form submit 
-    const handleSubmit = (values: LoginInitialValues) => {
+    const handleSubmit = async (values: LoginInitialValues) => {
         setLoading(true)
-        signInWithEmailAndPassword(auth, values.email, values.password)
+        await signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
 
                 // alert 
                 toastify("Welcome back to your account!", "dark", "success")

@@ -1,24 +1,22 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAQM73agGFkAbQxj08edMNmAtEGFoXD8-o",
-    authDomain: "online-shop-74d78.firebaseapp.com",
-    projectId: "online-shop-74d78",
-    storageBucket: "online-shop-74d78.appspot.com",
-    messagingSenderId: "163000088225",
-    appId: "1:163000088225:web:68aff48e59976b9b1162e0",
-    databaseURL: "https://online-shop-74d78.firebaseio.com",
+    apiKey: "AIzaSyBSLuYMorqaRMcXPD8yyQIS067cSdEEISY",
+    authDomain: "online-shop-d006c.firebaseapp.com",
+    projectId: "online-shop-d006c",
+    storageBucket: "online-shop-d006c.appspot.com",
+    messagingSenderId: "1075579300881",
+    appId: "1:1075579300881:web:81dc9914ea45b4f49795b0"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // auth
-export const auth = getAuth();
-export const currentUser = auth.currentUser;
+export const auth = getAuth(app);
 
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);

@@ -1,3 +1,4 @@
+import React from "react";
 import type { AppProps } from 'next/app';
 
 // css
@@ -10,6 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 // font
 import { Fredoka } from "@next/font/google";
 
+// redux
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
+
 // components
 import Navbar from '../components/layout/navbar/navbar';
 
@@ -21,11 +26,13 @@ const fredoka = Fredoka({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Navbar className={fredoka.className} />
-      <main className={fredoka.className}>
-        <Component {...pageProps} />
-      </main>
-      <ToastContainer />
+      <Provider store={store}>
+        <Navbar className={fredoka.className} />
+        <main className={fredoka.className}>
+          <Component {...pageProps} />
+        </main>
+        <ToastContainer />
+      </Provider>
     </>
   )
 }

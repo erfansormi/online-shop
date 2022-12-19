@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 // mui
-import { IconButton, Tooltip } from '@mui/material';
+import { IconButton, Tooltip, Skeleton } from '@mui/material';
 
 // authentication
 import { onAuthStateChanged } from "firebase/auth";
@@ -11,23 +11,40 @@ import { auth } from '../../../firebase/app';
 
 // navbar data
 import { navbarData } from './navbarData';
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from '../../../redux/user/authSlice';
+import { State } from '../../../redux/store';
+
+// components
 import Profile from './profile/profile';
 
+// types
 interface Props {
-    className: string
+    className?: string
 }
 
 const Navbar = ({ className }: Props) => {
-    const [isLoggedin, setIsLoggedin] = useState(false);
+    // redux
+    const user = useSelector((state: State) => state.auth.user);
+    const dispatch = useDispatch();
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            setIsLoggedin(true);
-            console.log(user);
-        } else {
-            setIsLoggedin(false);
-        }
-    });
+    // states
+    const [loading, setLoading] = useState(false);
+
+    // is user loggedin?
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user !== null) {
+                dispatch(getUserData(user));
+                setLoading(false);
+            }
+            else {
+                setLoading(false)
+            }
+        });
+    }, [])
 
     return (
         <>
@@ -60,26 +77,29 @@ const Navbar = ({ className }: Props) => {
                     </div>
                 </div>
                 <div className='flex items-center'>
-                    {navbarData(isLoggedin).map((item, index) =>
-                        <Tooltip title={item.title} key={index * 7}>
-                            <div
-                                className='text-2xl ml-3'
-                            >
-                                <Link href={item.link} className="flex">
-                                    <IconButton
-                                        sx={{ margin: 0 }}
-                                        className='text-gray-700 text-2xl'
-                                    >
-                                        {item.icon}
-                                    </IconButton>
-                                </Link>
-                            </div>
-                        </Tooltip>
-                    )}
                     {
-                        isLoggedin ?
+                        loading ?
+                            <Skeleton variant="rounded" width={120} height={32} /> :
+                            navbarData(user).map((item, index) =>
+                                <Tooltip title={item.title} key={index * 7}>
+                                    <div
+                                        className='text-2xl ml-3'
+                                    >
+                                        <Link href={item.link} className="flex">
+                                            <IconButton
+                                                sx={{ margin: 0 }}
+                                                className='text-gray-700 text-2xl'
+                                            >
+                                                {item.icon}
+                                            </IconButton>
+                                        </Link>
+                                    </div>
+                                </Tooltip>
+                            )}
+                    {
+                        loading || user == null ?
+                            null :
                             <Profile />
-                            : null
                     }
                 </div>
             </nav>

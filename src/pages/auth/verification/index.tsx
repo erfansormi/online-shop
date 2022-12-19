@@ -1,33 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router';
 
 // toastify
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 // authentication
-import { sendEmailVerification, onAuthStateChanged, User } from "firebase/auth";
-import { auth } from '../../../firebase/app';
+import { sendEmailVerification } from "firebase/auth";
+
+// redux
+import { useSelector } from 'react-redux';
+import { State } from '../../../redux/store';
+
+// mui
+import { Button } from '@mui/material';
 
 // components
 import Layout from '../../../components/layout/layout';
-import { Button } from '@mui/material';
 import Loading from '../../../components/utils/loading/loading';
 
 const Verification = () => {
     const router = useRouter();
 
+    // redux
+    const user = useSelector((state: State) => state.auth.user);
+
+    // states
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState<null | User>(null)
 
     // is user logedd in?
-    onAuthStateChanged(auth, (user) => {
+    useEffect(() => {
         if (user == null || user.emailVerified) {
             router.push("/")
-        } else {
-            setUser(user)
         }
-    });
-
+    }, [user])
 
     const handleVerification = () => {
         setLoading(true);
