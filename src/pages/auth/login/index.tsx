@@ -45,7 +45,7 @@ const Login = () => {
         if (user != null) {
             router.push("/");
         }
-    }, [user])
+    }, [user, router])
 
     // handle form submit 
     const handleSubmit = async (values: LoginInitialValues) => {
@@ -72,7 +72,7 @@ const Login = () => {
     }
 
     return (
-        <Layout className='flex flex-col justify-center px-10 max-w-xl shadow-xl py-8 rounded-xl'>
+        <Layout className='flex flex-col justify-center mt-2 px-10 max-w-xl shadow-xl py-8 rounded-xl'>
             <div className='text-center mb-5'>
                 <h2>
                     login

@@ -1,6 +1,10 @@
 import React from "react";
 import type { AppProps } from 'next/app';
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
 // css
 import '../styles/globals.css';
 

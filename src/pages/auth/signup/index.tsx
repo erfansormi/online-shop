@@ -45,7 +45,7 @@ const Signup: React.FC = () => {
         if (user != null) {
             router.push("/");
         }
-    }, [user])
+    }, [user, router])
 
     // handle form submit 
     const handleSubmit = (values: SignupInitialValues) => {
@@ -77,7 +77,7 @@ const Signup: React.FC = () => {
     }
 
     return (
-        <Layout className='flex flex-col justify-center px-10 max-w-xl shadow-xl py-8 rounded-xl'>
+        <Layout className='flex flex-col mt-3 justify-center px-10 max-w-xl shadow-xl py-8 rounded-xl'>
             <div className='text-center mb-5'>
                 <h2>
                     sign up

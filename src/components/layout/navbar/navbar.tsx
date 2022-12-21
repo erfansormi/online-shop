@@ -33,18 +33,20 @@ const Navbar = ({ className }: Props) => {
     // states
     const [loading, setLoading] = useState(false);
 
+
     // is user loggedin?
     useEffect(() => {
+        setLoading(true)
         onAuthStateChanged(auth, (user) => {
             if (user !== null) {
                 dispatch(getUserData(user));
                 setLoading(false);
             }
             else {
-                setLoading(false)
+                setLoading(false);
             }
         });
-    }, [])
+    }, [dispatch])
 
     return (
         <>

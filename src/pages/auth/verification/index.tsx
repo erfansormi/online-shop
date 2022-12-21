@@ -32,7 +32,7 @@ const Verification = () => {
         if (user == null || user.emailVerified) {
             router.push("/")
         }
-    }, [user])
+    }, [user, router])
 
     const handleVerification = () => {
         setLoading(true);
