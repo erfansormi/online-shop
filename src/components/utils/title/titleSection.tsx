@@ -6,8 +6,8 @@ interface Props {
 
 const TitleSection = ({ title }: Props) => {
     return (
-        <div className='mb-7'>
-            <h2 className='text-2xl'>
+        <div className='mb-5'>
+            <h2 className='text-2xl text-gray-900'>
                 {title}
             </h2>
         </div>

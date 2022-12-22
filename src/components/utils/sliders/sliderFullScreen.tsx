@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // import required modules
-import { Pagination, Autoplay } from "swiper";
+import { Pagination, Autoplay, Navigation } from "swiper";
 
 // mui
 import { Skeleton } from "@mui/material";
@@ -24,18 +24,22 @@ const SliderFullScreen = ({ data }: Props) => {
                         pagination={{
                             dynamicBullets: true,
                         }}
-                        modules={[Pagination, Autoplay]}
+                        modules={[Pagination, Autoplay, Navigation]}
                         loop={true}
                         autoplay={{
                             delay: 3500,
+                            waitForTransition:true,
                             disableOnInteraction: false,
                         }}
-                        className="h-full"
+                        navigation={{
+                            enabled: true,
+                        }}
+                        className="h-full shadow-lg"
                     >
                         {data?.map((item, index) =>
                             <SwiperSlide
                                 key={index * 17}
-                                className="w-full md:h-96 sm:h-80 h-48"
+                                className="w-full md:h-96 sm:h-72 h-48 xl:h-100 2xl:h-110"
                             >
                                 <img
                                     src={item.image}

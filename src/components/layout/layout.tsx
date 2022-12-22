@@ -3,12 +3,13 @@ import React from 'react'
 interface Props {
     children: React.ReactNode,
     className?: string,
-    noPadding?: boolean
+    noPadding?: boolean,
+    noContainer?: boolean
 }
 
-const Layout = ({ children, className, noPadding }: Props) => {
+const Layout = ({ children, className, noPadding, noContainer }: Props) => {
     return (
-        <div className={`container mx-auto mt-14 ${noPadding ? "" : "px-10"} ${className}`}>
+        <div className={`${noContainer ? "" : "container"} mx-auto mt-14 ${noPadding ? "" : "px-10"} ${className}`}>
             {children}
         </div>
     )

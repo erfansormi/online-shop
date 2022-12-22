@@ -13,13 +13,9 @@ const NewProducts = () => {
     const newProducts = useSelector((state: State) => state.data.newProducts);
 
     return (
-        <Layout>
+        <Layout noContainer>
             <TitleSection title='newest products of the week' />
-            {
-                newProducts ?
-                    <SmallCardSlider data={newProducts} /> :
-                    ""
-            }
+            <SmallCardSlider data={newProducts} />
         </Layout>
     )
 }

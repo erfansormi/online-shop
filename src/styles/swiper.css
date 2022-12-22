@@ -1,0 +1,88 @@
+/* navigation */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #777 !important;
+    background: #fff !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3) !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    -ms-border-radius: 50% !important;
+    -o-border-radius: 50% !important;
+    transition: 0.2s all !important;
+    -webkit-transition: 0.2s all !important;
+    -moz-transition: 0.2s all !important;
+    -ms-transition: 0.2s all !important;
+    -o-transition: 0.2s all !important;
+    border: none !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    color: #111 !important;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+.swiper-button-disabled {
+    display: none !important;
+}
+
+
+/* pagination */
+.swiper-pagination {
+    width: fit-content !important;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    left: 12% !important;
+}
+
+.swiper-pagination-bulle {
+    transition: 0.3s width ease-in-out !important;
+    -webkit-transition: 0.3s width ease-in-out !important;
+    -moz-transition: 0.3s width ease-in-out !important;
+    -ms-transition: 0.3s width ease-in-out !important;
+    -o-transition: 0.3s width ease-in-out !important;
+}
+
+.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+    position: initial !important;
+}
+
+.swiper-pagination-bullet-active-prev-prev,
+.swiper-pagination-bullet-active-next-next,
+.swiper-pagination-bullet-active-prev,
+.swiper-pagination-bullet-active-next {
+    transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff !important;
+    border-radius: 6px !important;
+    width: 20px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+    box-shadow: 0 0 2px 1px rgb(0 0 0 / 20%);
+}
+
+.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+    transform: scale(1) !important;
+    -webkit-transform: scale(1) !important;
+    -moz-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    -o-transform: scale(1) !important;
+}

@@ -1,23 +1,29 @@
 import { hostName } from '../../../firebase/app';
 
-export const fetchSlidersData = async () => {
-    const res = await fetch(`${hostName}/sliders.json/`)
-    const slidersError = res.ok ? "" : res.statusText;
-    const sliders = await res.json();
+export const fetchData = async () => {
 
-    return {
-        slidersError,
-        sliders
-    }
-}
+    // sliders
+    const slidersRes = await fetch(`${hostName}/sliders.json/`)
+    const sliders = await slidersRes.json();
 
-export const fetchProductsData = async () => {
+    // all products
     const res = await fetch(`${hostName}/products.json/`)
     const productsError = res.ok ? "" : res.statusText;
     const products = await res.json();
 
+    // new products
+    const newProductsRes = await fetch(`${hostName}/newProducts.json/`)
+    const newProducts = await newProductsRes.json();
+
+    // special offer
+    const specialOffersRes = await fetch(`${hostName}/offerProducts.json/`)
+    const specialOffers = await specialOffersRes.json();
+
     return {
         products,
-        productsError
+        productsError,
+        newProducts,
+        sliders,
+        specialOffers
     }
 }

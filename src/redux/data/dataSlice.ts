@@ -28,14 +28,14 @@ interface InitialState {
     sliders: null | Slider[],
     products: null | Product[],
     newProducts: null | Product[],
-    offer: null | Product[],
+    offers: null | Product[],
 }
 
 const initialState: InitialState = {
     sliders: null,
     products: null,
     newProducts: null,
-    offer: null
+    offers: null
 }
 
 const dataSlice = createSlice({
@@ -51,11 +51,11 @@ const dataSlice = createSlice({
         getNewProductsData: (state, action: PayloadAction<Product[]>) => {
             state.newProducts = action.payload;
         },
-        getOfferData: (state, action: PayloadAction<Product[]>) => {
-            state.offer = action.payload;
+        getOffersData: (state, action: PayloadAction<Product[]>) => {
+            state.offers = action.payload;
         },
     }
 })
 
-export const { getProductsData, getSlidersData, getNewProductsData, getOfferData } = dataSlice.actions;
+export const { getProductsData, getSlidersData, getNewProductsData, getOffersData } = dataSlice.actions;
 export default dataSlice.reducer;

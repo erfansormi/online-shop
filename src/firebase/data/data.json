@@ -59,6 +59,22 @@
             "type": "gaming monitor"
         },
         {
+            "id": 17,
+            "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+            "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
+            "price": 39.99,
+            "discountPercentage": null,
+            "category": "women's clothing",
+            "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+            "images": [],
+            "rating": {
+                "rate": 3.8,
+                "count": 679
+            },
+            "brand": "Varsity Tennis Skirt",
+            "type": "Jacket"
+        },
+        {
             "id": 31,
             "title": "perfume Oil",
             "description": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
@@ -144,7 +160,7 @@
             "title": "Mens Casual Premium Slim Fit T-Shirts ",
             "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
             "price": 22.3,
-            "discountPercentage": null,
+            "discountPercentage": 36,
             "category": "men's clothing",
             "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
             "images": [],
@@ -160,7 +176,7 @@
             "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
             "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
             "price": 64,
-            "discountPercentage": null,
+            "discountPercentage": 21,
             "category": "hard drive",
             "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
             "images": [],
@@ -175,7 +191,7 @@
             "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
             "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
             "price": 56.99,
-            "discountPercentage": null,
+            "discountPercentage": 8.7,
             "category": "women's clothing",
             "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
             "images": [],
@@ -191,7 +207,7 @@
             "title": "White Gold Plated Princess",
             "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
             "price": 9.99,
-            "discountPercentage": null,
+            "discountPercentage": 12.5,
             "category": "jewelery",
             "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
             "images": [],
@@ -201,22 +217,6 @@
             },
             "brand": "Pierced Owl",
             "type": "ring"
-        },
-        {
-            "id": 15,
-            "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-            "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
-            "price": 56.99,
-            "discountPercentage": null,
-            "category": "women's clothing",
-            "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-            "images": [],
-            "rating": {
-                "rate": 2.6,
-                "count": 235
-            },
-            "brand": "Battenberg Cardi",
-            "type": "Jacket"
         },
         {
             "id": 22,
@@ -236,6 +236,43 @@
                 "https://i.dummyjson.com/data/products/2/2.jpg",
                 "https://i.dummyjson.com/data/products/2/3.jpg",
                 "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+            ]
+        },
+        {
+            "id": 11,
+            "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+            "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
+            "price": 109,
+            "discountPercentage": 28,
+            "category": "hard drive",
+            "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+            "images": [],
+            "rating": {
+                "rate": 4.8,
+                "count": 319
+            },
+            "brand": "SP",
+            "type": "ssd"
+        },
+        {
+            "id": 29,
+            "title": "Infinix INBOOK",
+            "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+            "price": 1099,
+            "discountPercentage": 11.83,
+            "rating": {
+                "rate": 4.54,
+                "count": 96
+            },
+            "brand": "Infinix",
+            "category": "laptops",
+            "image": "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+            "images": [
+                "https://i.dummyjson.com/data/products/9/1.jpg",
+                "https://i.dummyjson.com/data/products/9/2.png",
+                "https://i.dummyjson.com/data/products/9/3.png",
+                "https://i.dummyjson.com/data/products/9/4.jpg",
+                "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
             ]
         }
     ],
@@ -261,7 +298,7 @@
             "title": "Mens Casual Premium Slim Fit T-Shirts ",
             "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
             "price": 22.3,
-            "discountPercentage": null,
+            "discountPercentage": 36,
             "category": "men's clothing",
             "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
             "images": [],
@@ -341,7 +378,7 @@
             "title": "White Gold Plated Princess",
             "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
             "price": 9.99,
-            "discountPercentage": null,
+            "discountPercentage": 12.5,
             "category": "jewelery",
             "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
             "images": [],
@@ -373,7 +410,7 @@
             "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
             "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
             "price": 64,
-            "discountPercentage": null,
+            "discountPercentage": 21,
             "category": "hard drive",
             "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
             "images": [],
@@ -404,7 +441,7 @@
             "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
             "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
             "price": 109,
-            "discountPercentage": null,
+            "discountPercentage": 28,
             "category": "hard drive",
             "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
             "images": [],
@@ -468,7 +505,7 @@
             "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
             "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
             "price": 56.99,
-            "discountPercentage": null,
+            "discountPercentage": 8.7,
             "category": "women's clothing",
             "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
             "images": [],
