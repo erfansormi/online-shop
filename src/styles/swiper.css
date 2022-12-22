@@ -45,7 +45,7 @@
     left: 12% !important;
 }
 
-.swiper-pagination-bulle {
+.swiper-pagination-bullet {
     transition: 0.3s width ease-in-out !important;
     -webkit-transition: 0.3s width ease-in-out !important;
     -moz-transition: 0.3s width ease-in-out !important;
