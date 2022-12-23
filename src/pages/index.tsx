@@ -29,15 +29,15 @@ interface Props {
 // commented props
 // { newProducts, products, productsError, sliders, specialOffers }: Props
 
-const Home = ({ newProducts, products, productsError, sliders, specialOffers }: Props) => {
-  // const sliders = useSelector((state: State) => state.data.sliders);
+const Home = () => {
+  const sliders = useSelector((state: State) => state.data.sliders);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getSlidersData(sliders))
-    dispatch(getNewProductsData(newProducts))
-    dispatch(getOffersData(specialOffers))
-    dispatch(getProductsData(products))
+    // dispatch(getSlidersData(sliders))
+    // dispatch(getNewProductsData(newProducts))
+    // dispatch(getOffersData(specialOffers))
+    // dispatch(getProductsData(products))
 
     // fetch("https://online-shop-d006c-default-rtdb.asia-southeast1.firebasedatabase.app/sliders.json")
     //   .then(res => res.json())
@@ -64,16 +64,16 @@ const Home = ({ newProducts, products, productsError, sliders, specialOffers }: 
 export default Home;
 
 // به دلیل تحریم بودن فایربیس، موقع بیلد گرفتن از پروژه به ارور خواهیم خورد و هنگام توسعه برنامه، کد پایین به صورت کامنت خواهد بود و هنگام دیپلای از ورسل استفاده خواهد شد
-export const getStaticProps: GetStaticProps = async () => {
-  const { products, productsError, newProducts, sliders, specialOffers } = await fetchData();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const { products, productsError, newProducts, sliders, specialOffers } = await fetchData();
 
-  return {
-    props: {
-      sliders,
-      products,
-      productsError,
-      newProducts,
-      specialOffers
-    },
-  }
-}
+//   return {
+//     props: {
+//       sliders,
+//       products,
+//       productsError,
+//       newProducts,
+//       specialOffers
+//     },
+//   }
+// }

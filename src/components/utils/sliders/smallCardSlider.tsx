@@ -20,7 +20,7 @@ interface Props {
 
 const SmallCardSlider = ({ data }: Props) => {
     return (
-        <div className='py-6 px-1 bg-rose-500 rounded-3xl overflow-hidden'>
+        <div className='py-6 px-1 bg-rose-500 rounded-3xl overflow-hidden h-full'>
             <Swiper
                 navigation={true}
                 slidesPerView={"auto"}
@@ -47,12 +47,12 @@ const SmallCardSlider = ({ data }: Props) => {
                         :
                         // loading skeleton
                         [...Array(8)].map((item, index) =>
-                            <SwiperSlide key={index} className="rounded-lg shadow-lg overflow-hidden w-fit">
-                                <Skeleton className='w-48 h-60' variant='rectangular' />
+                            <SwiperSlide key={index} className="rounded-lg shadow-lg overflow-hidden w-48 h-60">
+                                <Skeleton className='w-full' height={"15rem"} variant='rectangular' />
                             </SwiperSlide>
                         )
                 }
-                <SwiperSlide className="rounded-lg shadow-lg overflow-hidden w-fit">
+                <SwiperSlide className="rounded-lg shadow-lg overflow-hidden w-fit h-full">
                     <SeeAllProducts />
                 </SwiperSlide>
             </Swiper>
