@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link';
+import Image from 'next/image';
 
 // types
 import { Product } from '../../../redux/data/dataSlice';
@@ -10,10 +11,13 @@ const SmallCard = ({ image, price, title, id, discountPercentage }: Pick<Product
             <Link href={`products/product${id}`} className="block h-full">
                 <div className='flex justify-center items-center bg-white h-3/5 overflow-hidden'>
                     <div className='w-28 h-28 md:h-32 md:w-32'>
-                        <img
+                        <Image
                             className='w-full h-full object-contain rounded-lg'
                             src={image}
                             alt={title}
+                            width={140}
+                            height={140}
+                            quality={80}
                         />
                     </div>
                 </div>

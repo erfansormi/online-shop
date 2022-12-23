@@ -45,7 +45,7 @@ const SliderFullScreen = ({ data }: Props) => {
                                     src={item.image}
                                     width={800}
                                     height={350}
-                                    quality={45}
+                                    quality={70}
                                     priority
                                     alt="slider"
                                     className="w-full object-cover h-full"
