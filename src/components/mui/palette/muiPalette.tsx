@@ -4,8 +4,14 @@ export const muiTheme = createTheme({
     palette: {
         primary: {
             main: "#f43f5e",
-            dark: "#e11d48",
             light: "#fb7185",
+            dark: "#be123c",
+            contrastText: "#fff"
+        },
+        info: {
+            main: "#2563eb",
+            light: "#3b82f6",
+            dark: "#1e40af",
             contrastText: "#fff"
         }
     },

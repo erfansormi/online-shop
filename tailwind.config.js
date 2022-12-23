@@ -12,6 +12,13 @@ module.exports = {
       screens: {
         sm: '600px',
       },
+      boxShadow: {
+        'sm': '0 0 2px 0 rgba(0, 0, 0, 0.05)',
+        'md': '0 0 4px 1px rgba(0, 0, 0, 0.1)',
+        'lg': '0 0 6px 2px rgba(0, 0, 0, 0.1)',
+        'xl': '0 0 10px 4px rgba(0, 0, 0, 0.1)',
+        '2xl': '0 0 15px 6px rgba(0, 0, 0, 0.1)'
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
@@ -24,7 +31,7 @@ module.exports = {
         'silver': '#ecebff',
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
-      }
+      },
     },
   },
   plugins: [],

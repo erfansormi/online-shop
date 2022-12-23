@@ -26,7 +26,7 @@ import { loginInputs, loginInitialValues, LoginInitialValues } from '../../../co
 
 // components
 import Input from '../../../components/form/input/input';
-import Layout from '../../../components/layout/layout';
+import FormContainer from '../../../components/form/formContainer/formContainer';
 import InputError from '../../../components/form/input/inputError';
 import Loading from '../../../components/utils/loading/loading';
 
@@ -72,12 +72,7 @@ const Login = () => {
     }
 
     return (
-        <Layout className='flex flex-col justify-center mt-2 px-10 max-w-xl shadow-xl py-8 rounded-xl'>
-            <div className='text-center mb-5'>
-                <h2>
-                    login
-                </h2>
-            </div>
+        <FormContainer title='login'>
             <Formik
                 initialValues={loginInitialValues}
                 validationSchema={LoginSchema}
@@ -138,7 +133,7 @@ const Login = () => {
                 )}
             </Formik>
             <Loading loading={loading} />
-        </Layout>
+        </FormContainer>
     )
 }
 

@@ -29,9 +29,9 @@ const Verification = () => {
 
     // is user logedd in?
     useEffect(() => {
-        if (user == null || user.emailVerified) {
-            router.push("/")
-        }
+        // if (user == null || user.emailVerified) {
+        //     router.push("/")
+        // }
     }, [user, router])
 
     const handleVerification = () => {

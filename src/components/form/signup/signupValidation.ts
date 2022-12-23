@@ -2,20 +2,20 @@ import * as Yup from 'yup';
 
 export const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
-        .min(3, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('First Name Is Required'),
+        .min(3, 'Too short!')
+        .max(50, 'Too long!')
+        .required('First name is required!'),
     lastName: Yup.string()
-        .min(3, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Last Name Is Required!'),
-    email: Yup.string()
-        .email('Invalid Email!')
-        .required('Email Is Required!'),
+        .min(3, 'Too short!')
+        .max(50, 'Too long!')
+        .required('Last name is required!'),
+    phone: Yup.string()
+        .matches(/^09[0-9]{9}$/, "Phone number is not valid!")
+        .required('Phone number is required!'),
     password: Yup.string()
-        .min(8, "Password Is Short!")
-        .required("Password Is Required!"),
+        .min(8, "Password is short!")
+        .required("Password is required!"),
     confirmPassword: Yup.string()
-        .required("Confirm Password Is Required!")
+        .required("Confirm Password is required!")
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });

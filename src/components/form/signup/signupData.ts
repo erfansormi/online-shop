@@ -2,7 +2,7 @@
 export interface SignupInitialValues {
     firstName: string,
     lastName: string,
-    email: string,
+    phone: string,
     password: string,
     confirmPassword: string
 }
@@ -12,7 +12,7 @@ type SignupKeys = keyof SignupInitialValues;
 export const signupInitialValues: SignupInitialValues = {
     firstName: "",
     lastName: "",
-    email: "",
+    phone: "",
     password: "",
     confirmPassword: ""
 }
@@ -36,9 +36,9 @@ export const signupInputs: SignupInputs[] = [
         type: "text"
     },
     {
-        name: "email",
-        placeholder: "email",
-        type: "email"
+        name: "phone",
+        placeholder: "phone number",
+        type: "text"
     },
     {
         name: "password",
