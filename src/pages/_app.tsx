@@ -21,6 +21,10 @@ import { Fredoka } from "@next/font/google";
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
+// mui theme
+import { muiTheme } from "../components/mui/palette/muiPalette";
+import { ThemeProvider } from "@mui/material/styles";
+
 // components
 import Navbar from '../components/layout/navbar/navbar';
 
@@ -33,11 +37,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-        <Navbar className={fredoka.className} />
-        <main className={fredoka.className}>
-          <Component {...pageProps} />
-        </main>
-        <ToastContainer />
+        <ThemeProvider theme={muiTheme}>
+          <Navbar className={fredoka.className} />
+          <main className={fredoka.className}>
+            <Component {...pageProps} />
+          </main>
+          <ToastContainer />
+        </ThemeProvider>
       </Provider>
     </>
   )

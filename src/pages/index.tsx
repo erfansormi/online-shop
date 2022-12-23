@@ -26,6 +26,9 @@ interface Props {
   specialOffers: Product[],
 }
 
+// commented props
+// { newProducts, products, productsError, sliders, specialOffers }: Props
+
 const Home = ({ newProducts, products, productsError, sliders, specialOffers }: Props) => {
   // const sliders = useSelector((state: State) => state.data.sliders);
   const dispatch = useDispatch();

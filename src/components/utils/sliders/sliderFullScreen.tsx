@@ -28,7 +28,7 @@ const SliderFullScreen = ({ data }: Props) => {
                         loop={true}
                         autoplay={{
                             delay: 3500,
-                            waitForTransition:true,
+                            waitForTransition: true,
                             disableOnInteraction: false,
                         }}
                         navigation={{
@@ -41,8 +41,12 @@ const SliderFullScreen = ({ data }: Props) => {
                                 key={index * 17}
                                 className="w-full md:h-96 sm:h-72 h-48 xl:h-100 2xl:h-110"
                             >
-                                <img
+                                <Image
                                     src={item.image}
+                                    width={800}
+                                    height={350}
+                                    quality={45}
+                                    priority
                                     alt="slider"
                                     className="w-full object-cover h-full"
                                 />
