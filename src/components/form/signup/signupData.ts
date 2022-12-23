@@ -27,22 +27,22 @@ interface SignupInputs {
 export const signupInputs: SignupInputs[] = [
     {
         name: "firstName",
-        placeholder: "first name",
+        placeholder: "First name",
         type: "text"
     },
     {
         name: "lastName",
-        placeholder: "last name",
+        placeholder: "Last name",
         type: "text"
     },
     {
         name: "phone",
-        placeholder: "phone number",
+        placeholder: "Phone number",
         type: "text"
     },
     {
         name: "password",
-        placeholder: "password",
+        placeholder: "Password",
         type: "password"
     },
     {

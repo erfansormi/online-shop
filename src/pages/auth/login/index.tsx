@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-// authentication
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../../firebase/app';
-
 // formik & yup
 import { Formik } from 'formik';
 import { LoginSchema } from '../../../components/form/login/loginValidation';
@@ -37,38 +33,17 @@ const Login = () => {
     // redux
     const user = useSelector((state: State) => state.auth.user);
 
-    // state
+    // states
     const [loading, setLoading] = useState(false);
 
     // if user logedd in, navigate to home
     useEffect(() => {
-        if (user != null) {
-            router.push("/");
-        }
-    }, [user, router])
+       
+    }, [])
 
     // handle form submit 
     const handleSubmit = async (values: LoginInitialValues) => {
-        setLoading(true)
-        await signInWithEmailAndPassword(auth, values.email, values.password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
 
-                // alert 
-                toastify("Welcome back to your account!", "dark", "success")
-                router.push("/")
-            })
-            .catch((error) => {
-                const errorCode: string = error.code;
-                const message = errorCode.replace("auth/", "").replaceAll("-", " ");
-
-                // alert
-                toastify(message, "dark", "error")
-            })
-            .finally(() => {
-                setLoading(false)
-            })
     }
 
     return (
@@ -121,13 +96,24 @@ const Login = () => {
                                 login
                             </Button>
                         </div>
-                        <div className='w-full text-sm'>
-                            <span className='text-gray-500 mr-2'>
-                                Do you not have an account?
-                            </span>
-                            <Link href={"/auth/signup"} className="text-blue-600">
-                                signup
+
+                        {/* forget password */}
+                        <div className='w-full text-blue-500 text-sm'>
+                            <Link href={`#`}>
+                                Forget your password?
                             </Link>
+                        </div>
+
+                        {/* signup */}
+                        <div className="w-full pt-3 mt-8 border-t border-gray-300 border-solid border-x-0 border-b-0">
+                            <div className='w-full text-sm'>
+                                <span className='text-gray-500 mr-2'>
+                                    Do you not have an account?
+                                </span>
+                                <Link href={"/auth/signup"} className="text-blue-600">
+                                    Signup
+                                </Link>
+                            </div>
                         </div>
                     </Box>
                 )}

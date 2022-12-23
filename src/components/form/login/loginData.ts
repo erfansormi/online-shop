@@ -1,13 +1,13 @@
 // types
 export interface LoginInitialValues {
-    email: string,
+    user: string,
     password: string,
 }
 type LoginKeys = keyof LoginInitialValues;
 
 // login initial values
 export const loginInitialValues: LoginInitialValues = {
-    email: "",
+    user: "",
     password: "",
 }
 
@@ -20,13 +20,13 @@ interface LoginInputs {
 
 export const loginInputs: LoginInputs[] = [
     {
-        name: "email",
-        placeholder: "email",
-        type: "email"
+        name: "user",
+        placeholder: "Enter your email, phone number or username",
+        type: "text"
     },
     {
         name: "password",
-        placeholder: "password",
+        placeholder: "Password",
         type: "password"
     }
 ]

@@ -8,7 +8,7 @@ const SignupOtherWay = () => {
     return (
         <div className='mt-3 flex flex-col'>
             <div>
-                <fieldset className='border-r-0 border-l-0 border-b-0 border-solid border-gray-200 text-center'>
+                <fieldset className='border-r-0 border-t border-l-0 border-b-0 border-solid border-gray-300 text-center'>
                     <legend className='px-4'>
                         <span className='text-gray-500'>Or Signup with</span>
                     </legend>
