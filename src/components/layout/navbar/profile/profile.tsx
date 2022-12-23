@@ -68,10 +68,9 @@ const Profile = () => {
                             aria-controls={open ? 'account-menu' : undefined}
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
+                            className='text-gray-700 text-2xl'
                         >
-                            <FiUser
-                                className='text-gray-700 text-2xl'
-                            />
+                            <FiUser />
                         </IconButton>
                     </div>
                 </Tooltip>
@@ -116,7 +115,7 @@ const Profile = () => {
                     <div key={index * 13}>
                         <MenuItem>
                             <Link href={item.link} className="flex items-center">
-                                <ListItemIcon className='text-gray-500 text-2xl'>
+                                <ListItemIcon className='text-gray-600 text-2xl'>
                                     {item.icon}
                                 </ListItemIcon>
                                 <span>
@@ -132,7 +131,7 @@ const Profile = () => {
                     </div>
                 )}
                 <MenuItem onClick={() => setModal(true)}>
-                    <ListItemIcon className='text-gray-500 text-2xl'>
+                    <ListItemIcon className='text-gray-600 text-2xl'>
                         <MdLogout />
                     </ListItemIcon>
                     <span>

@@ -23,7 +23,7 @@ export const navbarData = (user: null | User) => {
                 title: "Favorite list"
             },
             {
-                icon: <BsCart3 />,
+                icon: <BsCart3  />,
                 link: "/cart",
                 title: "Cart"
             }
