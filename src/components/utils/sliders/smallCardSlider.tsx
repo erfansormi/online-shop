@@ -24,7 +24,7 @@ const SmallCardSlider = ({ data }: Props) => {
             <Swiper
                 navigation={true}
                 slidesPerView={"auto"}
-                spaceBetween={5}
+                spaceBetween={data ? 5 : 15}
                 modules={[Navigation]}
                 className="mySwiper"
             >

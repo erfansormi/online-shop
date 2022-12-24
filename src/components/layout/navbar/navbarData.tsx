@@ -4,7 +4,7 @@ import React from "react";
 import { User } from "firebase/auth";
 
 // icons
-import { BsCart3, BsBoxArrowInRight } from "react-icons/bs";
+import { BsCart3 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
 // ts
@@ -23,7 +23,7 @@ export const navbarData = (user: null | User) => {
                 title: "Favorite list"
             },
             {
-                icon: <BsCart3  />,
+                icon: <BsCart3 />,
                 link: "/cart",
                 title: "Cart"
             }
@@ -34,11 +34,16 @@ export const navbarData = (user: null | User) => {
                 link: "/cart",
                 title: "Cart"
             },
-            {
-                icon: <BsBoxArrowInRight />,
-                link: "/auth/signup",
-                title: "Signup / Login"
-            },
+            // {
+            //     icon: <BsBoxArrowInRight />,
+            //     link: "/auth/login",
+            //     title: "Login"
+            // },
+            // {
+            //     icon: <TbUserPlus />,
+            //     link: "/auth/signup",
+            //     title: "Signup"
+            // },
         ]
 
     return data;

@@ -25,7 +25,7 @@ import Input from '../../../components/form/input/input';
 import FormContainer from '../../../components/form/formContainer/formContainer';
 import InputError from '../../../components/form/input/inputError';
 import Loading from '../../../components/utils/loading/loading';
-
+import SigninOtherWay from '../../../components/form/signup/signinOtherWay';
 
 const Login = () => {
     const router = useRouter();
@@ -38,15 +38,16 @@ const Login = () => {
 
     // if user logedd in, navigate to home
     useEffect(() => {
-       
+
     }, [])
 
     // handle form submit 
-    const handleSubmit = async (values: LoginInitialValues) => {
+    const handleSubmit = (values: LoginInitialValues) => {
 
     }
 
     return (
+
         <FormContainer title='login'>
             <Formik
                 initialValues={loginInitialValues}
@@ -98,26 +99,36 @@ const Login = () => {
                         </div>
 
                         {/* forget password */}
-                        <div className='w-full text-blue-500 text-sm'>
-                            <Link href={`#`}>
+                        <div className='w-full text-blue-500 text-sm cursor-pointer'>
+                            <Link href={"/auth/rest-password"}>
                                 Forget your password?
                             </Link>
                         </div>
 
-                        {/* signup */}
-                        <div className="w-full pt-3 mt-8 border-t border-gray-300 border-solid border-x-0 border-b-0">
-                            <div className='w-full text-sm'>
-                                <span className='text-gray-500 mr-2'>
-                                    Do you not have an account?
-                                </span>
-                                <Link href={"/auth/signup"} className="text-blue-600">
-                                    Signup
-                                </Link>
-                            </div>
-                        </div>
+                        {/* other way to login */}
+                        <SigninOtherWay
+                            buttonText='google'
+                            handleClick={() => ""}
+                            imageSrc="/images/google.png"
+                            title='Or login with'
+                        />
                     </Box>
                 )}
             </Formik>
+
+            {/* signup */}
+            <div className="w-full pt-3 mt-8 border-t border-gray-300 border-solid border-x-0 border-b-0">
+                <div className='w-full text-sm'>
+                    <span className='text-gray-500 mr-2'>
+                        Do you not have an account?
+                    </span>
+                    <Link href={"/auth/signup"} className="text-blue-600">
+                        Signup
+                    </Link>
+                </div>
+            </div>
+
+            {/* loading */}
             <Loading loading={loading} />
         </FormContainer>
     )

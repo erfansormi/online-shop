@@ -21,7 +21,7 @@ interface LoginInputs {
 export const loginInputs: LoginInputs[] = [
     {
         name: "user",
-        placeholder: "Enter your email, phone number or username",
+        placeholder: "Enter your email or phone number",
         type: "text"
     },
     {

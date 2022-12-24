@@ -63,6 +63,10 @@ h6 {
   font-weight: 700;
 }
 
+button {
+  text-transform: capitalize !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
