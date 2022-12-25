@@ -19,10 +19,11 @@ import FormContainer from '../../../components/form/formContainer/formContainer'
 
 // validation
 const Schema = Yup.object().shape({
-    code: Yup.string()
+    code: Yup.number()
+        .integer("Code must be integer!")
         .required("Enter code!")
-        .min(5, "code must be 5 digit!")
-        .max(5, "code must be 5 digit!")
+        .min(10000, "code must be 5 digit!")
+        .max(99999, "code must be 5 digit!")
 });
 
 interface InitialValues {
@@ -40,18 +41,18 @@ const VerifyOtp = () => {
     }
 
     return (
-        <div>
-            <div className='flex justify-center'>
-                <Image
-                    className='w-48 h-48 object-contain'
-                    src={"/images/verification.png"}
-                    alt="verify otp"
-                    width={500}
-                    height={500}
-                    quality={100}
-                />
-            </div>
-            <FormContainer title={`verify phone number`}>
+        <>
+            <FormContainer title={`verify phone number`} className='relative mt-20 py-20'>
+                <div className='flex justify-center absolute -top-28 inset-x-1/2'>
+                    <Image
+                        className='w-48 h-48 object-contain'
+                        src={"/images/verification.png"}
+                        alt="verify otp"
+                        width={500}
+                        height={500}
+                        quality={100}
+                    />
+                </div>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={Schema}
@@ -70,7 +71,6 @@ const VerifyOtp = () => {
                             noValidate
                             autoComplete="off"
                             onSubmit={handleSubmit}
-                            className="w-full flex justify-center items-center flex-col"
                         >
                             <Input
                                 placeholder='Enter code'
@@ -80,7 +80,7 @@ const VerifyOtp = () => {
                                 touched={touched.code}
                                 error={errors.code}
                                 value={values.code}
-                                type="text"
+                                type="number"
                             />
                             <div className='w-full'>
                                 <Button
@@ -95,7 +95,7 @@ const VerifyOtp = () => {
                     )}
                 </Formik>
             </FormContainer>
-        </div>
+        </>
     )
 }
 

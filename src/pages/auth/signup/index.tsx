@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
-
 // components
-import SignupWithPhone from '../../../components/form/signup/signupWithPhone';
-import SignupWithEmail from '../../../components/form/signup/signupWithEmail';
+import SignupContainer from '../../../components/form/signup/signupContainer';
 
 const Signup: React.FC = () => {
-    const router = useRouter();
-
-    // redux
-    const user = useSelector((state: State) => state.auth.user);
-
-    // states
+    // signup state
     const [signupMethod, setSignupMethod] = useState<"email" | "phone">("phone")
 
     // if user logedd in, navigate to home
@@ -27,8 +17,14 @@ const Signup: React.FC = () => {
         <>
             {
                 signupMethod == "phone" ?
-                    <SignupWithPhone setSignupMethod={setSignupMethod} /> :
-                    <SignupWithEmail setSignupMethod={setSignupMethod} />
+                    <SignupContainer
+                        name={"phone"}
+                        setSignupMethod={setSignupMethod}
+                    /> :
+                    <SignupContainer
+                        name={"email"}
+                        setSignupMethod={setSignupMethod}
+                    />
             }
         </ >
     );

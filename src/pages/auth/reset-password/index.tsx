@@ -53,7 +53,6 @@ const RestPassword = () => {
                         noValidate
                         autoComplete="off"
                         onSubmit={handleSubmit}
-                        className="w-full flex justify-center items-center flex-col"
                     >
                         <div className="mb-1 w-full h-16">
                             <Input

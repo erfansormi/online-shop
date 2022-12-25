@@ -9,10 +9,6 @@ import { IconButton, Tooltip, ButtonGroup, Button } from '@mui/material';
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { TbUserPlus } from "react-icons/tb";
 
-// authentication
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../../firebase/app';
-
 // navbar data
 import { navbarData } from './navbarData';
 
@@ -40,17 +36,8 @@ const Navbar = ({ className }: Props) => {
 
     // is user loggedin?
     useEffect(() => {
-        setLoading(true)
-        onAuthStateChanged(auth, (user) => {
-            if (user !== null) {
-                dispatch(getUserData(user));
-                setLoading(false);
-            }
-            else {
-                setLoading(false);
-            }
-        });
-    }, [dispatch])
+      
+    }, [])
 
     return (
         <>

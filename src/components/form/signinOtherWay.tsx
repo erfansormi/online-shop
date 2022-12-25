@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Button } from '@mui/material'
 
 // types
-import { IconType } from 'react-icons/lib'
 interface Props {
     title: string,
     imageSrc?: string,
@@ -16,7 +15,7 @@ interface Props {
 
 const SigninOtherWay = ({ title, imageSrc, buttonText, handleClick, Icon }: Props) => {
     return (
-        <div className='mt-8 flex flex-col w-full'>
+        <div className='mt-6 flex flex-col w-full'>
             <div>
                 <fieldset className='border-r-0 border-t border-l-0 border-b-0 border-solid border-gray-300 text-center'>
                     <legend className='px-4'>

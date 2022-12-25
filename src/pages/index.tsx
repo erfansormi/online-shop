@@ -2,7 +2,7 @@ import React from 'react'
 import { GetStaticProps } from 'next';
 
 // fetch data
-import { fetchData } from '../components/home/fetchData/getHomeData';
+// import { fetchData } from '../components/home/fetchData/getHomeData';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';

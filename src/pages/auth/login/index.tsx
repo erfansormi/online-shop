@@ -25,7 +25,8 @@ import Input from '../../../components/form/input/input';
 import FormContainer from '../../../components/form/formContainer/formContainer';
 import InputError from '../../../components/form/input/inputError';
 import Loading from '../../../components/utils/loading/loading';
-import SigninOtherWay from '../../../components/form/signup/signinOtherWay';
+import SigninOtherWay from '../../../components/form/signinOtherWay';
+import FormSwitcher from '../../../components/form/formSwitcher';
 
 const Login = () => {
     const router = useRouter();
@@ -67,7 +68,6 @@ const Login = () => {
                         noValidate
                         autoComplete="off"
                         onSubmit={handleSubmit}
-                        className="w-full flex justify-center items-center flex-col"
                     >
                         {loginInputs.map((item, index) =>
                             <div key={index * 9} className="mb-1 w-full h-16">
@@ -100,7 +100,7 @@ const Login = () => {
 
                         {/* forget password */}
                         <div className='w-full text-blue-500 text-sm cursor-pointer'>
-                            <Link href={"/auth/rest-password"}>
+                            <Link href={"/auth/reset-password"}>
                                 Forget your password?
                             </Link>
                         </div>
@@ -117,16 +117,7 @@ const Login = () => {
             </Formik>
 
             {/* signup */}
-            <div className="w-full pt-3 mt-8 border-t border-gray-300 border-solid border-x-0 border-b-0">
-                <div className='w-full text-sm'>
-                    <span className='text-gray-500 mr-2'>
-                        Do you not have an account?
-                    </span>
-                    <Link href={"/auth/signup"} className="text-blue-600">
-                        Signup
-                    </Link>
-                </div>
-            </div>
+            <FormSwitcher type='signup' />
 
             {/* loading */}
             <Loading loading={loading} />

@@ -13,7 +13,7 @@ interface Props {
 const FormContainer = ({ children, title, className }: Props) => {
     return (
         <Layout className={`${className ? className : ""} flex flex-col mt-3 justify-center px-8 max-w-xl shadow-md py-6 rounded-xl`}>
-            <div className='text-center mb-8'>
+            <div className='text-center mb-12'>
                 <h2 className='text-gray-800'>
                     {title}
                 </h2>

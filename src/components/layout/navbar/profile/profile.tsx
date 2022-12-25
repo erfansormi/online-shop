@@ -13,9 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 // toastify
 import { toastify } from '../../../utils/toastify/toastifyFunc';
 
-// authentication
-import { auth } from "../../../../firebase/app";
-
 // icons
 import { MdLogout } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
@@ -50,7 +47,6 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
-        auth.signOut();
         setModal(false);
         handleClose();
         dispatch(logoutUser());
