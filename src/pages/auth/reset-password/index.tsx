@@ -35,7 +35,11 @@ const RestPassword = () => {
     }
 
     return (
-        <FormContainer title='forget password'>
+        <FormContainer
+            title='forget password'
+            imageSrc='/images/forget-password.jpg'
+            imageAlt='forget password'
+        >
             <Formik
                 initialValues={initialValues}
                 validationSchema={Schema}

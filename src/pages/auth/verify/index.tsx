@@ -45,17 +45,11 @@ const VerifyOtp = () => {
 
     return (
         <>
-            <FormContainer title={`verify phone number`} className='relative mt-20 py-20'>
-                <div className='flex justify-center absolute -top-28 inset-x-1/2'>
-                    <Image
-                        className='w-48 h-48 object-contain'
-                        src={"/images/verification.png"}
-                        alt="verify otp"
-                        width={500}
-                        height={500}
-                        quality={100}
-                    />
-                </div>
+            <FormContainer title={`verify phone number`}
+                className='relative mt-20 py-20'
+                imageSrc='/images/verification.png'
+                imageAlt='verify otp'
+            >
                 <Formik
                     initialValues={initialValues}
                     validationSchema={Schema}
