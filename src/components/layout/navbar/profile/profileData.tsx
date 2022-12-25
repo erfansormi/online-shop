@@ -2,26 +2,27 @@
 import { Avatar } from "@mui/material"
 import { IoMdSettings } from "react-icons/io"
 import { BsBagFill } from 'react-icons/bs';
+import { AiOutlineHeart } from "react-icons/ai";
 
 export const profileMenuItem = [
     {
         icon: <Avatar style={{ width: 25, height: 25, margin: 0 }} />,
         title: "Profile",
-        link: "/account/profile"
-    },
-    {
-        icon: <Avatar style={{ width: 25, height: 25, margin: 0 }} />,
-        title: "Account",
-        link: "/account"
+        link: "/profile"
     },
     {
         icon: <BsBagFill />,
         title: "Orders",
-        link: "/account/orders"
+        link: "/profile/orders"
+    },
+    {
+        icon: <AiOutlineHeart />,
+        title:"Lists",
+        link:"/profile/lists"
     },
     {
         icon: <IoMdSettings />,
         title: "Settings",
-        link: "/account/settings"
+        link: "/profile/settings"
     },
 ]

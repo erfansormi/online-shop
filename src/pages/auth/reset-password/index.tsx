@@ -11,6 +11,7 @@ import { Button, Box } from '@mui/material'
 import FormContainer from '../../../components/form/formContainer/formContainer';
 import Input from '../../../components/form/input/input';
 import InputError from '../../../components/form/input/inputError';
+import SubmitButton from '../../../components/form/submitButton';
 
 // validation
 const Schema = Yup.object().shape({
@@ -54,32 +55,20 @@ const RestPassword = () => {
                         autoComplete="off"
                         onSubmit={handleSubmit}
                     >
-                        <div className="mb-1 w-full h-16">
-                            <Input
-                                placeholder={"Enter your email or phone number"}
-                                name={"user"}
-                                type={"text"}
-                                value={values.user}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                error={errors.user}
-                                touched={touched.user}
-                            />
-                            {
-                                errors.user && touched.user ?
-                                    <InputError error={errors.user} />
-                                    : null
-                            }
-                        </div>
-                        <div className="mb-3 w-full">
-                            <Button
-                                type='submit'
-                                className="w-full h-10 rounded-md"
-                                variant={"contained"}
-                            >
-                                next
-                            </Button>
-                        </div>
+                        <Input
+                            placeholder={"Enter your email or phone number"}
+                            name={"user"}
+                            type={"text"}
+                            value={values.user}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            error={errors.user}
+                            touched={touched.user}
+                        />
+
+                        {/*submit button */}
+                        <SubmitButton text='next' className='mt-3' />
+
                     </Box>
                 )}
             </Formik>

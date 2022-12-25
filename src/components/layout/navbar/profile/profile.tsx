@@ -56,7 +56,7 @@ const Profile = () => {
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                <Tooltip title="Account settings">
+                <Tooltip title="Profile">
                     <div className='ml-3'>
                         <IconButton
                             onClick={handleClick}
@@ -80,8 +80,8 @@ const Profile = () => {
                     elevation: 0,
                     sx: {
                         overflow: 'visible',
-                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                        minWidth: "200px",
+                        filter: 'drop-shadow(0px 4px 5px rgba(0,0,0,0.2))',
+                        minWidth: "220px",
                         mt: 1.5,
                         borderRadius: "8px",
                         '& .MuiAvatar-root': {
@@ -107,9 +107,10 @@ const Profile = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
+                {/* menu list */}
                 {profileMenuItem.map((item, index) =>
                     <div key={index * 13}>
-                        <MenuItem>
+                        <MenuItem className=' py-3'>
                             <Link href={item.link} className="flex items-center">
                                 <ListItemIcon className='text-gray-600 text-2xl'>
                                     {item.icon}
@@ -120,14 +121,16 @@ const Profile = () => {
                             </Link>
                         </MenuItem>
                         {
-                            index == 1 ?
+                            index == 0 ?
                                 <Divider />
                                 : null
                         }
                     </div>
                 )}
+
+                {/* logout */}
                 <MenuItem onClick={() => setModal(true)}>
-                    <ListItemIcon className='text-gray-600 text-2xl'>
+                    <ListItemIcon className='text-gray-600 text-2xl py-1'>
                         <MdLogout />
                     </ListItemIcon>
                     <span>

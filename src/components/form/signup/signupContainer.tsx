@@ -1,39 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 
 // formik & yup
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
-
 // icons
 import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
 
 // mui
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-
-// notification
-import { toastify } from '../../utils/toastify/toastifyFunc';
 
 // components
 import Input from '../input/input';
-import Loading from '../../utils/loading/loading';
 import FormContainer from '../formContainer/formContainer';
 import FormSwitcher from '../formSwitcher';
 import SigninOtherWay from '../signinOtherWay';
+import SubmitButton from '../submitButton';
 
 // types
-interface Props {
-  setSignupMethod: React.Dispatch<React.SetStateAction<"email" | "phone">>,
-  name: "phone" | "email",
+interface InitialValues {
+  phone: string,
+  email: string
 }
 
-const SignupContainer = ({ name, setSignupMethod }: Props) => {
-  const router = useRouter();
+interface Props {
+  setSignupMethod: React.Dispatch<React.SetStateAction<"email" | "phone">>,
+  signupMethod: "email" | "phone",
+  initialValues: InitialValues,
+  handleSubmit: (e: InitialValues) => void
+}
+
+const SignupContainer = ({ signupMethod, setSignupMethod, initialValues, handleSubmit }: Props) => {
 
   // validation
   const phoneSchema = Yup.object().shape({
@@ -48,27 +46,15 @@ const SignupContainer = ({ name, setSignupMethod }: Props) => {
       .email("Invalid email!"),
   });
 
-  // initialValues
-  interface InitialValues {
-    phone: string,
-    email: string
-  }
-
-  const initialValues = {
-    phone: "",
-    email: ""
-  }
-
-  // form submit
-  const handleSubmit = (e: InitialValues) => {
-    router.push("/auth/verify")
-  }
-
   return (
-    <FormContainer title={`Sign up with ${name == "phone" ? "phone number" : "email address"}`} className='mt-0'>
+    <FormContainer
+      title={`Sign up`}
+      subTitle={`with ${signupMethod == "email" ? "email address" : "phone number"}`}
+      titleClassName="mb-10"
+    >
       <Formik
         initialValues={initialValues}
-        validationSchema={name == "phone" ? phoneSchema : emailSchema}
+        validationSchema={signupMethod == "phone" ? phoneSchema : emailSchema}
         onSubmit={handleSubmit}
       >
         {({
@@ -88,27 +74,20 @@ const SignupContainer = ({ name, setSignupMethod }: Props) => {
             {/* input */}
             <div className='w-full'>
               <Input
-                placeholder={`Enter your ${name}`}
-                name={name}
+                placeholder={`Enter ${signupMethod == "phone" ? "phone number" : "email address"}`}
+                name={signupMethod}
                 type={"text"}
-                value={values[name]}
+                value={values[signupMethod]}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors[name]}
-                touched={touched[name]}
+                error={errors[signupMethod]}
+                touched={touched[signupMethod]}
               />
             </div>
 
             {/* signup button */}
-            <div className="mb-3 w-full">
-              <Button
-                type='submit'
-                className="w-full h-10 rounded-md"
-                variant={"contained"}
-              >
-                next
-              </Button>
-            </div>
+            <SubmitButton text="next" />
+
           </Box>
         )}
       </Formik>
@@ -116,9 +95,9 @@ const SignupContainer = ({ name, setSignupMethod }: Props) => {
       {/* signup to other way */}
       <SigninOtherWay
         title='Or signup with'
-        buttonText={`${name == "email" ? "phone number" : "email"}`}
-        Icon={name == "phone" ? <AiOutlineMail /> : <AiOutlinePhone />}
-        handleClick={() => setSignupMethod(name == "email" ? "phone" : "email")}
+        buttonText={signupMethod == "email" ? "phone number" : "email"}
+        Icon={signupMethod == "phone" ? <AiOutlineMail /> : <AiOutlinePhone />}
+        handleClick={() => setSignupMethod(signupMethod == "email" ? "phone" : "email")}
       />
 
       {/* switch to login */}

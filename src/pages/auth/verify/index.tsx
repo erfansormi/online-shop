@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // formik & yup
 import { Formik } from 'formik';
@@ -16,6 +17,7 @@ import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 import Input from '../../../components/form/input/input';
 import Loading from '../../../components/utils/loading/loading';
 import FormContainer from '../../../components/form/formContainer/formContainer';
+import SubmitButton from '../../../components/form/submitButton';
 
 // validation
 const Schema = Yup.object().shape({
@@ -35,9 +37,10 @@ const initialValues: InitialValues = {
 }
 
 const VerifyOtp = () => {
+    const router = useRouter();
 
     const handleSubmit = (e: InitialValues) => {
-
+        router.push("/profile/user-info")
     }
 
     return (
@@ -82,15 +85,9 @@ const VerifyOtp = () => {
                                 value={values.code}
                                 type="number"
                             />
-                            <div className='w-full'>
-                                <Button
-                                    type="submit"
-                                    variant='contained'
-                                    className='w-full rounded-md'
-                                >
-                                    validate one time password
-                                </Button>
-                            </div>
+
+                            {/* button */}
+                            <SubmitButton text="validate one time password" />
                         </Box>
                     )}
                 </Formik>
