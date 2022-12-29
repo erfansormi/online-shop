@@ -46,7 +46,6 @@ const VerifyOtp = () => {
     return (
         <>
             <FormContainer title={`verify phone number`}
-                className='relative mt-20 py-20'
                 imageSrc='/images/verification.png'
                 imageAlt='verify otp'
             >

@@ -36,12 +36,12 @@ const Navbar = ({ className }: Props) => {
 
     // is user loggedin?
     useEffect(() => {
-      
+
     }, [])
 
     return (
         <>
-            <nav className={`h-16 py-3 flex capitalize text-gray-800 md:px-12 px-8 justify-between items-center ${className}`}>
+            <nav style={{ height: "var(--navbar-height)" }} className={`py-3 flex capitalize text-gray-800 md:px-12 px-8 justify-between items-center ${className}`}>
 
                 {/* left buttons */}
                 <div className='h-full flex items-center'>

@@ -50,7 +50,6 @@ const SignupContainer = ({ signupMethod, setSignupMethod, initialValues, handleS
     <FormContainer
       title={`Sign up`}
       subTitle={`with ${signupMethod == "email" ? "email address" : "phone number"}`}
-      titleClassName="mb-10"
     >
       <Formik
         initialValues={initialValues}
