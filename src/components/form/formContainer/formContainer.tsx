@@ -16,7 +16,7 @@ const FormContainer = ({ children, title, subTitle, titleClassName, imageSrc, im
         <>
             <div
                 style={{ minHeight: "calc(100vh - var(--navbar-height))" }}
-                className={`w-full flex justify-center items-center px-3`}
+                className={`w-full flex justify-center ${imageSrc && imageAlt?"pt-32":"pt-10"} sm:pt-0 sm:items-center px-3`}
             >
                 <div className={`h-fit relative px-3 py-6 flex flex-col justify-center max-w-xl shadow-md rounded-xl w-full`}>
                     {imageSrc && imageAlt ?
