@@ -55,7 +55,7 @@ const MiddleMediumCards = () => {
                                     src={`/images/${item.src}`}
                                     alt={item.alt}
                                     className={`object-${item.object} h-64 w-full`}
-                                    quality={100}
+                                    quality={75}
                                 />
                                 <div className='absolute bottom-3 flex flex-col px-4'>
                                     <span className='font-bold text-gray-600'>
