@@ -8,15 +8,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
+        hostname: 'dkstatics-public.digikala.com',
         port: '',
         pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.dummyjson.com',
-        port: '',
-        pathname: '/data/**',
       },
       {
         protocol: 'https',

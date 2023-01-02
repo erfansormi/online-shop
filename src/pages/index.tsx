@@ -22,6 +22,7 @@ import MiddleMediumCards from '../components/home/cards/middleMediumCards';
 // types
 import { Product } from '../redux/data/dataSlice';
 import { Slider } from '../redux/data/dataSlice';
+import Categories from '../components/home/categories/categories';
 
 interface Props {
   products: Product[],
@@ -45,6 +46,7 @@ const Home = ({ products }: Props) => {
       <MiddleLargeCards />
       <SpecialOffers />
       <MiddleMediumCards />
+      <Categories />
     </>
   )
 }
