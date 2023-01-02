@@ -34,21 +34,21 @@ const SliderFullScreen = ({ data }: Props) => {
                         navigation={{
                             enabled: true,
                         }}
-                        className="h-full shadow-lg"
+                        className="h-full shadow"
                     >
                         {data?.map((item, index) =>
                             <SwiperSlide
                                 key={index * 17}
-                                className="w-full md:h-96 sm:h-72 h-48 xl:h-100 2xl:h-110"
+                                className="w-full sm:h-72 h-56"
                             >
                                 <Image
                                     src={item.image}
                                     width={800}
                                     height={350}
-                                    quality={90}
+                                    quality={100}
                                     priority
                                     alt="slider"
-                                    className="w-full object-cover h-full"
+                                    className="w-full object-contain h-full"
                                 />
                             </SwiperSlide>
                         )}

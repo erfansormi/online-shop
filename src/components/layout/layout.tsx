@@ -4,12 +4,12 @@ interface Props {
     children: React.ReactNode,
     className?: string,
     noPadding?: boolean,
-    noContainer?: boolean
+    container?: boolean
 }
 
-const Layout = ({ children, className, noPadding, noContainer }: Props) => {
+const Layout = ({ children, className, noPadding, container }: Props) => {
     return (
-        <div className={`${noPadding ? "" : "px-3 md:px-10 sm:px-6"} ${noContainer ? "" : "container"} mx-auto mt-14 ${className}`}>
+        <div className={`${noPadding ? "" : "px-2 md:px-5"} mx-auto mt-14 ${className} ${container ? "container" : ""}`}>
             {children}
         </div>
     )

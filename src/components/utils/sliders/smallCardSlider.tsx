@@ -24,7 +24,7 @@ const SmallCardSlider = ({ data }: Props) => {
             <Swiper
                 navigation={true}
                 slidesPerView={"auto"}
-                spaceBetween={data ? 5 : 15}
+                spaceBetween={data ? 3 : 15}
                 modules={[Navigation]}
                 className="mySwiper"
             >
@@ -33,26 +33,22 @@ const SmallCardSlider = ({ data }: Props) => {
                         data.map((item, index) =>
                             <SwiperSlide
                                 key={index * 19}
-                                className="rounded-lg shadow-lg overflow-hidden w-fit"
+                                className={`${index == 0 ? "rounded-l-lg" : ""} shadow-lg overflow-hidden w-fit`}
                             >
                                 <SmallCard
-                                    image={item.image}
-                                    price={item.price}
-                                    title={item.title}
-                                    id={item.id}
-                                    discountPercentage={item.discountPercentage}
+                                    {...item}
                                 />
                             </SwiperSlide>
                         )
                         :
                         // loading skeleton
                         [...Array(8)].map((item, index) =>
-                            <SwiperSlide key={index} className="rounded-lg shadow-lg overflow-hidden w-48 h-60">
-                                <Skeleton className='w-full' height={"15rem"} variant='rectangular' />
+                            <SwiperSlide key={index} className={`${index == 0 ? "rounded-l-lg" : ""} shadow-lg overflow-hidden w-48`}>
+                                <Skeleton className='w-full' height={"16rem"} variant='rectangular' />
                             </SwiperSlide>
                         )
                 }
-                <SwiperSlide className="rounded-lg shadow-lg overflow-hidden w-fit h-full">
+                <SwiperSlide className="rounded-r-lg shadow-lg overflow-hidden w-fit h-full">
                     <SeeAllProducts />
                 </SwiperSlide>
             </Swiper>

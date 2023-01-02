@@ -4,6 +4,9 @@ import { GetStaticProps } from 'next';
 // fetch data
 // import { fetchData } from '../components/home/fetchData/getHomeData';
 
+// data
+import { topSlidersData } from '../components/home/sliders/topSlidersData';
+
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getSlidersData, getNewProductsData, getOffersData, getProductsData } from '../redux/data/dataSlice';
@@ -13,67 +16,48 @@ import { State } from "../redux/store";
 import SliderFullScreen from '../components/utils/sliders/sliderFullScreen';
 import NewProducts from '../components/home/sliders/newProducts';
 import SpecialOffers from '../components/home/sliders/specialOffers';
+import MiddleLargeCards from '../components/home/cards/middleLargeCards';
+import MiddleMediumCards from '../components/home/cards/middleMediumCards';
 
 // types
 import { Product } from '../redux/data/dataSlice';
 import { Slider } from '../redux/data/dataSlice';
 
 interface Props {
-  sliders: Slider[],
   products: Product[],
-  productsError: string,
-  newProducts: Product[],
-  specialOffers: Product[],
 }
 
-// commented props
-// { newProducts, products, productsError, sliders, specialOffers }: Props
-
-const Home = () => {
-  const sliders = useSelector((state: State) => state.data.sliders);
+const Home = ({ products }: Props) => {
+  // const sliders = useSelector((state: State) => state.data.sliders);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // dispatch(getSlidersData(sliders))
-    // dispatch(getNewProductsData(newProducts))
-    // dispatch(getOffersData(specialOffers))
-    // dispatch(getProductsData(products))
-
-    // fetch("https://online-shop-d006c-default-rtdb.asia-southeast1.firebasedatabase.app/sliders.json")
-    //   .then(res => res.json())
-    //   .then(json => dispatch(getSlidersData(json)))
-
-    // fetch("https://online-shop-d006c-default-rtdb.asia-southeast1.firebasedatabase.app/newProducts.json")
-    //   .then(res => res.json())
-    //   .then(json => dispatch(getNewProductsData(json)))
-
-    // fetch("https://online-shop-d006c-default-rtdb.asia-southeast1.firebasedatabase.app/offerProducts.json")
-    //   .then(res => res.json())
-    //   .then(json => dispatch(getOffersData(json)))
+    dispatch(getSlidersData(topSlidersData))
+    dispatch(getProductsData(products))
+    dispatch(getNewProductsData(products.slice(0, 8)))
+    dispatch(getOffersData(products.slice(8, 16)))
   }, [])
 
   return (
     <>
-      <SliderFullScreen data={sliders} />
+      <SliderFullScreen data={topSlidersData} />
       <NewProducts />
+      <MiddleLargeCards />
       <SpecialOffers />
+      <MiddleMediumCards />
     </>
   )
 }
 
 export default Home;
 
-// به دلیل تحریم بودن فایربیس، موقع بیلد گرفتن از پروژه به ارور خواهیم خورد و هنگام توسعه برنامه، کد پایین به صورت کامنت خواهد بود و هنگام دیپلای از ورسل استفاده خواهد شد
-// export const getStaticProps: GetStaticProps = async () => {
-//   const { products, productsError, newProducts, sliders, specialOffers } = await fetchData();
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch("https://fakestoreapi.com/products");
+  const products = await res.json();
 
-//   return {
-//     props: {
-//       sliders,
-//       products,
-//       productsError,
-//       newProducts,
-//       specialOffers
-//     },
-//   }
-// }
+  return {
+    props: {
+      products,
+    },
+  }
+}

@@ -11,13 +11,9 @@ export interface Product {
     title: string;
     description: string;
     price: number;
-    discountPercentage?: number;
     category: string;
     image: string;
-    images: string[];
     rating: Rating;
-    type: string;
-    brand: string;
 }
 
 export interface Slider {
