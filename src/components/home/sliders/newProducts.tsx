@@ -13,7 +13,7 @@ const NewProducts = () => {
     const newProducts = useSelector((state: State) => state.data.newProducts);
 
     return (
-        <Layout noContainer>
+        <Layout>
             <TitleSection title='newest products of the week' />
             <SmallCardSlider data={newProducts} />
         </Layout>
