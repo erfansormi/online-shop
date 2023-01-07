@@ -13,7 +13,7 @@ const SpecialOffers = () => {
     const offers = useSelector((state: State) => state.data.offers)
 
     return (
-        <Layout noContainer>
+        <Layout>
             <TitleSection title='special offers' />
             <SmallCardSlider data={offers} />
         </Layout>
