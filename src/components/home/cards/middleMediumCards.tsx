@@ -12,21 +12,18 @@ const data = [
         alt: "adidas shoe",
         text: "Discount up to 30%",
         des: "Don't worry about this quality!",
-        object: "cover"
     },
     {
         src: "nike1.webp",
         alt: "nike ball",
         text: "Discount up to 25%",
         des: "A completely standard ball!",
-        object: "contain"
     },
     {
         src: "watch2.png",
         alt: "huawei watch",
         text: "Discount up to 15%",
         des: "High quality moments!",
-        object: "contain"
 
     },
     {
@@ -34,7 +31,6 @@ const data = [
         alt: "huawei airpod",
         text: "Discount up to 20%",
         des: "Clear sound experience!",
-        object: "contain"
     },
 ]
 
@@ -54,7 +50,7 @@ const MiddleMediumCards = () => {
                                     height={300}
                                     src={`/images/${item.src}`}
                                     alt={item.alt}
-                                    className={`object-${item.object} h-64 w-full`}
+                                    className={`object-contain h-64 w-full`}
                                     quality={75}
                                 />
                                 <div className='absolute bottom-3 flex flex-col px-4'>

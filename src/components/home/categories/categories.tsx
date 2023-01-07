@@ -16,14 +16,15 @@ const Categories = () => {
                 {categoriesData.map((item, index) =>
                     <section
                         key={index * 27}
-                        className="flex w-56 flex-col items-center cursor-pointer mb-6"
+                        className="flex w-40 sm:w-56 flex-col items-center cursor-pointer mb-6"
                     >
-                        <div className=''>
+                        <div>
                             <Image
                                 width={170}
                                 height={170}
                                 src={item.src}
                                 alt={item.title}
+                                className="w-32 h-auto sm:w-[170px]"
                             />
                         </div>
                         <div>
