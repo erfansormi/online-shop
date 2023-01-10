@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 // toatify
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
@@ -39,6 +40,9 @@ const Login = () => {
 
     return (
         <>
+            <Head>
+                <title>Login</title>
+            </Head>
             <LoginContainer
                 setLoginMethod={setLoginMethod}
                 initialValues={initialValues}

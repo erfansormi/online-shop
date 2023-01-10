@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 // components
 import SignupContainer from '../../../components/form/signup/signupContainer';
@@ -34,6 +35,9 @@ const Signup: React.FC = () => {
 
     return (
         <>
+            <Head>
+                <title>Signup</title>
+            </Head>
             <SignupContainer
                 handleSubmit={handleSubmit}
                 initialValues={initialValues}

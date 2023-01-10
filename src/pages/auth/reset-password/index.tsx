@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head';
 
 // formik & yup
 import { Formik } from 'formik'
@@ -35,49 +36,54 @@ const RestPassword = () => {
     }
 
     return (
-        <FormContainer
-            title='forget password'
-            imageSrc='/images/forget-password.png'
-            imageAlt='forget password'
-        >
-            <Formik
-                initialValues={initialValues}
-                validationSchema={Schema}
-                onSubmit={handleSubmit}
+        <>
+            <Head>
+                <title>Forget Password</title>
+            </Head>
+            <FormContainer
+                title='forget password'
+                imageSrc='/images/forget-password.png'
+                imageAlt='forget password'
             >
-                {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                }) => (
-                    <Box
-                        component="form"
-                        noValidate
-                        autoComplete="off"
-                        onSubmit={handleSubmit}
-                    >
-                        <Input
-                            placeholder={"Enter your email or phone number"}
-                            name={"user"}
-                            type={"text"}
-                            value={values.user}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            error={errors.user}
-                            touched={touched.user}
-                        />
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={Schema}
+                    onSubmit={handleSubmit}
+                >
+                    {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                    }) => (
+                        <Box
+                            component="form"
+                            noValidate
+                            autoComplete="off"
+                            onSubmit={handleSubmit}
+                        >
+                            <Input
+                                placeholder={"Enter your email or phone number"}
+                                name={"user"}
+                                type={"text"}
+                                value={values.user}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={errors.user}
+                                touched={touched.user}
+                            />
 
-                        {/*submit button */}
-                        <SubmitButton text='next' className='mt-3' />
+                            {/*submit button */}
+                            <SubmitButton text='next' className='mt-3' />
 
-                    </Box>
-                )}
-            </Formik>
-            {/* <Loading loading={loading} /> */}
-        </FormContainer>
+                        </Box>
+                    )}
+                </Formik>
+                {/* <Loading loading={loading} /> */}
+            </FormContainer>
+        </>
     )
 }
 

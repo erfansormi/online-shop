@@ -5,12 +5,11 @@ import Layout from '../../layout/layout';
 import SmallCardSlider from '../../utils/sliders/smallCardSlider';
 import TitleSection from '../../utils/title/titleSection';
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
+// context
+import { useHomeContext } from '../../../pages';
 
 const NewProducts = () => {
-    const newProducts = useSelector((state: State) => state.data.newProducts);
+    const newProducts = useHomeContext().slice(0, 8);
 
     return (
         <Layout>

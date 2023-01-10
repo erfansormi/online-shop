@@ -1,16 +1,13 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { GetStaticProps } from 'next';
-
-// fetch data
-// import { fetchData } from '../components/home/fetchData/getHomeData';
+import Head from 'next/head';
 
 // data
 import { topSlidersData } from '../components/home/sliders/topSlidersData';
 
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-import { getSlidersData, getNewProductsData, getOffersData, getProductsData } from '../redux/data/dataSlice';
-import { State } from "../redux/store";
+import { useDispatch } from 'react-redux';
+import { getSlidersData } from '../redux/data/dataSlice';
 
 // components
 import SliderFullScreen from '../components/utils/sliders/sliderFullScreen';
@@ -18,36 +15,38 @@ import NewProducts from '../components/home/sliders/newProducts';
 import SpecialOffers from '../components/home/sliders/specialOffers';
 import MiddleLargeCards from '../components/home/cards/middleLargeCards';
 import MiddleMediumCards from '../components/home/cards/middleMediumCards';
+import Categories from '../components/home/categories/categories';
 
 // types
 import { Product } from '../redux/data/dataSlice';
-import { Slider } from '../redux/data/dataSlice';
-import Categories from '../components/home/categories/categories';
 
 interface Props {
   products: Product[],
 }
 
+// context
+export const HomeContext = createContext({} as Product[]);
+export const useHomeContext = () => useContext(HomeContext);
+
 const Home = ({ products }: Props) => {
-  // const sliders = useSelector((state: State) => state.data.sliders);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getSlidersData(topSlidersData))
-    dispatch(getProductsData(products))
-    dispatch(getNewProductsData(products.slice(0, 8)))
-    dispatch(getOffersData(products.slice(8, 16)))
-  }, [])
+    dispatch(getSlidersData(topSlidersData));
+  }, [dispatch])
 
   return (
-    <>
+    <HomeContext.Provider value={products}>
+      <Head>
+        <title>Home</title>
+      </Head>
       <SliderFullScreen data={topSlidersData} />
       <NewProducts />
       <MiddleLargeCards />
       <SpecialOffers />
       <MiddleMediumCards />
       <Categories />
-    </>
+    </HomeContext.Provider>
   )
 }
 

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
+
+// mui
+import { Skeleton } from '@mui/material';
 
 // types
 import { Product } from '../../../redux/data/dataSlice';
 
 const SmallCard = ({ image, category, description, id, price, rating, title }: Product) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
         <section className='w-full h-full flex flex-col justify-between h-64 overflow-hidden w-44'>
@@ -13,15 +17,26 @@ const SmallCard = ({ image, category, description, id, price, rating, title }: P
 
                 {/* card image */}
                 <div className='flex justify-center items-center bg-white h-3/5 overflow-hidden'>
-                    <div className='w-28 h-28 md:h-32 md:w-32'>
+                    <div className='w-28 h-28 md:h-32 md:w-32 relative'>
                         <Image
-                            className='w-full h-full object-contain rounded-lg'
+                            className={`rounded-lg object-contain ${imageLoaded ? "block" : "hidden"}`}
                             src={image}
                             alt={title}
-                            width={140}
-                            height={140}
+                            fill={true}
                             quality={80}
+                            onLoadingComplete={() => setImageLoaded(true)}
+                            loading={"lazy"}
                         />
+                        {
+                            !imageLoaded ?
+                                <Skeleton
+                                    variant="rounded"
+                                    width={"100%"}
+                                    height={"100%"}
+                                />
+                                :
+                                null
+                        }
                     </div>
                 </div>
 

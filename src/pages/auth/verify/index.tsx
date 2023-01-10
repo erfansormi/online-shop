@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 // formik & yup
@@ -45,6 +46,9 @@ const VerifyOtp = () => {
 
     return (
         <>
+            <Head>
+                <title>Verify OTP</title>
+            </Head>
             <FormContainer title={`verify phone number`}
                 imageSrc='/images/verification.png'
                 imageAlt='verify otp'

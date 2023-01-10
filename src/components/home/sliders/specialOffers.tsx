@@ -1,8 +1,7 @@
 import React from 'react'
 
-// redux
-import { useSelector } from 'react-redux'
-import { State } from '../../../redux/store'
+// context
+import { useHomeContext } from '../../../pages'
 
 // components
 import Layout from '../../layout/layout'
@@ -10,7 +9,7 @@ import SmallCardSlider from '../../utils/sliders/smallCardSlider'
 import TitleSection from '../../utils/title/titleSection'
 
 const SpecialOffers = () => {
-    const offers = useSelector((state: State) => state.data.offers)
+    const offers = useHomeContext().slice(8, 16);
 
     return (
         <Layout>

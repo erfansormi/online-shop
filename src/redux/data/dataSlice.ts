@@ -22,16 +22,10 @@ export interface Slider {
 
 interface InitialState {
     sliders: null | Slider[],
-    products: null | Product[],
-    newProducts: null | Product[],
-    offers: null | Product[],
 }
 
 const initialState: InitialState = {
     sliders: null,
-    products: null,
-    newProducts: null,
-    offers: null
 }
 
 const dataSlice = createSlice({
@@ -40,18 +34,9 @@ const dataSlice = createSlice({
     reducers: {
         getSlidersData: (state, action: PayloadAction<Slider[]>) => {
             state.sliders = action.payload;
-        },
-        getProductsData: (state, action: PayloadAction<Product[]>) => {
-            state.products = action.payload;
-        },
-        getNewProductsData: (state, action: PayloadAction<Product[]>) => {
-            state.newProducts = action.payload;
-        },
-        getOffersData: (state, action: PayloadAction<Product[]>) => {
-            state.offers = action.payload;
-        },
+        }
     }
 })
 
-export const { getProductsData, getSlidersData, getNewProductsData, getOffersData } = dataSlice.actions;
+export const { getSlidersData } = dataSlice.actions;
 export default dataSlice.reducer;

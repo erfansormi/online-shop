@@ -6,16 +6,13 @@ import { Navigation } from "swiper";
 
 // components
 import SmallCard from '../card/smallCard';
-
-// mui
-import { Skeleton } from '@mui/material';
+import SeeAllProducts from '../card/seeAllProducts';
 
 // types
 import { Product } from '../../../redux/data/dataSlice';
-import SeeAllProducts from '../card/seeAllProducts';
 
 interface Props {
-    data: Product[] | null
+    data: Product[]
 }
 
 const SmallCardSlider = ({ data }: Props) => {
@@ -24,29 +21,21 @@ const SmallCardSlider = ({ data }: Props) => {
             <Swiper
                 navigation={true}
                 slidesPerView={"auto"}
-                spaceBetween={data ? 3 : 15}
+                spaceBetween={3}
                 modules={[Navigation]}
                 className="mySwiper"
             >
                 {
-                    data != null ?
-                        data.map((item, index) =>
-                            <SwiperSlide
-                                key={index * 19}
-                                className={`${index == 0 ? "rounded-l-lg" : ""} shadow-lg overflow-hidden w-fit`}
-                            >
-                                <SmallCard
-                                    {...item}
-                                />
-                            </SwiperSlide>
-                        )
-                        :
-                        // loading skeleton
-                        [...Array(8)].map((item, index) =>
-                            <SwiperSlide key={index} className={`${index == 0 ? "rounded-l-lg" : ""} shadow-lg overflow-hidden w-48`}>
-                                <Skeleton className='w-full' height={"16rem"} variant='rectangular' />
-                            </SwiperSlide>
-                        )
+                    data.map((item, index) =>
+                        <SwiperSlide
+                            key={index * 19}
+                            className={`${index == 0 ? "rounded-l-lg" : ""} mr-[3px] shadow-lg overflow-hidden w-fit`}
+                        >
+                            <SmallCard
+                                {...item}
+                            />
+                        </SwiperSlide>
+                    )
                 }
                 <SwiperSlide className="rounded-r-lg shadow-lg overflow-hidden w-fit h-full">
                     <SeeAllProducts />
