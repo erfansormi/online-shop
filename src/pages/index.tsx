@@ -16,6 +16,7 @@ import SpecialOffers from '../components/home/sliders/specialOffers';
 import MiddleLargeCards from '../components/home/cards/middleLargeCards';
 import MiddleMediumCards from '../components/home/cards/middleMediumCards';
 import Categories from '../components/home/categories/categories';
+import BottomLargeCards from '../components/home/cards/bottomLargeCard';
 
 // types
 import { Product } from '../redux/data/dataSlice';
@@ -46,6 +47,7 @@ const Home = ({ products }: Props) => {
       <SpecialOffers />
       <MiddleMediumCards />
       <Categories />
+      <BottomLargeCards />
     </HomeContext.Provider>
   )
 }

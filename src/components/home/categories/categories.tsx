@@ -24,7 +24,7 @@ const Categories = () => {
                                 height={170}
                                 src={item.src}
                                 alt={item.title}
-                                className="w-32 h-auto sm:w-[170px]"
+                                className="w-32 h-auto sm:w-[170px] transition duration-300 hover:scale-110"
                             />
                         </div>
                         <div>

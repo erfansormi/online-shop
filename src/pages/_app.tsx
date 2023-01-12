@@ -27,8 +27,9 @@ import { ThemeProvider } from "@mui/material/styles";
 
 // components
 import Navbar from '../components/layout/navbar/navbar';
+import Footer from "../components/layout/footer/footer";
 
-const fredoka = Fredoka({
+export const fredoka = Fredoka({
   subsets: ['latin'],
   weight: ["400", "500", "600"],
 })
@@ -38,10 +39,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Provider store={store}>
         <ThemeProvider theme={muiTheme}>
-          <Navbar className={fredoka.className} />
-          <main className={fredoka.className}>
+          <Navbar />
+          <main className={`mb-12 ${fredoka.className}`}>
             <Component {...pageProps} />
           </main>
+          <Footer />
           <ToastContainer />
         </ThemeProvider>
       </Provider>

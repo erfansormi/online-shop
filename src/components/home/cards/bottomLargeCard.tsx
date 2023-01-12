@@ -9,18 +9,18 @@ import { LargeCardsData } from '../../utils/card/largeCards';
 
 const data: LargeCardsData[] = [
     {
-        src: "/images/card1.avif",
+        src: "/images/banner1.jpg",
         alt: "smart phone",
-        object: "contain"
+        object: "cover"
     },
     {
-        src: "/images/card2.avif",
+        src: "/images/banner2.jfif",
         alt: "hard ssd",
-        object: "contain"
+        object: "cover"
     }
 ]
 
-const MiddleLargeCards = () => {
+const BottomLargeCards = () => {
     return (
         <Layout>
             <LargeCards data={data} />
@@ -28,4 +28,4 @@ const MiddleLargeCards = () => {
     )
 }
 
-export default MiddleLargeCards
+export default BottomLargeCards

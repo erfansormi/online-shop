@@ -17,15 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from '../../../redux/user/authSlice';
 import { State } from '../../../redux/store';
 
+// font
+import { fredoka } from '../../../pages/_app';
+
 // components
 import Profile from './profile/profile';
 
-// types
-interface Props {
-    className?: string
-}
-
-const Navbar = ({ className }: Props) => {
+const Navbar = () => {
     // redux
     const user = useSelector((state: State) => state.auth.user);
     const dispatch = useDispatch();
@@ -41,7 +39,10 @@ const Navbar = ({ className }: Props) => {
 
     return (
         <>
-            <nav style={{ height: "var(--navbar-height)" }} className={`py-3 flex capitalize text-gray-800 md:px-12 px-8 justify-between items-center ${className}`}>
+            <nav
+                style={{ height: "var(--navbar-height)" }}
+                className={`py-3 flex capitalize text-gray-800 md:px-12 px-8 justify-between items-center ${fredoka.className}`}
+            >
 
                 {/* left buttons */}
                 <div className='h-full flex items-center'>
