@@ -17,6 +17,7 @@ import MiddleLargeCards from '../components/home/cards/middleLargeCards';
 import MiddleMediumCards from '../components/home/cards/middleMediumCards';
 import Categories from '../components/home/categories/categories';
 import BottomLargeCards from '../components/home/cards/bottomLargeCard';
+import BeforeAndAfter from '../components/home/beforeAndAfter';
 
 // types
 import { Product } from '../redux/data/dataSlice';
@@ -44,6 +45,7 @@ const Home = ({ products }: Props) => {
       <SliderFullScreen data={topSlidersData} />
       <NewProducts />
       <MiddleLargeCards />
+      <BeforeAndAfter />
       <SpecialOffers />
       <MiddleMediumCards />
       <Categories />
