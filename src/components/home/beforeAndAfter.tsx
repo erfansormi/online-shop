@@ -1,4 +1,4 @@
-import React, { UIEvent, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image';
 
 // react draggable
@@ -13,24 +13,7 @@ import { Button } from '@mui/material';
 
 const BeforeAndAfter = () => {
     const [x, setX] = useState<null | number>(null);
-    const [width, setWidth] = useState(
-        typeof window !== "undefined" ?
-            window.innerWidth : 768
-    )
-
-    const handleWidth = () => {
-        if (typeof window !== "undefined") {
-            setWidth(window.innerWidth);
-        }
-        else {
-            return null;
-        }
-    }
-
-    React.useEffect(() => {
-        handleWidth();
-        addEventListener("resize", handleWidth)
-    }, [])
+    const [spanOffsetX, setSpanOffsetX] = useState(0);
 
     return (
         <Layout>
@@ -54,8 +37,8 @@ const BeforeAndAfter = () => {
 
                     // get x position with react draggable or mouse position 
                     onDrag={(e: any) => {
-                        if (width > 768) {
-                            setX(e.clientX - 25)
+                        if (e.type === "mousemove") {
+                            setX(e.clientX - spanOffsetX - 5)
                         }
                         else {
                             setX(e.target.getBoundingClientRect().x + 5);
@@ -66,7 +49,9 @@ const BeforeAndAfter = () => {
                         className={`z-40 inset-x-1/2 absolute top-0 bottom-0 h-full w-1 bg-gray-500 flex flex-col justify-center items-center`}
                         id="dragg-container"
                     >
-                        <span>
+                        <span onMouseDown={(e) => {
+                            setSpanOffsetX(e.nativeEvent.offsetX)
+                        }}>
                             <FaArrowsAltH className='cursor-ew-resize text-3xl dragg-arrow text-gray-500' />
                         </span>
                     </div>

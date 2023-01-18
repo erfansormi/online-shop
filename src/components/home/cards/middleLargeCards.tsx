@@ -11,12 +11,10 @@ const data: LargeCardsData[] = [
     {
         src: "/images/card1.avif",
         alt: "smart phone",
-        object: "contain"
     },
     {
         src: "/images/card2.avif",
         alt: "hard ssd",
-        object: "contain"
     }
 ]
 

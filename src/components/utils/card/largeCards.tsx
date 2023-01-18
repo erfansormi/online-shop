@@ -9,7 +9,6 @@ import Layout from '../../layout/layout'
 export interface LargeCardsData {
     src: string,
     alt: string,
-    object: "cover" | "contain" | "fit"
 }
 
 interface Props {
@@ -25,7 +24,7 @@ const LargeCards = ({ data }: Props) => {
                         <Link href='#' key={index * 29}>
                             <div className='shadow-lg rounded-lg overflow-hidden h-full'>
                                 <Image
-                                    className={`w-full h-72 object-${item.object} flex`}
+                                    className={`w-full h-72 2xl:object-contain md:object-cover object-contain flex`}
                                     width={500}
                                     height={200}
                                     alt={item.alt}
