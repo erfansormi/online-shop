@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Image from 'next/image';
 
 // react draggable
@@ -15,9 +15,15 @@ const BeforeAndAfter = () => {
     const [x, setX] = useState<null | number>(null);
     const [spanOffsetX, setSpanOffsetX] = useState(0);
 
+    const ref = useRef<HTMLDivElement>(null);
+    const layotOffsetLeft = ref.current?.parentElement?.offsetLeft ? ref.current.parentElement.offsetLeft : 0;
+
     return (
         <Layout>
-            <div className='overflow-hidden relative w-full h-[380px] border-solid border-gray-600 rounded-lg border-2'>
+            <div
+                ref={ref}
+                className='overflow-hidden relative w-full h-[380px] border-solid border-gray-600 rounded-lg border-2'
+            >
 
                 {/* title */}
                 <div className='absolute top-2 left-2 flex flex-col items-center justify-center z-50 w-full'>
@@ -38,7 +44,7 @@ const BeforeAndAfter = () => {
                     // get x position with react draggable or mouse position 
                     onDrag={(e: any) => {
                         if (e.type === "mousemove") {
-                            setX(e.clientX - spanOffsetX - 5)
+                            setX(e.clientX - spanOffsetX - layotOffsetLeft - 5)
                         }
                         else {
                             setX(e.target.getBoundingClientRect().x + 5);
