@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 
 // type
 import { Product } from '../../redux/data/dataSlice';
@@ -10,15 +11,22 @@ interface Props {
 
 // components
 import ProductContainer from '../../components/product/productContainer';
+import Loading from '../../components/utils/loading/loading';
 
 // context
 const ProductDetailContext = createContext({} as Product);
 export const useProductDetail = () => useContext(ProductDetailContext);
 
 const ProductDetail = ({ product }: Props) => {
+    const router = useRouter();
+
     return (
         <ProductDetailContext.Provider value={product}>
-            <ProductContainer />
+            {
+                router.isFallback ?
+                    <Loading loading /> :
+                    <ProductContainer />
+            }
         </ProductDetailContext.Provider>
     )
 }

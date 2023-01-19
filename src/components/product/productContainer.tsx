@@ -4,6 +4,7 @@ import React from 'react'
 import Layout from '../layout/layout';
 import ProductImage from './detail/productImage';
 import ProductDetail from './detail/productDetail';
+import PriceBox from './detail/priceBox';
 
 const ProductContainer = () => {
     return (
@@ -22,7 +23,7 @@ const ProductContainer = () => {
 
                 {/* add to cart */}
                 <div className='col-span-5 w-full'>
-
+                    <PriceBox />
                 </div>
             </div>
         </Layout>

@@ -8,6 +8,11 @@ import { Skeleton } from '@mui/material';
 // types
 import { Product } from '../../../redux/data/dataSlice';
 
+// components
+import DiscountPercentage from '../price/discountPercentage';
+import OldPrice from '../price/oldPrice';
+import Price from '../price/price';
+
 const SmallCard = ({ image, category, description, id, price, rating, title }: Product) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -50,24 +55,16 @@ const SmallCard = ({ image, category, description, id, price, rating, title }: P
                     <div className='flex items-center justify-between'>
 
                         {/* new price */}
-                        <span className='font-bold text-gray-800'>
-                            ${Number((price * (100 - (rating.count / 100))) / 100).toFixed(2)}
-                        </span>
+                        <Price price={Number((price * (100 - (rating.count / 100))) / 100)} />
 
                         {/* discount percentage */}
-                        {
-                            <span className='bg-rose-500 text-white rounded-xl px-1 py-0.5 text-xs'>
-                                {rating.count / 100} %
-                            </span>
-                        }
+                        <DiscountPercentage discount={rating.count / 100} />
                     </div>
 
                     {/* old price */}
                     {
-                        <div className='mt-1'>
-                            <span className='text-gray-400 line-through text-sm'>
-                                ${price}
-                            </span>
+                        <div className='mt-1.5'>
+                            <OldPrice oldPrice={price} />
                         </div>
                     }
                 </div>

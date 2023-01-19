@@ -55,12 +55,12 @@ const Navbar = () => {
                             <Image
                                 src="/images/shop-logo.png"
                                 alt='shop logo'
-                                width={70}
-                                height={70}
+                                width={60}
+                                height={60}
                                 className='h-full w-auto mr-1'
                             />
-                            <span>
-                                home
+                            <span className='text-rose-500 font-bold text-lg'>
+                                online shop
                             </span>
                         </Link>
                     </div>

@@ -8,7 +8,7 @@ const ProductImage = () => {
     const product = useProductDetail();
 
     return (
-        <div className='overflow-hidden py-6 border-2 border-solid border-gray-300 rounded-lg'>
+        <div className='overflow-hidden py-6 border border-solid border-gray-300 rounded-lg'>
             <div className='h-full w-full flex justify-center'>
                 <Image
                     src={product.image}
