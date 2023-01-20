@@ -81,6 +81,7 @@ const SignupContainer = ({ signupMethod, setSignupMethod, initialValues, handleS
                 onBlur={handleBlur}
                 error={errors[signupMethod]}
                 touched={touched[signupMethod]}
+                useInForm
               />
             </div>
 

@@ -16,13 +16,15 @@ const FormContainer = ({ children, title, subTitle, titleClassName, imageSrc, im
         <>
             <div
                 style={{ minHeight: "calc(100vh - var(--navbar-height))" }}
-                className={`w-full flex justify-center ${imageSrc && imageAlt?"pt-32":"pt-10"} sm:pt-0 sm:items-center px-3`}
+                className={`w-full flex justify-center ${imageSrc && imageAlt ? "pt-32" : "pt-10"} sm:pt-0 sm:items-center px-3`}
             >
-                <div className={`h-fit relative px-3 py-6 flex flex-col justify-center max-w-xl shadow-md rounded-xl w-full`}>
+                <div className={`h-fit relative px-4 py-6 flex flex-col justify-center max-w-xl shadow-md rounded-xl w-full`}>
+
+                    {/* handle image */}
                     {imageSrc && imageAlt ?
-                        <div className='flex justify-center absolute -top-28 inset-x-1/2'>
+                        <div className='flex justify-center absolute -top-28 inset-x-1/2 drop-shadow-[0_0px_1px_rgba(0,0,0,0.25)]'>
                             <Image
-                                className='w-48 h-48 object-contain'
+                                className='w-48 h-48 object-contain rounded-md'
                                 src={imageSrc}
                                 alt={imageAlt}
                                 width={500}
@@ -32,6 +34,8 @@ const FormContainer = ({ children, title, subTitle, titleClassName, imageSrc, im
                         </div>
                         : null
                     }
+
+                    {/* title */}
                     <div className={`text-center mb-12 ${titleClassName ? titleClassName : ""} ${imageSrc && imageAlt ? "mt-16" : ""}`}>
                         <h2 className='text-gray-800'>
                             {title}
@@ -46,6 +50,7 @@ const FormContainer = ({ children, title, subTitle, titleClassName, imageSrc, im
                                 : null
                         }
                     </div>
+
                     {children}
                 </div>
             </div>

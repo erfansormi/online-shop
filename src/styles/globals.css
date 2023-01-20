@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --navbar-height: 64px;
+  --navbar-height: 74px;
 }
 
 html,
@@ -63,13 +63,25 @@ h5 {
 }
 
 h6 {
-  font-size: 0.85rem;
+  font-size: 0.87rem;
   text-transform: capitalize;
   font-weight: 700;
 }
 
-button {
-  text-transform: capitalize !important;
+.ellipsis-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.ellipsis-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @media (prefers-color-scheme: dark) {

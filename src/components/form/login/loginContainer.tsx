@@ -80,6 +80,7 @@ const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMeth
                                         onBlur={handleBlur}
                                         error={errors[item.name]}
                                         touched={touched[item.name]}
+                                        useInForm
                                     />
                                 ) :
                                 <Input
@@ -91,6 +92,7 @@ const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMeth
                                     onBlur={handleBlur}
                                     error={errors.phone}
                                     touched={touched.phone}
+                                    useInForm
                                 />
                         }
 

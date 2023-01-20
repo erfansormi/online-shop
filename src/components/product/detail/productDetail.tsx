@@ -15,6 +15,7 @@ interface Color {
     name: string
 }
 
+// colors
 const colors: Color[] = [
     {
         color_class: "bg-black",
@@ -65,6 +66,7 @@ const colors: Color[] = [
         name: "neutral"
     },
 ]
+const whiteCheck = ["black", "gray", "red", "blue", "green"]
 
 const ProductDetail = () => {
     // data
@@ -74,7 +76,7 @@ const ProductDetail = () => {
     const [activeColor, setActiveColor] = useState("black")
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col px-5'>
 
             {/* title */}
             <div>
@@ -113,7 +115,7 @@ const ProductDetail = () => {
                                 onClick={() => setActiveColor(item.name)}
                             >
                                 {activeColor === item.name ?
-                                    <BiCheck className={`${item.name === "black" || item.name === "gray" ? "text-white" : ""} text-2xl`} />
+                                    <BiCheck className={`${whiteCheck.includes(item.name) ? "text-white" : "text-black"} text-2xl`} />
                                     : null
                                 }
                             </span>

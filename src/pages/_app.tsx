@@ -22,7 +22,7 @@ import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
 // mui theme
-import { muiTheme } from "../components/mui/palette/muiPalette";
+import { muiTheme } from "../components/mui/costumizeMui";
 import { ThemeProvider } from "@mui/material/styles";
 
 // components

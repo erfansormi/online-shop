@@ -27,7 +27,7 @@ interface Props {
 }
 
 // context
-export const HomeContext = createContext({} as Product[]);
+const HomeContext = createContext({} as Product[]);
 export const useHomeContext = () => useContext(HomeContext);
 
 const Home = ({ products }: Props) => {
@@ -64,5 +64,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
     },
+    revalidate: 60 * 60 * 24
   }
 }

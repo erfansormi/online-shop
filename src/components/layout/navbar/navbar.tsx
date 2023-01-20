@@ -41,7 +41,7 @@ const Navbar = () => {
         <>
             <nav
                 style={{ height: "var(--navbar-height)" }}
-                className={`py-3 flex capitalize text-gray-800 md:px-12 px-8 justify-between items-center ${fredoka.className}`}
+                className={`py-3 flex capitalize md:px-12 px-8 shadow-md justify-between items-center ${fredoka.className}`}
             >
 
                 {/* left buttons */}
@@ -55,9 +55,9 @@ const Navbar = () => {
                             <Image
                                 src="/images/shop-logo.png"
                                 alt='shop logo'
-                                width={60}
-                                height={60}
-                                className='h-full w-auto mr-1'
+                                width={40}
+                                height={40}
+                                className='mr-1'
                             />
                             <span className='text-rose-500 font-bold text-lg'>
                                 online shop
@@ -67,6 +67,7 @@ const Navbar = () => {
                     <div>
                         <Link
                             href={"/products"}
+                            className="text-lg text-gray-700"
                         >
                             products
                         </Link>

@@ -8,17 +8,32 @@ import InputError from './inputError';
 
 // ts
 interface IProps {
-    error?: string | undefined,
-    touched?: boolean | undefined,
+    height?: "large" | "medium",
+    error?: string,
+    touched?: boolean,
+    useInForm?: boolean,
 }
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-const Input = ({ error, touched, className, ...props }: Props & IProps) => {
+const Input = ({ height, error, touched, className, useInForm, ...props }: Props & IProps) => {
+    const sizesClasses = () => {
+        if (height == "large") {
+            return "h-[50px]"
+        }
+        return "h-10"
+    }
+
+    const errorClasses = () => {
+        if (error && touched) {
+            return "outline-2 outline outline-red-500"
+        }
+    }
+
     return (
-        <div className={`mb-1 w-full h-16`}>
+        <div className={`w-full ${useInForm ? "h-16 mb-1" : "h-full"}`}>
             <input
-                className={`${className ? className : ""} ${styles.input} w-full normal-case h-10 p-3 bg-gray-200 rounded-full focus:outline-gray-400 focus:outline focus:outline-2 ${error && touched ? "outline-2 outline outline-red-500" : ""}`}
+                className={`${className ? className : ""} ${styles.input} w-full normal-case rounded-md  ${sizesClasses()} p-3 bg-gray-200 focus:outline-gray-400 focus:outline focus:outline-2 ${errorClasses()}`}
                 spellCheck={false}
                 {...props}
             />

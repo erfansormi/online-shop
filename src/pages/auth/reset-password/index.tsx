@@ -73,6 +73,7 @@ const RestPassword = () => {
                                 onBlur={handleBlur}
                                 error={errors.user}
                                 touched={touched.user}
+                                useInForm
                             />
 
                             {/*submit button */}

@@ -19,7 +19,7 @@ const PriceBox = () => {
     const { price, rating } = useProductDetail();
 
     return (
-        <div className='border border-solid border-gray-300 w-full p-5 rounded-lg'>
+        <div className='border border-solid border-gray-200 w-full p-5 rounded-lg bg-gray-50'>
             <div className='flex flex-col'>
 
                 {/* title */}

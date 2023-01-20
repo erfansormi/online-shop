@@ -81,6 +81,7 @@ const VerifyOtp = () => {
                                 error={errors.code}
                                 value={values.code}
                                 type="number"
+                                useInForm
                             />
 
                             {/* button */}

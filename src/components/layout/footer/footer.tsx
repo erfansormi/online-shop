@@ -2,7 +2,10 @@ import React from 'react'
 import Link from 'next/link';
 
 // mui
-import { Button, Divider, TextField } from '@mui/material'
+import { Button, Divider } from '@mui/material'
+
+// components
+import Input from '../../form/input/input';
 
 // data
 import { footerData, footerIcons } from './footerData';
@@ -64,7 +67,7 @@ const Footer = () => {
                                 Register your email to get the latest discounts
                             </h5>
                             <div className='flex gap-3'>
-                                <TextField size='small' variant='filled' />
+                                <Input height='large' />
                                 <Button variant="contained" size='small'>
                                     register
                                 </Button>

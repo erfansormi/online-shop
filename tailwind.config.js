@@ -31,6 +31,9 @@ module.exports = {
         'silver': '#ecebff',
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
+        'gray': {
+          200: '#e0e0e6',
+        },
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',
