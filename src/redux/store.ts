@@ -7,7 +7,7 @@ import dataReducer from "./data/dataSlice";
 export const store = configureStore({
     reducer: {
         auth: authReducer,
-        data: dataReducer
+        data: dataReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false

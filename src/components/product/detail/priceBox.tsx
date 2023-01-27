@@ -16,7 +16,8 @@ import OldPrice from '../../utils/price/oldPrice';
 import Price from '../../utils/price/price';
 
 const PriceBox = () => {
-    const { price, rating } = useProductDetail();
+    const product = useProductDetail();
+    const { price, rating, quantity } = useProductDetail();
 
     return (
         <div className='border border-solid border-gray-200 w-full p-5 rounded-lg bg-gray-50'>
@@ -81,13 +82,48 @@ const PriceBox = () => {
                 </div>
 
                 {/* button */}
-                <div className='mt-5'>
-                    <Button variant={"contained"} fullWidth>
-                        add to cart
-                    </Button>
+                <div className='mt-5 flex gap-4'>
+                    {
+                        // remove from cart
+                        quantity == 1 ?
+                            <Button
+                                variant={"contained"}
+                                fullWidth
+                            >
+                                remove from cart
+                            </Button> :
+
+                            // add to cart
+                            quantity == 0 &&
+                            <Button
+                                variant={"contained"}
+                                fullWidth
+                            >
+                                add to cart
+                            </Button>
+                    }
+
+                    {
+                        // increase or decrease item
+                        quantity !== undefined && quantity >= 1 &&
+                        <>
+                            <Button
+                                variant={"contained"}
+                                fullWidth
+                            >
+                                +
+                            </Button>
+                            <Button
+                                variant={"contained"}
+                                fullWidth
+                            >
+                                -
+                            </Button>
+                        </>
+                    }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

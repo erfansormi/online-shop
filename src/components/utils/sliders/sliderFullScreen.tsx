@@ -34,7 +34,7 @@ const SliderFullScreen = ({ data }: Props) => {
                         navigation={{
                             enabled: true,
                         }}
-                        className="h-full shadow"
+                        className="h-full shadow layout-m-b"
                     >
                         {data?.map((item, index) =>
                             <SwiperSlide

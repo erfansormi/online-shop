@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head';
+import Link from 'next/link';
 
 // formik & yup
 import { Formik } from 'formik'
@@ -77,7 +78,14 @@ const RestPassword = () => {
                             />
 
                             {/*submit button */}
-                            <SubmitButton text='next' className='mt-3' />
+                            <SubmitButton text='next' />
+
+                            {/* login */}
+                            <div className='w-full text-blue-500 text-sm cursor-pointer'>
+                                <Link href={"/auth/login"}>
+                                    login to your account
+                                </Link>
+                            </div>
 
                         </Box>
                     )}

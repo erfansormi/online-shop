@@ -11,14 +11,13 @@ interface Props {
     buttonText: string,
     handleClick: () => any,
     Icon?: any,
-    noTitle?: boolean
 }
 
-const SigninOtherWay = ({ title, imageSrc, buttonText, handleClick, Icon, noTitle }: Props) => {
+const SigninOtherWay = ({ title, imageSrc, buttonText, handleClick, Icon }: Props) => {
     return (
-        <div className={`${noTitle ? "" : "mt-6"} flex flex-col w-full`}>
+        <div className={`${!title ? "" : "mt-6"} flex flex-col w-full`}>
             {
-                noTitle ?
+                !title ?
                     null :
                     <div>
                         <fieldset className='border-r-0 border-t border-l-0 border-b-0 border-solid border-gray-300 text-center'>

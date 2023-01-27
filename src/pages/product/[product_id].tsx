@@ -53,10 +53,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const id = params?.product_id;
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     const product: Product = await res.json();
+    const updatedProduct: Product = {
+        ...product,
+        quantity: 0
+    }
 
     return {
         props: {
-            product
+            product: updatedProduct
         }
     }
 }

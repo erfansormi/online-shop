@@ -6,6 +6,7 @@ interface Rating {
     count: number;
     rate: number;
 }
+
 export interface Product {
     id: number;
     title: string;
@@ -14,6 +15,7 @@ export interface Product {
     category: string;
     image: string;
     rating: Rating;
+    quantity: number
 }
 
 export interface Slider {

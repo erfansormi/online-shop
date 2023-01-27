@@ -44,7 +44,7 @@ const MiddleMediumCards = () => {
                             key={index * 23}
                             className="h-full w-full rounded-lg overflow-hidden shadow-md"
                         >
-                            <Link href={"#"} className="w-full h-full relative flex">
+                            <Link href={"/"} className="w-full h-full relative flex">
                                 <Image
                                     width={350}
                                     height={300}

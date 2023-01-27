@@ -4,8 +4,10 @@ import React from "react";
 import { User } from "firebase/auth";
 
 // icons
-import { BsCart3 } from "react-icons/bs";
+import { BsCart3, BsBoxArrowInRight } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
+import { RiHomeSmileLine } from "react-icons/ri"
+import { BiCategoryAlt } from "react-icons/bi";
 
 // ts
 interface Data {
@@ -48,3 +50,26 @@ export const navbarData = (user: null | User) => {
 
     return data;
 }
+
+export const smNavData = [
+    {
+        icon: <RiHomeSmileLine />,
+        link: "/",
+        title: "home"
+    },
+    {
+        icon: <BiCategoryAlt />,
+        link: "/products",
+        title: "products"
+    },
+    {
+        icon: <BsCart3 />,
+        link: "/cart",
+        title: "Cart"
+    },
+    {
+        icon: <BsBoxArrowInRight />,
+        link: "/auth/login",
+        title: "Login"
+    },
+]

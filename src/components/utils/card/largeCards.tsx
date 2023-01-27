@@ -21,7 +21,7 @@ const LargeCards = ({ data }: Props) => {
             <div className='grid lg:grid-cols-2 lg:gap-6 grid-cols-1 gap-4'>
                 {
                     data.map((item, index) =>
-                        <Link href='#' key={index * 29}>
+                        <Link href='/' key={index * 29}>
                             <div className='shadow-lg rounded-lg overflow-hidden h-full'>
                                 <Image
                                     className={`w-full h-72 2xl:object-contain md:object-cover object-contain flex`}

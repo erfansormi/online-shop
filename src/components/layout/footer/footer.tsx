@@ -10,12 +10,17 @@ import Input from '../../form/input/input';
 // data
 import { footerData, footerIcons } from './footerData';
 
-// font
-import { fredoka } from '../../../pages/_app';
+// font & context hook
+import { fredoka, useGeneralContext } from '../../../pages/_app';
 
 const Footer = () => {
+    const general = useGeneralContext();
+
     return (
-        <div className={`${fredoka.className} w-full capitalize`}>
+        <div
+            className={`${fredoka.className} w-full capitalize`}
+            style={{ marginBottom: general.width != null && general.width <= 768 ? "var(--navbar-height)" : 0 }}
+        >
             <Divider />
             <footer className='px-5 py-10 w-full text-gray-800'>
                 <div className='flex w-full flex-wrap gap-y-10 gap-x-4 md:justify-between xl:justify-around 2xl:gap-16 2xl:justify-center'>
@@ -47,7 +52,7 @@ const Footer = () => {
                     }
 
                     {/* be with us */}
-                    <div className='flex flex-col gap-8'>
+                    <div className='flex flex-col gap-8 w-full md:w-fit'>
                         <div>
                             <h5 className='mb-4'>be with us!</h5>
                             <div className='flex items-center gap-8'>
@@ -68,9 +73,11 @@ const Footer = () => {
                             </h5>
                             <div className='flex gap-3'>
                                 <Input height='large' />
-                                <Button variant="contained" size='small'>
-                                    register
-                                </Button>
+                                <div className='flex'>
+                                    <Button variant="contained" size='small'>
+                                        register
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>

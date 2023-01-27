@@ -14,7 +14,6 @@ import { navbarData } from './navbarData';
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from '../../../redux/user/authSlice';
 import { State } from '../../../redux/store';
 
 // font
@@ -22,115 +21,118 @@ import { fredoka } from '../../../pages/_app';
 
 // components
 import Profile from './profile/profile';
+import SmNavbar from './smNavbar';
+
+// general context
+import { useGeneralContext } from '../../../pages/_app';
 
 const Navbar = () => {
+    const { width } = useGeneralContext();
+
     // redux
     const user = useSelector((state: State) => state.auth.user);
-    const dispatch = useDispatch();
 
     // states
     const [loading, setLoading] = useState(false);
 
-
-    // is user loggedin?
-    useEffect(() => {
-
-    }, [])
-
     return (
         <>
-            <nav
-                style={{ height: "var(--navbar-height)" }}
-                className={`py-3 flex capitalize md:px-12 px-8 shadow-md justify-between items-center ${fredoka.className}`}
-            >
+            {
+                width !== null && width <= 768 ?
+                    <SmNavbar /> :
+                    <nav
+                        style={{ height: "var(--navbar-height)" }}
+                        className={`py-3 flex capitalize md:px-12 px-8 shadow-md justify-between items-center sticky top-0 left-0 right-0 bg-white z-[1000] ${fredoka.className}`}
+                    >
 
-                {/* left buttons */}
-                <div className='h-full flex items-center'>
-                    <div className='h-full mr-5'>
-                        <Link
-                            href={"/"}
-                            as={"/"}
-                            className='h-full flex items-center'
-                        >
-                            <Image
-                                src="/images/shop-logo.png"
-                                alt='shop logo'
-                                width={40}
-                                height={40}
-                                className='mr-1'
-                            />
-                            <span className='text-rose-500 font-bold text-lg'>
-                                online shop
-                            </span>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link
-                            href={"/products"}
-                            className="text-lg text-gray-700"
-                        >
-                            products
-                        </Link>
-                    </div>
-                </div>
-
-                {/* right buttons */}
-                <div className='flex items-center'>
-                    {
-                        loading ? null :
-                            navbarData(user).map((item, index) =>
-                                <Tooltip title={item.title} key={index * 7}>
-                                    <div
-                                        className='text-2xl ml-3'
-                                    >
-                                        <Link href={item.link} className="flex">
-                                            <IconButton
-                                                sx={{ margin: 0 }}
-                                                className='text-2xl text-gray-700'
-                                            >
-                                                {item.icon}
-                                            </IconButton>
-                                        </Link>
-                                    </div>
-                                </Tooltip>
-                            )
-                    }
-
-                    {/* login or signup buttons */}
-                    {
-                        user == null ?
-                            <div className='flex items-center text-gray-700 ml-2'>
-                                <div className='mr-2'>
-                                    <Tooltip title={"login"}>
-                                        <Link href={"/auth/login"}>
-                                            <IconButton className='text-gray-700 text-2xl'>
-                                                <BsBoxArrowInRight />
-                                            </IconButton>
-                                        </Link>
-                                    </Tooltip>
-                                </div>
-                                <span className='text-2xl'>/</span>
-                                <div className='border-l-2 border-gray-500'>
-                                    <Tooltip title={"signup"}>
-                                        <Link href={"/auth/signup"}>
-                                            <IconButton className='text-gray-700 text-2xl'>
-                                                <TbUserPlus />
-                                            </IconButton>
-                                        </Link>
-                                    </Tooltip>
-                                </div>
+                        {/* left buttons */}
+                        <div className='h-full flex items-center'>
+                            <div className='h-full mr-5'>
+                                <Link
+                                    href={"/"}
+                                    as={"/"}
+                                    className='h-full flex items-center'
+                                >
+                                    <Image
+                                        src="/images/shop-logo.png"
+                                        alt='shop logo'
+                                        width={40}
+                                        height={40}
+                                        className='mr-1'
+                                    />
+                                    <span className='text-rose-500 font-bold text-lg'>
+                                        online shop
+                                    </span>
+                                </Link>
                             </div>
-                            : null
-                    }
+                            <div>
+                                <Link
+                                    href={"/products"}
+                                    className="text-lg text-gray-700"
+                                >
+                                    products
+                                </Link>
+                            </div>
+                        </div>
 
-                    {/* profle */}
-                    {
-                        loading || user == null ?
-                            null :
-                            <Profile />
-                    }
-                </div>
-            </nav>
+                        {/* right buttons */}
+                        <div className='flex items-center'>
+                            {
+                                loading ? null :
+                                    navbarData(user).map((item, index) =>
+                                        <Tooltip title={item.title} key={index * 7}>
+                                            <div
+                                                className='text-2xl ml-3'
+                                            >
+                                                <Link href={item.link} className="flex">
+                                                    <IconButton
+                                                        sx={{ margin: 0 }}
+                                                        className='text-2xl text-gray-700'
+                                                    >
+                                                        {item.icon}
+                                                    </IconButton>
+                                                </Link>
+                                            </div>
+                                        </Tooltip>
+                                    )
+                            }
+
+                            {/* login or signup buttons */}
+                            {
+                                user == null ?
+                                    <div className='flex items-center text-gray-700 ml-2'>
+                                        <div className='mr-2'>
+                                            <Tooltip title={"login"}>
+                                                <Link href={"/auth/login"}>
+                                                    <IconButton className='text-gray-700 text-2xl'>
+                                                        <BsBoxArrowInRight />
+                                                    </IconButton>
+                                                </Link>
+                                            </Tooltip>
+                                        </div>
+                                        <span className='text-2xl'>/</span>
+                                        <div className='border-l-2 border-gray-500'>
+                                            <Tooltip title={"signup"}>
+                                                <Link href={"/auth/signup"}>
+                                                    <IconButton className='text-gray-700 text-2xl'>
+                                                        <TbUserPlus />
+                                                    </IconButton>
+                                                </Link>
+                                            </Tooltip>
+                                        </div>
+                                    </div>
+                                    : null
+                            }
+
+                            {/* profle */}
+                            {
+                                loading || user == null ?
+                                    null :
+                                    <Profile />
+                            }
+                        </div>
+                    </nav>
+            }
         </>
     )
 }

@@ -114,7 +114,6 @@ const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMeth
                             title='Or login with'
                         />
                         <SigninOtherWay
-                            noTitle
                             buttonText='google'
                             handleClick={() => ""}
                             imageSrc="/images/google.png"
