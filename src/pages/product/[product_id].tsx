@@ -1,33 +1,27 @@
-import React, { createContext, useContext } from 'react'
-import { GetStaticPaths, GetStaticProps } from 'next';
+import React from 'react'
+import { GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
-// type
+// redux
+import { wrapper } from '../../redux/store';
+import { getProductDetail } from '../../redux/productDetail/productDetailSlice';
 import { Product } from '../../redux/data/dataSlice';
-
-interface Props {
-    product: Product
-}
 
 // components
 import ProductContainer from '../../components/product/productContainer';
 import Loading from '../../components/utils/loading/loading';
 
-// context
-const ProductDetailContext = createContext({} as Product);
-export const useProductDetail = () => useContext(ProductDetailContext);
-
-const ProductDetail = ({ product }: Props) => {
+const ProductDetail = () => {
     const router = useRouter();
 
     return (
-        <ProductDetailContext.Provider value={product}>
+        <>
             {
                 router.isFallback ?
                     <Loading loading /> :
                     <ProductContainer />
             }
-        </ProductDetailContext.Provider>
+        </>
     )
 }
 
@@ -49,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = wrapper.getStaticProps(store => async ({ params }) => {
     const id = params?.product_id;
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     const product: Product = await res.json();
@@ -58,9 +52,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         quantity: 0
     }
 
+    store.dispatch(getProductDetail(updatedProduct))
+
     return {
-        props: {
-            product: updatedProduct
-        }
+        props: {}
     }
-}
+})

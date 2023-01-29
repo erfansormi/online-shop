@@ -52,7 +52,7 @@ const BeforeAndAfter = () => {
                     }}
                 >
                     <div
-                        className={`z-40 inset-x-1/2 absolute top-0 bottom-0 h-full w-1 bg-gray-500 flex flex-col justify-center items-center`}
+                        className={`z-40 inset-x-1/2 absolute top-0 bottom-0 h-full w-1 bg-gray-400 flex flex-col justify-center items-center`}
                         id="dragg-container"
                     >
                         <span onMouseDown={(e) => {

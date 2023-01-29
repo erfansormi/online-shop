@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext, FC } from "react";
 import type { AppProps } from 'next/app';
 
 // Import Swiper styles
@@ -19,7 +19,7 @@ import { Fredoka } from "@next/font/google";
 
 // redux
 import { Provider } from 'react-redux';
-import { store } from '../redux/store';
+import { wrapper } from "../redux/store";
 
 // mui theme
 import { muiTheme } from "../components/mui/costumizeMui";
@@ -42,7 +42,11 @@ interface IGeneralContext {
 const GeneralContext = createContext({} as IGeneralContext)
 export const useGeneralContext = () => useContext(GeneralContext)
 
-export default function App({ Component, pageProps }: AppProps) {
+const App: FC<AppProps> = ({ Component, ...rest }: AppProps) => {
+  // redux
+  const { store, props } = wrapper.useWrappedStore(rest);
+
+  // context
   const [general, setGeneral] = useState<IGeneralContext>({
     width: null
   });
@@ -66,7 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={muiTheme}>
             <Navbar />
             <main className={fredoka.className}>
-              <Component {...pageProps} />
+              <Component {...props.pageProps} />
             </main>
             <Footer />
             <ToastContainer />
@@ -76,3 +80,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   )
 }
+
+export default App;
