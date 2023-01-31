@@ -5,6 +5,7 @@ import { useHomeContext } from '../../../pages'
 
 // components
 import Layout from '../../layout/layout'
+import LoadingAfterChngLink from '../../utils/loading/loadingAfterChngLink'
 import SmallCardSlider from '../../utils/sliders/smallCardSlider'
 import TitleSection from '../../utils/title/titleSection'
 
@@ -15,6 +16,7 @@ const SpecialOffers = () => {
         <Layout>
             <TitleSection title='special offers' />
             <SmallCardSlider data={offers} />
+            <LoadingAfterChngLink />
         </Layout>
     )
 }

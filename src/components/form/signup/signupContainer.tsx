@@ -102,9 +102,6 @@ const SignupContainer = ({ signupMethod, setSignupMethod, initialValues, handleS
 
       {/* switch to login */}
       <FormSwitcher type="login" />
-
-      {/* loading */}
-      {/* <Loading loading={loading} /> */}
     </FormContainer>
   );
 };

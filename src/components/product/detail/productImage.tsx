@@ -1,17 +1,28 @@
 import React from 'react';
 import Image from 'next/image';
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
+// context
+import { useProductSelector } from '../../../pages/product/[product_id]';
+
+// mui
+import { Skeleton } from '@mui/material';
 
 const ProductImage = () => {
-    const product = useSelector((state: State) => state.productDetail.product);
+    const product = useProductSelector();
+
+    // state
+    const [loading, setLoading] = React.useState(true)
+
+    React.useEffect(() => {
+        setLoading(false)
+    }, [])
 
     return (
         <>
             {
-                product ?
+                !product || loading ?
+                    <Skeleton variant="rounded" width="100%" height="100%" /> :
+                    product &&
                     <div className='overflow-hidden py-8 border border-solid border-gray-200 rounded-lg select-none'>
                         <div className='h-full w-full flex justify-center'>
                             <Image
@@ -23,7 +34,6 @@ const ProductImage = () => {
                             />
                         </div>
                     </div>
-                    : null
             }
         </>
     )

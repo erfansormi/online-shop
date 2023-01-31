@@ -1,107 +1,78 @@
-import React, { useContext, createContext } from 'react'
-import { GetStaticProps } from "next";
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { useState } from 'react';
+
+// data
+import { SortBy, sortByData, sortByCheapest, sortByRelevant, sortByExpensivest, sortByBestSeller, sortBySuggestion } from '../../components/products/productsData';
+
+// components
+import Layout from '../../components/layout/layout';
+import ProductsCard from '../../components/products/productsCard';
+import LoadingAfterChngLink from '../../components/utils/loading/loadingAfterChngLink';
+
+// icons
+import { BiSortDown } from 'react-icons/bi';
 
 // types
-import { Product } from "../../redux/data/dataSlice";
+import { Product } from '../../redux/data/dataSlice';
 
 interface Props {
     products: Product[]
 }
 
-// context
-const ProductsContext = createContext({} as Product[]);
-export const useProductsContext = () => useContext(ProductsContext);
-
-// icons
-import { BsStarFill } from 'react-icons/bs';
-
-// components
-import Layout from "../../components/layout/layout";
-import Price from '../../components/utils/price/price';
-import DiscountPercentage from '../../components/utils/price/discountPercentage';
-import OldPrice from '../../components/utils/price/oldPrice';
-
 const Products = ({ products }: Props) => {
+    const [sortBy, setSortBy] = useState<SortBy>("most relevant");
+
     return (
-        <ProductsContext.Provider value={products} >
-            <Layout max_w_3xl>
-                <div className='grid max-[400px]:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
-                    {products.map((item, index) =>
-                        <div
-                            key={index * 17}
-                            className="border-solid border-x border-b-2 border-t-0 border-gray-100 hover:shadow-lg transition-shadow duration-300"
+        <Layout max_w_3xl>
+
+            {/* sort */}
+            <div className='py-6 px-3 flex flex-wrap gap-x-6 gap-y-4 items-center capitalize text-sm'>
+                <span className='flex gap-x-1 items-center'>
+                    <BiSortDown className="text-3xl" />
+                    <span>
+                        sort by
+                    </span>
+                </span>
+                {
+                    sortByData.map((item, index) =>
+                        <span
+                            key={index * 30}
+                            className={`cursor-pointer ${item.title === sortBy ? "text-rose-500" : "text-gray-500"}`}
+                            onClick={() => setSortBy(item.title)}
                         >
-                            <Link
-                                href={`/product/${item.id}`}
-                                className="flex flex-col px-3 py-6 md:py-10"
-                            >
+                            {item.title}
+                        </span>
+                    )
+                }
+            </div>
 
-                                {/* image */}
-                                <div className='h-48 w-full flex justify-center mb-10'>
-                                    <div className='w-3/5 sm:w-4/5 h-full relative'>
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className='object-contain'
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* title */}
-                                <div className='h-10 mb-3.5'>
-                                    <h3 className='text-sm normal-case font-bold text-gray-700 h-full ellipsis-2'>
-                                        {item.title}
-                                    </h3>
-                                </div>
-
-                                {/* rating */}
-                                <div className='flex items-center gap-2 mb-3.5'>
-                                    <span className='flex text-yellow-400'>
-                                        <BsStarFill />
-                                    </span>
-                                    <span className="text-sm">
-                                        {item.rating.rate}
-                                    </span>
-                                </div>
-
-                                {/* price section */}
-                                <div className='flex items-center justify-between'>
-
-                                    {/* new price */}
-                                    <Price price={Number((item.price * (100 - (item.rating.count / 100))) / 100)} />
-
-                                    {/* discount percentage */}
-                                    <DiscountPercentage discount={item.rating.count / 100} />
-                                </div>
-
-                                {/* old price */}
-                                {
-                                    <div className='mt-1.5'>
-                                        <OldPrice oldPrice={item.price} />
-                                    </div>
-                                }
-                            </Link>
-                        </div>
-                    )}
-                </div>
-            </Layout >
-        </ProductsContext.Provider >
+            {/* products */}
+            <div className='border-t-2 border-b-0 border-x-0 border-solid border-gray-200 grid max-[400px]:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+                {
+                    sortBy === "most relevant" ?
+                        <ProductsCard products={sortByRelevant(products)} /> :
+                        sortBy === "cheapest" ?
+                            <ProductsCard products={sortByCheapest(products)} /> :
+                            sortBy === "expensivest" ?
+                                <ProductsCard products={sortByExpensivest(products)} /> :
+                                sortBy === "best seller" ?
+                                    <ProductsCard products={sortByBestSeller(products)} /> :
+                                    sortBy === "Buyers' suggestion" &&
+                                    <ProductsCard products={sortBySuggestion(products)} />
+                }
+            </div>
+            <LoadingAfterChngLink />
+        </Layout >
     )
 }
 
 export default Products;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
     const res = await fetch("https://fakestoreapi.com/products");
     const products = await res.json();
 
     return {
-        props: {
-            products,
-        },
+        props: { products },
         revalidate: 60 * 60 * 24
     }
 }

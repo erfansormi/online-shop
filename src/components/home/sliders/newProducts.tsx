@@ -4,6 +4,7 @@ import React from 'react'
 import Layout from '../../layout/layout';
 import SmallCardSlider from '../../utils/sliders/smallCardSlider';
 import TitleSection from '../../utils/title/titleSection';
+import LoadingAfterChngLink from '../../utils/loading/loadingAfterChngLink';
 
 // context
 import { useHomeContext } from '../../../pages';
@@ -15,6 +16,7 @@ const NewProducts = () => {
         <Layout>
             <TitleSection title='newest products of the week' />
             <SmallCardSlider data={newProducts} />
+            <LoadingAfterChngLink />
         </Layout>
     )
 }

@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // mui
-import { Divider, Rating, Tooltip } from '@mui/material';
+import { Divider, Rating, Tooltip, Skeleton, Typography } from '@mui/material';
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
+// context
+import { useProductSelector } from '../../../pages/product/[product_id]';
 
 // icons
 import { BiCheck } from "react-icons/bi"
@@ -70,15 +69,39 @@ const colors: Color[] = [
 const whiteCheck = ["black", "gray", "red", "blue", "green"]
 
 const ProductDetail = () => {
-    const product = useSelector((state: State) => state.productDetail.product);
+    const product = useProductSelector();
+
+    const [loading, setLoading] = useState(true);
 
     // active color
     const [activeColor, setActiveColor] = useState("black")
 
+    useEffect(() => {
+        setLoading(false);
+    }, [])
+
     return (
         <>
             {
-                product ?
+                !product || loading ?
+                    <div className='flex flex-col gap-y-5'>
+                        <div>
+                            <Skeleton variant='text' width="100%" height={40} />
+                            <Skeleton variant='text' width="45%" height={40} />
+                        </div>
+
+                        <div>
+                            <Skeleton variant="rounded" width={"100%"} height={190} />
+                        </div>
+
+                        <div>
+                            <Skeleton variant='text' width="100%" height={25} />
+                            <Skeleton variant='text' width="100%" height={25} />
+                            <Skeleton variant='text' width="100%" height={25} />
+                            <Skeleton variant='text' width="60%" height={25} />
+                        </div>
+                    </div> :
+                    product &&
                     <div className='flex flex-col px-5'>
                         {/* title */}
                         <div>
@@ -136,7 +159,6 @@ const ProductDetail = () => {
                             </div>
                         </div>
                     </div>
-                    : null
             }
         </>
     )

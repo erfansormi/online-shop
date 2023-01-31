@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 
 // mui
-import { Divider } from '@mui/material';
+import { Divider, Skeleton } from '@mui/material';
 
 // icons
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
-// redux
-import { useSelector } from 'react-redux';
-import { State } from '../../../redux/store';
+// context
+import { useProductSelector } from '../../../pages/product/[product_id]';
 
 // components
 import DiscountPercentage from '../../utils/price/discountPercentage';
@@ -19,12 +18,21 @@ import CartBtns from '../../utils/buttons/cartBtns';
 
 const PriceBox = () => {
     // redux
-    const product = useSelector((state: State) => state.productDetail.product)
+    const product = useProductSelector()
+
+    // state
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(false);
+    }, [])
 
     return (
         <>
             {
-                product ?
+                !product || loading ?
+                    <Skeleton variant="rounded" width={"100%"} height={"100%"} />
+                    :
                     <div className='border border-solid border-gray-200 w-full p-5 rounded-lg bg-gray-50'>
                         <div className='flex flex-col'>
 
@@ -53,7 +61,7 @@ const PriceBox = () => {
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-1 text-sm'>
-                                    <span className='text-green-500' >Great</span>
+                                    <span className='text-green-500'>Great</span>
                                     <span className='text-gray-600'>Prformance</span>
                                 </div>
                             </div>
@@ -90,7 +98,6 @@ const PriceBox = () => {
                             <CartBtns product={product} />
                         </div>
                     </div >
-                    : null
             }
         </>
     )

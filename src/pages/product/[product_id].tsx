@@ -1,27 +1,35 @@
-import React from 'react'
-import { GetStaticPaths } from 'next';
+import React, { Suspense, useContext, createContext } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-
-// redux
-import { wrapper } from '../../redux/store';
-import { getProductDetail } from '../../redux/productDetail/productDetailSlice';
-import { Product } from '../../redux/data/dataSlice';
 
 // components
 import ProductContainer from '../../components/product/productContainer';
 import Loading from '../../components/utils/loading/loading';
 
-const ProductDetail = () => {
+// context
+const ProductContext = createContext({} as Product);
+export const useProductSelector = () => useContext(ProductContext);
+
+// types
+import { Product } from '../../redux/data/dataSlice';
+
+interface Props {
+    product: Product
+}
+
+const ProductDetail = ({ product }: Props) => {
     const router = useRouter();
 
     return (
-        <>
+        <ProductContext.Provider value={product}>
             {
                 router.isFallback ?
                     <Loading loading /> :
-                    <ProductContainer />
+                    <Suspense fallback={<Loading loading />}>
+                        <ProductContainer />
+                    </Suspense>
             }
-        </>
+        </ProductContext.Provider>
     )
 }
 
@@ -43,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
-export const getStaticProps = wrapper.getStaticProps(store => async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
     const id = params?.product_id;
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     const product: Product = await res.json();
@@ -52,9 +60,9 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({ params })
         quantity: 0
     }
 
-    store.dispatch(getProductDetail(updatedProduct))
-
     return {
-        props: {}
+        props: {
+            product: updatedProduct
+        }
     }
-})
+}

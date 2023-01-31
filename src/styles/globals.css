@@ -68,6 +68,10 @@ h6 {
   font-weight: 700;
 }
 
+img {
+  user-select: none;
+}
+
 .ellipsis-1 {
   overflow: hidden;
   text-overflow: ellipsis;

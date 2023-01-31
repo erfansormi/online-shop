@@ -15,6 +15,7 @@ const Loading = ({ loading }: Props) => {
     return (
         <Backdrop
             open={loading}
+            sx={{ zIndex: 1000 }}
         >
             <div className={"w-48 h-48 flex justify-center items-center rounded-lg bg-neutral-300"}>
                 <PulseLoader color="#777" />

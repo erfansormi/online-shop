@@ -1,5 +1,6 @@
-import React, { useState, useEffect, createContext, useContext, FC } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import type { AppProps } from 'next/app';
+import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,12 +15,14 @@ import '../styles/swiper.css';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+// redux
+import { store } from "../redux/store";
+
 // font
 import { Fredoka } from "@next/font/google";
 
 // redux
 import { Provider } from 'react-redux';
-import { wrapper } from "../redux/store";
 
 // mui theme
 import { muiTheme } from "../components/mui/costumizeMui";
@@ -28,6 +31,7 @@ import { ThemeProvider } from "@mui/material/styles";
 // components
 import Navbar from '../components/layout/navbar/navbar';
 import Footer from "../components/layout/footer/footer";
+import LoadingAfterChngLink from "../components/utils/loading/loadingAfterChngLink";
 
 // font
 export const fredoka = Fredoka({
@@ -42,10 +46,7 @@ interface IGeneralContext {
 const GeneralContext = createContext({} as IGeneralContext)
 export const useGeneralContext = () => useContext(GeneralContext)
 
-const App: FC<AppProps> = ({ Component, ...rest }: AppProps) => {
-  // redux
-  const { store, props } = wrapper.useWrappedStore(rest);
-
+const App = ({ Component, pageProps }: AppProps) => {
   // context
   const [general, setGeneral] = useState<IGeneralContext>({
     width: null
@@ -70,7 +71,7 @@ const App: FC<AppProps> = ({ Component, ...rest }: AppProps) => {
           <ThemeProvider theme={muiTheme}>
             <Navbar />
             <main className={fredoka.className}>
-              <Component {...props.pageProps} />
+              <Component {...pageProps} />
             </main>
             <Footer />
             <ToastContainer />
