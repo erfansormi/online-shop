@@ -41,7 +41,7 @@ const VerifyOtp = () => {
     const router = useRouter();
 
     const handleSubmit = (e: InitialValues) => {
-        router.push("/profile/user-info")
+        router.push("/profile/personal-info")
     }
 
     return (

@@ -14,9 +14,8 @@ const SubmitButton = ({ text, className, color, variant }: Props) => {
     return (
         <div className="mb-3 w-full">
             <Button
-                size="large"
                 type='submit'
-                className={`${className ? className : ""} w-full h-10 rounded-md`}
+                className={`${className ? className : ""} w-full rounded-md`}
                 variant={variant ? variant : "contained"}
                 color={color ? color : "primary"}
             >

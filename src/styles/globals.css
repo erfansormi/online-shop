@@ -92,13 +92,6 @@ img {
   margin-bottom: 3.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    color: white;
-    background: black;
-  }
+.css-uzoczd-MuiPaper-root-MuiDialog-paper {
+  padding: 15px;
 }

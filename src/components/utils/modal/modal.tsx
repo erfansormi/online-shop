@@ -21,15 +21,22 @@ const Modal = ({ open, setOpen, description, title, buttonFunc }: Props) => {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+                className='p-10'
             >
-                <DialogTitle id="alert-dialog-title">
+
+                {/* title */}
+                <DialogTitle variant='h2' id="alert-dialog-title" sx={{ paddingTop: "10px" }}>
                     {title}
                 </DialogTitle>
+
+                {/* description */}
                 <DialogContent>
-                    <DialogContentText id="modal-modal-description" sx={{ mt: 2 }}>
+                    <DialogContentText id="modal-modal-description" sx={{ mt: 2 }} className="text-lg">
                         {description}
                     </DialogContentText>
                 </DialogContent>
+
+                {/* buttons */}
                 <DialogActions>
                     <Button
                         onClick={handleClose}

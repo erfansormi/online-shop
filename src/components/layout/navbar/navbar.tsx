@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // mui
 import { IconButton, Tooltip, ButtonGroup, Button } from '@mui/material';
@@ -13,22 +14,21 @@ import { TbUserPlus } from "react-icons/tb";
 import { navbarData } from './navbarData';
 
 // redux
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { State } from '../../../redux/store';
 
 // font
 import { fredoka } from '../../../pages/_app';
 
 // components
-import Profile from './profile/profile';
+import ProfileIcon from './profileIcon/profileIcon';
 import SmNavbar from './smNavbar';
 
 const Navbar = () => {
+    const router = useRouter();
+
     // redux
     const user = useSelector((state: State) => state.auth.user);
-
-    // states
-    const [loading, setLoading] = useState(false);
 
     return (
         <>
@@ -69,59 +69,59 @@ const Navbar = () => {
                 </div>
 
                 {/* right buttons */}
-                <div className='flex items-center'>
+                <div className='flex items-center gap-x-2'>
                     {
-                        loading ? null :
-                            navbarData(user).map((item, index) =>
-                                <Tooltip title={item.title} key={index * 7}>
-                                    <div
-                                        className='text-2xl ml-3'
-                                    >
-                                        <Link href={item.link} className="flex">
-                                            <IconButton
-                                                sx={{ margin: 0 }}
-                                                className='text-2xl text-gray-700'
-                                            >
-                                                {item.icon}
-                                            </IconButton>
-                                        </Link>
-                                    </div>
-                                </Tooltip>
-                            )
+                        navbarData(user).map((item, index) =>
+                            <Tooltip title={item.title} key={index * 7}>
+                                <div
+                                    className='text-2xl'
+                                >
+                                    <Link href={item.link} className="flex">
+                                        <IconButton
+                                            sx={{ margin: 0 }}
+                                            className='text-2xl text-gray-700'
+                                        >
+                                            {item.icon}
+                                        </IconButton>
+                                    </Link>
+                                </div>
+                            </Tooltip>
+                        )
                     }
 
                     {/* login or signup buttons */}
                     {
                         user == null ?
-                            <div className='flex items-center text-gray-700 ml-2'>
-                                <div className='mr-2'>
-                                    <Tooltip title={"login"}>
-                                        <Link href={"/auth/login"}>
-                                            <IconButton className='text-gray-700 text-2xl'>
-                                                <BsBoxArrowInRight />
-                                            </IconButton>
-                                        </Link>
+                            <div>
+                                <ButtonGroup variant="text" color="inherit" aria-label="text button group">
+                                    <Tooltip title={"Login"}>
+                                        <Button
+                                            className='text-gray-700 text-2xl'
+                                            onClick={() => router.push("/auth/login")}
+                                        >
+                                            <BsBoxArrowInRight />
+                                        </Button>
                                     </Tooltip>
-                                </div>
-                                <span className='text-2xl'>/</span>
-                                <div className='border-l-2 border-gray-500'>
-                                    <Tooltip title={"signup"}>
-                                        <Link href={"/auth/signup"}>
-                                            <IconButton className='text-gray-700 text-2xl'>
-                                                <TbUserPlus />
-                                            </IconButton>
-                                        </Link>
+                                    <Tooltip title={"Signup"}>
+                                        <Button
+                                            className='text-gray-700 text-2xl'
+                                            onClick={() => router.push("/auth/signup")}
+                                        >
+                                            <TbUserPlus />
+                                        </Button>
                                     </Tooltip>
-                                </div>
+                                </ButtonGroup>
                             </div>
                             : null
                     }
 
                     {/* profle */}
                     {
-                        loading || user == null ?
+                        user !== null ?
                             null :
-                            <Profile />
+                            <>
+                                <ProfileIcon />
+                            </>
                     }
                 </div>
             </nav>

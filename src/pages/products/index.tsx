@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GetStaticProps } from 'next';
 
 // data
 import { SortBy, sortByData, sortByCheapest, sortByRelevant, sortByExpensivest, sortByBestSeller, sortBySuggestion } from '../../components/products/productsData';
@@ -6,7 +7,6 @@ import { SortBy, sortByData, sortByCheapest, sortByRelevant, sortByExpensivest, 
 // components
 import Layout from '../../components/layout/layout';
 import ProductsCard from '../../components/products/productsCard';
-import LoadingAfterChngLink from '../../components/utils/loading/loadingAfterChngLink';
 
 // icons
 import { BiSortDown } from 'react-icons/bi';
@@ -60,15 +60,14 @@ const Products = ({ products }: Props) => {
                                     <ProductsCard products={sortBySuggestion(products)} />
                 }
             </div>
-            <LoadingAfterChngLink />
         </Layout >
     )
 }
 
 export default Products;
 
-export const getStaticProps = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
+export const getStaticProps: GetStaticProps = async () => {
+    const res = await fetch(`https://fakestoreapi.com/products`);
     const products = await res.json();
 
     return {
