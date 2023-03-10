@@ -13,10 +13,6 @@ import { TbUserPlus } from "react-icons/tb";
 // navbar data
 import { navbarData } from './navbarData';
 
-// redux
-import { useSelector } from "react-redux";
-import { State } from '../../../redux/store';
-
 // font
 import { fredoka } from '../../../pages/_app';
 
@@ -26,9 +22,6 @@ import SmNavbar from './smNavbar';
 
 const Navbar = () => {
     const router = useRouter();
-
-    // redux
-    const user = useSelector((state: State) => state.auth.user);
 
     return (
         <>
@@ -71,7 +64,7 @@ const Navbar = () => {
                 {/* right buttons */}
                 <div className='flex items-center gap-x-2'>
                     {
-                        navbarData(user).map((item, index) =>
+                        navbarData(null).map((item, index) =>
                             <Tooltip title={item.title} key={index * 7}>
                                 <div
                                     className='text-2xl'
@@ -91,7 +84,7 @@ const Navbar = () => {
 
                     {/* login or signup buttons */}
                     {
-                        user == null ?
+                        null == null ?
                             <div>
                                 <ButtonGroup variant="text" color="inherit" aria-label="text button group">
                                     <Tooltip title={"Login"}>
@@ -116,13 +109,13 @@ const Navbar = () => {
                     }
 
                     {/* profle */}
-                    {
+                    {/* {
                         user !== null ?
                             null :
                             <>
                                 <ProfileIcon />
                             </>
-                    }
+                    } */}
                 </div>
             </nav>
         </>

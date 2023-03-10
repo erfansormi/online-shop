@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // types
-import { Product } from '../../redux/data/dataSlice';
+import { Product } from '../../types/product/productTypes';
 
 // icons
 import { BsStarFill } from 'react-icons/bs';
@@ -20,24 +20,29 @@ interface Props {
 const ProductsCard = ({ products }: Props) => {
     return (
         <>
-            {products.map((item, index) =>
+            {products.map(({ image, category, title, slug, sellers, rating }, index) =>
                 <div
                     key={index * 17}
                     className="border-solid border-x border-b-2 border-t-0 border-gray-100 hover:shadow-lg transition-shadow duration-300"
                 >
                     <Link
-                        href={`/product/${item.id}`}
+                        href={`/product/${slug}`}
                         className="flex flex-col px-3 py-6 md:py-10"
                     >
 
                         {/* image */}
                         <div className='h-48 w-full flex justify-center mb-10'>
-                            <div className='w-3/5 sm:w-4/5 h-full relative'>
+                            <div className='min-[350px]:w-4/5 w-3/5 h-full relative'>
                                 <Image
-                                    src={item.image}
-                                    alt={item.title}
+                                    src={image}
+                                    alt={title}
                                     fill
                                     className='object-contain'
+                                    sizes='(max-width:350px) 70vw,
+                                    (max-width:500px) 45vw,
+                                    (max-width:1023px) 38vw,
+                                    (max-width:1279px) 25vw,
+                                    17vw'
                                 />
                             </div>
                         </div>
@@ -45,7 +50,7 @@ const ProductsCard = ({ products }: Props) => {
                         {/* title */}
                         <div className='h-10 mb-3.5'>
                             <h3 className='text-sm normal-case font-bold text-gray-700 h-full ellipsis-2'>
-                                {item.title}
+                                {title}
                             </h3>
                         </div>
 
@@ -55,25 +60,31 @@ const ProductsCard = ({ products }: Props) => {
                                 <BsStarFill />
                             </span>
                             <span className="text-sm">
-                                {item.rating.rate}
+                                {rating.rate}
                             </span>
                         </div>
 
                         {/* price section */}
-                        <div className='flex items-center justify-between'>
-
-                            {/* new price */}
-                            <Price price={Number((item.price * (100 - (item.rating.count / 100))) / 100)} />
-
-                            {/* discount percentage */}
-                            <DiscountPercentage discount={item.rating.count / 100} />
-                        </div>
-
-                        {/* old price */}
                         {
-                            <div className='mt-1.5'>
-                                <OldPrice oldPrice={item.price} />
-                            </div>
+                            //  check if product discount there is 
+                            sellers[0].variants[0].old_price && sellers[0].variants[0].discount_percentage ?
+                                <>
+                                    {/* new price */}
+                                    <div className='flex items-center justify-between'>
+                                        <Price price={sellers[0].variants[0].price} />
+
+                                        {/* discount percentage */}
+                                        <DiscountPercentage discount={sellers[0].variants[0].discount_percentage} />
+                                    </div>
+
+                                    {/* old price */}
+                                    <div className='mt-1.5'>
+                                        <OldPrice oldPrice={sellers[0].variants[0].old_price} />
+                                    </div>
+                                </> :
+
+                                // product has no discount
+                                <Price price={sellers[0].variants[0].price} />
                         }
                     </Link>
                 </div>

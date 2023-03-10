@@ -8,7 +8,7 @@ interface Props {
 const Price = ({ price, size }: Props) => {
     return (
         <span className={`font-bold text-gray-800 ${size === "large" ? "text-xl" : ""}`}>
-            ${price.toFixed(2)}
+            ${price}
         </span>
     )
 }

@@ -1,69 +1,70 @@
-import React, { createContext, useContext } from 'react'
-import { GetStaticProps } from 'next';
+import React, { useContext, createContext } from 'react'
 import Head from 'next/head';
 
 // data
 import { topSlidersData } from '../components/home/sliders/topSlidersData';
 
-// redux
-import { useDispatch } from 'react-redux';
-import { getSlidersData } from '../redux/data/dataSlice';
-
 // components
 import SliderFullScreen from '../components/utils/sliders/sliderFullScreen';
-import NewProducts from '../components/home/sliders/newProducts';
+import CheapestProducts from '../components/home/sliders/cheapestProducts';
 import SpecialOffers from '../components/home/sliders/specialOffers';
 import MiddleLargeCards from '../components/home/cards/middleLargeCards';
 import MiddleMediumCards from '../components/home/cards/middleMediumCards';
 import Categories from '../components/home/categories/categories';
 import BottomLargeCards from '../components/home/cards/bottomLargeCard';
 import BeforeAndAfter from '../components/home/beforeAndAfter';
+import { GetStaticProps } from 'next';
+
+// data fetcher
+import { useFetch } from '../hooks/fetcher/useFetch';
 
 // types
-import { Product } from '../redux/data/dataSlice';
+import { Product } from '../types/product/productTypes';
 
-interface Props {
-  products: Product[],
+interface HomeData {
+  success: boolean;
+  most_discount: Product[];
+  cheapest: Product[];
+  highest_rate: Product[];
 }
 
-// context
-const HomeContext = createContext({} as Product[]);
-export const useHomeContext = () => useContext(HomeContext);
+interface Props {
+  data: HomeData
+  error: string,
+}
 
-const Home = ({ products }: Props) => {
-  const dispatch = useDispatch();
+//context
+const HomePage = createContext({} as HomeData);
+export const useHomeContext = () => useContext(HomePage);
 
-  React.useEffect(() => {
-    dispatch(getSlidersData(topSlidersData));
-  }, [dispatch])
-
+const Home = ({ data, error }: Props) => {
   return (
-    <HomeContext.Provider value={products}>
+    <HomePage.Provider value={data}>
       <Head>
         <title>Home</title>
       </Head>
       <SliderFullScreen data={topSlidersData} />
-      <NewProducts />
+      <SpecialOffers />
       <MiddleLargeCards />
       <BeforeAndAfter />
-      <SpecialOffers />
+      <CheapestProducts />
       <MiddleMediumCards />
       <Categories />
       <BottomLargeCards />
-    </HomeContext.Provider>
+    </HomePage.Provider>
   )
 }
 
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const products = await res.json();
+  const { data, error } = await useFetch("home-data");
 
   return {
     props: {
-      products,
+      data,
+      error
     },
-    revalidate: 60 * 60 * 24
+    revalidate: 60 * 60 * 24 //24 hours
   }
 }

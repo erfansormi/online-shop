@@ -6,19 +6,19 @@ import Image from 'next/image';
 import { Skeleton } from '@mui/material';
 
 // types
-import { Product } from '../../../redux/data/dataSlice';
+import { Product } from '../../../types/product/productTypes';
 
 // components
 import DiscountPercentage from '../price/discountPercentage';
 import OldPrice from '../price/oldPrice';
 import Price from '../price/price';
 
-const SmallCard = ({ image, category, description, id, price, rating, title }: Product) => {
+const SmallCard = ({ image, category, rating, title, sellers, slug }: Product) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
         <section className='w-full h-full flex flex-col justify-between h-64 overflow-hidden w-44'>
-            <Link href={`product/${id}`} className="block h-full">
+            <Link href={`product/${slug}`} className="block h-full">
 
                 {/* card image */}
                 <div className='flex justify-center items-center bg-white h-3/5 overflow-hidden'>
@@ -30,7 +30,11 @@ const SmallCard = ({ image, category, description, id, price, rating, title }: P
                             fill={true}
                             quality={80}
                             onLoadingComplete={() => setImageLoaded(true)}
-                            loading={"lazy"}
+                            sizes="(max-width: 230px) 100vw,
+                            (max-width: 500px) 40vw,
+                            (max-width: 768px) 30vw,
+                            (max-width: 1200px) 20vw,
+                            15vw"
                         />
                         {
                             !imageLoaded ?
@@ -52,24 +56,30 @@ const SmallCard = ({ image, category, description, id, price, rating, title }: P
                             {title}
                         </span>
                     </div>
-                    <div className='flex items-center justify-between'>
-
-                        {/* new price */}
-                        <Price price={Number((price * (100 - (rating.count / 100))) / 100)} />
-
-                        {/* discount percentage */}
-                        <DiscountPercentage discount={rating.count / 100} />
-                    </div>
-
-                    {/* old price */}
                     {
-                        <div className='mt-1.5'>
-                            <OldPrice oldPrice={price} />
-                        </div>
+                        //  check if product discount there is 
+                        sellers[0].variants[0].old_price && sellers[0].variants[0].discount_percentage ?
+                            <>
+                                {/* new price */}
+                                <div className='flex items-center justify-between'>
+                                    <Price price={sellers[0].variants[0].price} />
+
+                                    {/* discount percentage */}
+                                    <DiscountPercentage discount={sellers[0].variants[0].discount_percentage} />
+                                </div>
+
+                                {/* old price */}
+                                <div className='mt-1.5'>
+                                    <OldPrice oldPrice={sellers[0].variants[0].old_price} />
+                                </div>
+                            </> :
+
+                            // product has no discount
+                            <Price price={sellers[0].variants[0].price} />
                     }
                 </div>
             </Link>
-        </section>
+        </section >
     )
 }
 

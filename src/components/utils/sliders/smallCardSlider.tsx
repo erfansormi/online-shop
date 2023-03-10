@@ -9,7 +9,7 @@ import SmallCard from '../card/smallCard';
 import SeeAllProducts from '../card/seeAllProducts';
 
 // types
-import { Product } from '../../../redux/data/dataSlice';
+import { Product } from '../../../types/product/productTypes';
 
 interface Props {
     data: Product[]

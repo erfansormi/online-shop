@@ -9,12 +9,12 @@ import SmallCardSlider from '../../utils/sliders/smallCardSlider'
 import TitleSection from '../../utils/title/titleSection'
 
 const SpecialOffers = () => {
-    const offers = useHomeContext().slice(8, 16);
+    const { most_discount } = useHomeContext();
 
     return (
         <Layout>
             <TitleSection title='special offers' />
-            <SmallCardSlider data={offers} />
+            <SmallCardSlider data={most_discount} />
         </Layout>
     )
 }

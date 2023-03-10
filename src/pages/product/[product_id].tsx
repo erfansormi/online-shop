@@ -8,20 +8,26 @@ import Loading from '../../components/utils/loading/loading';
 
 // context
 const ProductContext = createContext({} as Product);
-export const useProductSelector = () => useContext(ProductContext);
+export const useProductContext = () => useContext(ProductContext);
 
 // types
-import { Product } from '../../redux/data/dataSlice';
+import { Product } from '../../types/product/productTypes';
+import { useFetch } from '../../hooks/fetcher/useFetch';
 
-interface Props {
-    product: Product
+interface Data {
+    product: Product,
+    success: boolean
 }
 
-const ProductDetail = ({ product }: Props) => {
+interface Props {
+    data: Data
+}
+
+const ProductDetail = ({ data }: Props) => {
     const router = useRouter();
 
     return (
-        <ProductContext.Provider value={product}>
+        <ProductContext.Provider value={data.product}>
             {
                 router.isFallback ?
                     <Loading loading /> :
@@ -36,33 +42,26 @@ const ProductDetail = ({ product }: Props) => {
 export default ProductDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products: Product[] = await res.json();
-
-    const paths = products.map(item => {
+    const { data } = await useFetch("products");
+    const paths = await data.products.map((item: any) => {
         return {
-            params: { product_id: `${item.id}` }
+            params: { product_id: item.slug }
         }
     })
 
     return {
         paths,
-        fallback: true
+        fallback: false
     }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const id = params?.product_id;
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-    const product: Product = await res.json();
-    const updatedProduct: Product = {
-        ...product,
-        quantity: 0
-    }
+    const { data } = await useFetch(`products/${id}`)
 
     return {
         props: {
-            product: updatedProduct
+            data
         }
     }
 }

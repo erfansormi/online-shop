@@ -8,15 +8,15 @@ import TitleSection from '../../utils/title/titleSection';
 // context
 import { useHomeContext } from '../../../pages';
 
-const NewProducts = () => {
-    const newProducts = useHomeContext().slice(0, 8);
+const CheapestProducts = () => {
+    const { cheapest } = useHomeContext();
 
     return (
         <Layout>
-            <TitleSection title='newest products of the week' />
-            <SmallCardSlider data={newProducts} />
+            <TitleSection title='cheapest products of the week' />
+            <SmallCardSlider data={cheapest} />
         </Layout>
     )
 }
 
-export default NewProducts;
+export default CheapestProducts;

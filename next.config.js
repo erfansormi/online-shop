@@ -14,9 +14,9 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'fakestoreapi.com',
+        hostname: 'online-shop.storage.iran.liara.space',
         port: '',
-        pathname: '/img/**',
+        pathname: '/**',
       }
     ],
   },

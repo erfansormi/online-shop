@@ -15,14 +15,8 @@ import '../styles/swiper.css';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-// redux
-import { store } from "../redux/store";
-
 // font
 import { Fredoka } from "@next/font/google";
-
-// redux
-import { Provider } from 'react-redux';
 
 // mui theme
 import { muiTheme } from "../components/mui/costumizeMui";
@@ -66,18 +60,16 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Provider store={store}>
-        <GeneralContext.Provider value={general}>
-          <ThemeProvider theme={muiTheme}>
-            <Navbar />
-            <main className={fredoka.className}>
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-            <ToastContainer />
-          </ThemeProvider>
-        </GeneralContext.Provider>
-      </Provider>
+      <GeneralContext.Provider value={general}>
+        <ThemeProvider theme={muiTheme}>
+          <Navbar />
+          <main className={fredoka.className}>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+          <ToastContainer />
+        </ThemeProvider>
+      </GeneralContext.Provider>
     </>
   )
 }

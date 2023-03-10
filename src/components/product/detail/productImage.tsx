@@ -2,13 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 
 // context
-import { useProductSelector } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../../../pages/product/[product_id]';
 
 // mui
 import { Skeleton } from '@mui/material';
 
 const ProductImage = () => {
-    const product = useProductSelector();
+    const product = useProductContext();
 
     // state
     const [loading, setLoading] = React.useState(true)

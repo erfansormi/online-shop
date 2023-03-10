@@ -8,7 +8,7 @@ import { Divider, Skeleton } from '@mui/material';
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
 // context
-import { useProductSelector } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../../../pages/product/[product_id]';
 
 // components
 import DiscountPercentage from '../../utils/price/discountPercentage';
@@ -18,7 +18,7 @@ import CartBtns from '../../utils/buttons/cartBtns';
 
 const PriceBox = () => {
     // redux
-    const product = useProductSelector()
+    const product = useProductContext()
 
     // state
     const [loading, setLoading] = useState(true);
@@ -80,18 +80,28 @@ const PriceBox = () => {
 
                             {/* Price */}
                             <div className='flex flex-col gap-4 py-5'>
-                                <div className='flex items-center gap-4'>
 
-                                    {/* discount percentage */}
-                                    <DiscountPercentage discount={product.rating.count / 100} size={"large"} />
+                                {/* check if discount there is? */}
+                                {
+                                    product.sellers[0].variants[0].discount_percentage && product.sellers[0].variants[0].old_price ?
+                                        <>
+                                            <div className='flex items-center gap-4'>
 
-                                    {/* old price */}
-                                    <OldPrice oldPrice={product.price} size={"large"} />
+                                                {/* discount percentage */}
+                                                <DiscountPercentage discount={product.sellers[0].variants[0].discount_percentage} size={"large"} />
 
-                                </div>
+                                                {/* old price */}
+                                                <OldPrice oldPrice={product.sellers[0].variants[0].old_price} size={"large"} />
 
-                                {/* new price */}
-                                <Price price={Number((product.price * (100 - (product.rating.count / 100))) / 100)} size="large" />
+                                            </div>
+
+                                            {/* current price */}
+                                            <Price price={product.sellers[0].variants[0].price} size="large" />
+                                        </> :
+
+                                        // current price
+                                        <Price price={product.sellers[0].variants[0].price} size="large" />
+                                }
                             </div>
 
                             {/* button */}

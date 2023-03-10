@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Divider, Rating, Tooltip, Skeleton, Typography } from '@mui/material';
 
 // context
-import { useProductSelector } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../../../pages/product/[product_id]';
 
 // icons
 import { BiCheck } from "react-icons/bi"
@@ -69,7 +69,7 @@ const colors: Color[] = [
 const whiteCheck = ["black", "gray", "red", "blue", "green"]
 
 const ProductDetail = () => {
-    const product = useProductSelector();
+    const product = useProductContext();
 
     const [loading, setLoading] = useState(true);
 
