@@ -19,6 +19,23 @@ export interface Seller {
     _id: string;
 }
 
+interface SellerDetail {
+    _id: string,
+    shop_name: string,
+    email: string,
+    performance: "great" | "very good" | "good" | "medium" | "weak" | "very weak",
+    satisfaction_percentage: string,
+    about: string,
+    created_at: Date,
+    slug: string
+}
+
+export interface SellerWithDetail {
+    seller: SellerDetail;
+    variants: Variant[];
+    _id: string;
+}
+
 export interface Attribute {
     name: string;
     value: string;
@@ -33,6 +50,21 @@ export interface Product {
     description: string;
     image: string;
     sellers: Seller[];
+    attributes: Attribute[];
+    comments: any[];
+    slug: string;
+    __v: number;
+    created_at: Date;
+}
+
+export interface ProductDetail {
+    rating: Rating;
+    _id: string;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    sellers: SellerWithDetail[];
     attributes: Attribute[];
     comments: any[];
     slug: string;

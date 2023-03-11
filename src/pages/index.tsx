@@ -15,9 +15,6 @@ import BottomLargeCards from '../components/home/cards/bottomLargeCard';
 import BeforeAndAfter from '../components/home/beforeAndAfter';
 import { GetStaticProps } from 'next';
 
-// data fetcher
-import { useFetch } from '../hooks/fetcher/useFetch';
-
 // types
 import { Product } from '../types/product/productTypes';
 
@@ -30,14 +27,13 @@ interface HomeData {
 
 interface Props {
   data: HomeData
-  error: string,
 }
 
 //context
 const HomePage = createContext({} as HomeData);
 export const useHomeContext = () => useContext(HomePage);
 
-const Home = ({ data, error }: Props) => {
+const Home = ({ data }: Props) => {
   return (
     <HomePage.Provider value={data}>
       <Head>
@@ -58,12 +54,13 @@ const Home = ({ data, error }: Props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data, error } = await useFetch("home-data");
+  const res = await fetch(`${process.env.URL}/api/v1/home-data`);
+  const data = await res.json();
+
 
   return {
     props: {
       data,
-      error
     },
     revalidate: 60 * 60 * 24 //24 hours
   }

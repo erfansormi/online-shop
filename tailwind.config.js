@@ -47,10 +47,11 @@ module.exports = {
         'span-15': 'span 15 / span 15',
         'span-16': 'span 16 / span 16',
       }
-    },
+    }
   },
   plugins: [],
   corePlugins: {
     preflight: false
-  }
+  },
+  important:true
 }

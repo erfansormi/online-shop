@@ -73,7 +73,7 @@ const CartBtns = ({ product }: Props) => {
                         <span>
                             see
                         </span>
-                        <Link href={"/cart"} className="ml-1 text-blue-500">
+                        <Link href={"/cart"} className="ml-1 text-cyan-500">
                             cart
                         </Link>
                     </span>

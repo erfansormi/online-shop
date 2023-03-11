@@ -1,16 +1,27 @@
 import React from 'react'
+import { Variant } from '../../../types/product/productTypes';
 
 interface Props {
-    discount: number,
-    size?: "medium" | "large"
+    variant?: Variant[],
+    discount?: number
+    size?: "medium" | "large",
+    className?: string
 }
 
-const DiscountPercentage = ({ discount, size }: Props) => {
+const DiscountPercentage = ({ size, variant, discount, className }: Props) => {
+    const discountPercentage = discount ? discount : variant && variant.find(item => item.available)?.discount_percentage;
+
     return (
-        <span className={`bg-rose-500 text-white select-none rounded-xl py-0.5 ${size === "large" ? "px-1.5 text-sm" : "px-1 text-xs"}`}>
-            {discount} %
-        </span>
+        <>
+            {
+                discountPercentage ?
+                    <span className={`bg-rose-500 text-white select-none rounded-xl py-0.5 ${size === "large" ? "px-1.5 text-sm" : className ? className : "px-1 text-xs"}`}>
+                        {discountPercentage}%
+                    </span>
+                    : null
+            }
+        </>
     )
 }
 
-export default DiscountPercentage
+export default DiscountPercentage;

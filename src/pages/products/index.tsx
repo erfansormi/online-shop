@@ -10,29 +10,22 @@ import ProductsCard from '../../components/products/productsCard';
 
 // icons
 import { BiSortDown } from 'react-icons/bi';
-import { useFetch } from '../../hooks/fetcher/useFetch';
 import { Product } from '../../types/product/productTypes';
 
 // types
-interface Data {
-    products: Product[],
-    success: true
-}
-
 interface Props {
-    data: Data
-    error: string,
+    products: Product[]
 }
 
 // context
-const ProductContext = createContext({} as Data);
+const ProductContext = createContext({} as Props);
 export const useProductsContext = () => useContext(ProductContext);
 
-const Products = ({ data, error }: Props) => {
-    const [sortBy, setSortBy] = useState<SortBy>("most relevant");    
+const Products = ({ products }: Props) => {
+    const [sortBy, setSortBy] = useState<SortBy>("most relevant");
 
     return (
-        <ProductContext.Provider value={data}>
+        <ProductContext.Provider value={{ products }}>
             <Layout max_w_3xl>
 
                 {/* sort */}
@@ -60,15 +53,15 @@ const Products = ({ data, error }: Props) => {
                 <div className='border-t-2 border-b-0 border-x-0 border-solid border-gray-200 grid max-[350px]:grid-cols-1 grid-cols-2 min-[670px]:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                     {
                         sortBy === "most relevant" ?
-                            <ProductsCard products={sortByRelevant(data.products)} /> :
+                            <ProductsCard products={sortByRelevant(products)} /> :
                             sortBy === "cheapest" ?
-                                <ProductsCard products={sortByCheapest(data.products)} /> :
+                                <ProductsCard products={sortByCheapest(products)} /> :
                                 sortBy === "expensivest" ?
-                                    <ProductsCard products={sortByExpensivest(data.products)} /> :
+                                    <ProductsCard products={sortByExpensivest(products)} /> :
                                     sortBy === "best seller" ?
-                                        <ProductsCard products={sortByBestSeller(data.products)} /> :
+                                        <ProductsCard products={sortByBestSeller(products)} /> :
                                         sortBy === "Buyers' suggestion" &&
-                                        <ProductsCard products={sortBySuggestion(data.products)} />
+                                        <ProductsCard products={sortBySuggestion(products)} />
                     }
                 </div>
             </Layout >
@@ -79,12 +72,12 @@ const Products = ({ data, error }: Props) => {
 export default Products;
 
 export const getStaticProps: GetStaticProps = async () => {
-    const { data, error } = await useFetch("products");
+    const res = await fetch(`${process.env.URL}/api/v1/products`);
+    const data = await res.json();
 
     return {
         props: {
-            data,
-            error
+            products: data.products,
         },
         revalidate: 60 * 60 * 24
     }

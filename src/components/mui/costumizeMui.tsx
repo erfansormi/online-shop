@@ -25,31 +25,37 @@ export const muiTheme = createTheme({
             fontFamily: "inherit"
         },
         fontFamily: [
-            "'__Fredoka_2dcc66'"
+            "inherit"
         ].join(','),
         h1: {
             fontSize: "1.8rem",
             lineHeight: 1.8,
+            fontWeight: "bold",
         },
         h2: {
             fontSize: "1.6rem",
-            lineHeight: 1.8
+            lineHeight: 1.8,
+            fontWeight: "bold"
         },
         h3: {
             fontSize: "1.4rem",
-            lineHeight: 1.6
+            lineHeight: 1.6,
+            fontWeight: "bold"
         },
         h4: {
             fontSize: "1.2rem",
-            lineHeight: 1.6
+            lineHeight: 1.6,
+            fontWeight: "bold"
         },
         h5: {
             fontSize: "1rem",
-            lineHeight: 1.5
+            lineHeight: 1.5,
+            fontWeight: "bold"
         },
         h6: {
             fontSize: "0.87rem",
-            lineHeight: 1.3
+            lineHeight: 1.3,
+            fontWeight: "bold"
         },
     },
     components: {

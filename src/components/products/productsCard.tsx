@@ -71,20 +71,20 @@ const ProductsCard = ({ products }: Props) => {
                                 <>
                                     {/* new price */}
                                     <div className='flex items-center justify-between'>
-                                        <Price price={sellers[0].variants[0].price} />
+                                        <Price variant={sellers[0].variants} />
 
                                         {/* discount percentage */}
-                                        <DiscountPercentage discount={sellers[0].variants[0].discount_percentage} />
+                                        <DiscountPercentage variant={sellers[0].variants} />
                                     </div>
 
                                     {/* old price */}
                                     <div className='mt-1.5'>
-                                        <OldPrice oldPrice={sellers[0].variants[0].old_price} />
+                                        <OldPrice variant={sellers[0].variants} />
                                     </div>
                                 </> :
 
                                 // product has no discount
-                                <Price price={sellers[0].variants[0].price} />
+                                <Price variant={sellers[0].variants} />
                         }
                     </Link>
                 </div>

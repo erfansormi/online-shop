@@ -1,15 +1,26 @@
 import React from 'react'
+import { Variant } from '../../../types/product/productTypes'
 
 interface Props {
-    price: number,
-    size?: "medium" | "large"
+    variant?: Variant[],
+    size?: "large" | "medium",
+    className?: string
+    price?: number
 }
 
-const Price = ({ price, size }: Props) => {
+const Price = ({ variant, size, price, className }: Props) => {
+    const handlePrice = price ? price : variant && variant.find(item => item.available)?.price;
+
     return (
-        <span className={`font-bold text-gray-800 ${size === "large" ? "text-xl" : ""}`}>
-            ${price}
-        </span>
+        <>
+            {
+                handlePrice ?
+                    <span className={`font-bold text-gray-800 ${size === "large" ? "text-xl" : className ? className : "text-base"}`}>
+                        ${handlePrice}
+                    </span> :
+                    null
+            }
+        </>
     )
 }
 
