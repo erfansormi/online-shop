@@ -15,8 +15,8 @@ body {
   scroll-behavior: smooth;
 }
 
-body{
-  padding:0 !important;
+body {
+  padding: 0 !important;
 }
 
 * {
@@ -98,4 +98,10 @@ img {
 
 .css-uzoczd-MuiPaper-root-MuiDialog-paper {
   padding: 15px;
+}
+
+.MuiTabs-indicator {
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  height: 4px;
 }

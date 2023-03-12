@@ -15,7 +15,7 @@ const ProductSizes = () => {
     // context
     const { productInfo, setProductInfo } = useProductContext();
     const { selectedVariant, selectedSeller } = productInfo;
-    
+
     // check conditional
     if (selectedSeller.variants.length <= 1) {
         return null
@@ -23,11 +23,11 @@ const ProductSizes = () => {
 
     return (
         <div>
-            <div className='capitalize text-gray-800 font-bold flex gap-x-1 mb-4'>
-                <span>size:</span>
+            <div className='capitalize text-gray-800 font-bold flex gap-x-1 mb-4 text-lg'>
+                <h4 className="text-lg">size:</h4>
                 <span className='uppercase'>{selectedVariant.size}</span>
             </div>
-            <FormControl sx={{ minWidth: 120 }}>
+            <FormControl sx={{ minWidth: 150 }}>
                 <Select
                     value={selectedVariant.size}
                     inputProps={{ 'aria-label': 'Without label' }}

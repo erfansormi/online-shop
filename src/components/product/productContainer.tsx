@@ -10,6 +10,7 @@ import CenterInfo from './detail/centerInfo/centerInfo';
 import SellerBox from './detail/sellerSection/sellerBox';
 import RelatedProducts from './detail/relatedProducts';
 import { Divider } from '@mui/material';
+import TabsContainer from './tabs/tabsContainer';
 
 const ProductContainer = () => {
     // context
@@ -43,7 +44,7 @@ const ProductContainer = () => {
                             </h1>
                         </div>
 
-                        <div className='flex'>
+                        <div className='flex gap-x-4'>
 
                             {/* center details */}
                             <div className='w-4/6'>
@@ -65,15 +66,7 @@ const ProductContainer = () => {
 
                 <Divider />
 
-                {/* description */}
-                <div>
-                    <h5 className='text-gray-800 mb-5'>
-                        Description
-                    </h5>
-                    <div className='text-gray-500 bg-white'>
-                        <p>{product.description}</p>
-                    </div>
-                </div>
+                <TabsContainer />
             </div>
         </Layout>
     )

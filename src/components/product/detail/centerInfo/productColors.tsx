@@ -35,8 +35,8 @@ const ProductColors = () => {
 
     return (
         <div className='flex flex-col gap-y-5'>
-            <div className='flex item-center gap-x-1 capitalize text-gray-800 font-bold'>
-                <span>color:</span>
+            <div className='flex item-center gap-x-1 capitalize text-gray-800 text-lg font-bold'>
+                <h4 className='text-lg'>color:</h4>
                 <span>{activeColor}</span>
             </div>
             <div className='flex gap-5 flex-wrap'>

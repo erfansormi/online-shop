@@ -10,6 +10,7 @@ import { useProductContext } from '../../../../pages/product/[product_id]';
 import ProductColors from './productColors';
 import ProductSizes from './productSizes';
 import Attributes from './attributes';
+import SeeRating from '../../../data_display/rating';
 
 const CenterInfo = () => {
     // context
@@ -18,7 +19,7 @@ const CenterInfo = () => {
 
     return (
         <>
-            <div className='flex flex-col px-5'>
+            <div className='flex flex-col'>
                 <div className='my-4'>
                     <Divider />
                 </div>
@@ -26,14 +27,7 @@ const CenterInfo = () => {
                 <div className='flex flex-col gap-y-6'>
 
                     {/* rating */}
-                    <div className='flex flex-col'>
-                        <div className='flex items-center gap-x-2'>
-                            <Rating name="read-only" value={product.rating.rate} readOnly precision={0.1} />
-                            <span className='text-gray-500'>
-                                ({product.rating.count})
-                            </span>
-                        </div>
-                    </div>
+                    <SeeRating count={product.rating.count} rate={product.rating.rate} />
 
                     {/* select size */}
                     <ProductSizes />
