@@ -89,4 +89,4 @@ export const colors: Color[] = [
         name: "light gray"
     },
 ]
-export const whiteCheck = ["black", "gray", "red", "blue", "green", "purple", "rose", "pink"];
+export const whiteCheck = ["black", "gray", "red", "blue", "green", "purple", "rose", "pink", "slate"];

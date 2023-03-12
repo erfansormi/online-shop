@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // context
-import { useProductContext } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../../../../pages/product/[product_id]';
 
 // mui
 import { Skeleton } from '@mui/material';
@@ -22,6 +22,7 @@ const ProductImage = () => {
                         width={300}
                         height={450}
                         className="object-contain h-auto xl:w-[300px] md:w-[250px] w-[200px]"
+                        priority
                     />
                 </div>
             </div>

@@ -1,13 +1,15 @@
 import React from 'react'
 
-// components
-import Layout from '../layout/layout';
-import ProductImage from './detail/productImage';
-import ProductDetail from './detail/productDetail';
-import SellerBox from './detail/sellerBox';
-
 // context
 import { useProductContext } from '../../pages/product/[product_id]';
+
+// components
+import Layout from '../layout/layout';
+import ProductImage from './detail/leftSection/productImage';
+import CenterInfo from './detail/centerInfo/centerInfo';
+import SellerBox from './detail/sellerSection/sellerBox';
+import RelatedProducts from './detail/relatedProducts';
+import { Divider } from '@mui/material';
 
 const ProductContainer = () => {
     // context
@@ -16,39 +18,60 @@ const ProductContainer = () => {
 
     return (
         <Layout max_w_3xl>
-            <div className='flex justify-between gap-x-8 lg:mt-14 md:mt-8 sm:mt-6 mt-2'>
+            <div className='flex flex-col gap-y-8'>
 
-                {/* product image */}
-                <div className='w-full'>
-                    <ProductImage />
-                </div>
+                {/* product info */}
+                <div className='flex justify-between gap-x-8 lg:mt-14 md:mt-8 sm:mt-6 mt-2'>
 
-                {/* other details */}
-                <div className="flex flex-col">
-
-                    {/* title */}
-                    <div className="mb-2 relative">
-                        <div className='absolute -top-7 mb-2 capitalize text-cyan-500 font-bold'>
-                            <span>
-                                {product.category}
-                            </span>
-                        </div>
-                        <h1 className='text-2xl text-gray-800'>
-                            {product.title}
-                        </h1>
+                    {/* product image */}
+                    <div className='w-2/6'>
+                        <ProductImage />
                     </div>
 
-                    <div className='flex'>
+                    {/* other details */}
+                    <div className="flex flex-col w-4/6">
 
-                        {/* center details */}
-                        <div className='w-4/6'>
-                            <ProductDetail />
+                        {/* title */}
+                        <div className="mb-1 relative">
+                            <div className='absolute -top-7 mb-2 capitalize text-cyan-500 font-bold'>
+                                <span>
+                                    {product.category}
+                                </span>
+                            </div>
+                            <h1 className='text-2xl text-gray-800'>
+                                {product.title}
+                            </h1>
                         </div>
 
-                        {/* seller box */}
-                        <div className='w-2/6 min-w-[290px] mt-1'>
-                            <SellerBox />
+                        <div className='flex'>
+
+                            {/* center details */}
+                            <div className='w-4/6'>
+                                <CenterInfo />
+                            </div>
+
+                            {/* seller box */}
+                            <div className='w-2/6 min-w-[290px] mt-1'>
+                                <SellerBox />
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <Divider />
+
+                {/* related products */}
+                <RelatedProducts />
+
+                <Divider />
+
+                {/* description */}
+                <div>
+                    <h5 className='text-gray-800 mb-5'>
+                        Description
+                    </h5>
+                    <div className='text-gray-500 bg-white'>
+                        <p>{product.description}</p>
                     </div>
                 </div>
             </div>
@@ -56,4 +79,4 @@ const ProductContainer = () => {
     )
 }
 
-export default ProductContainer
+export default ProductContainer;

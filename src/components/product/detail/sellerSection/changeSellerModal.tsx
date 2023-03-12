@@ -4,24 +4,24 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import SellerPerformance from "../../data_display/sellerPerformance";
+import SellerPerformance from "../../../data_display/sellerPerformance";
 
 // context
-import { useProductContext } from "../../../pages/product/[product_id]";
-import SellerSymbol from "../../utils/seller/sellerSymbol";
-import Consent from "../../data_display/consent";
-import DiscountPercentage from "../../utils/price/discountPercentage";
-import Price from "../../utils/price/price";
-import OldPrice from "../../utils/price/oldPrice";
+import { useProductContext } from "../../../../pages/product/[product_id]";
+import SellerSymbol from "../../../utils/seller/sellerSymbol";
+import Consent from "../../../data_display/consent";
+import DiscountPercentage from "../../../utils/price/discountPercentage";
+import Price from "../../../utils/price/price";
+import OldPrice from "../../../utils/price/oldPrice";
 
 // icons
 import { BsCheckCircle } from "react-icons/bs";
 
 // toast
-import { toastify } from "../../utils/toastify/toastifyFunc";
+import { toastify } from "../../../utils/toastify/toastifyFunc";
 
 // types
-import { Variant } from "../../../types/product/productTypes";
+import { Variant } from "../../../../types/product/productTypes";
 
 interface Props {
   changeSeller: boolean;
@@ -30,9 +30,7 @@ interface Props {
 
 const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
   // context
-  const { productInfo, setProductInfo } = useProductContext();
-  console.log(productInfo);
-  
+  const { productInfo, setProductInfo } = useProductContext();  
 
   const handleClose = () => {
     setChangeSeller(false);

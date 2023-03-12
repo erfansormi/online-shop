@@ -9,9 +9,9 @@ export const muiTheme = createTheme({
             contrastText: "#fff"
         },
         info: {
-            main: "#2563eb",
-            light: "#3b82f6",
-            dark: "#1e40af",
+            main: "#06b6d4",
+            light: "#67e8f9",
+            dark: "#0e7490",
             contrastText: "#fff"
         },
         divider: "#e0e0e6",

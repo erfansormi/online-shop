@@ -7,17 +7,19 @@ import ProductContainer from '../../components/product/productContainer';
 import Loading from '../../components/utils/loading/loading';
 
 // types
-import { ProductDetail, SellerWithDetail, Variant } from '../../types/product/productTypes';
+import { Product, ProductDetail, SellerWithDetail, Variant } from '../../types/product/productTypes';
 
 interface Props {
-    product: ProductDetail
+    product: ProductDetail,
+    relatedProducts: Product[]
 }
 
 // context type
 interface ProductInfo {
     product: ProductDetail,
     selectedSeller: SellerWithDetail,
-    selectedVariant: Variant
+    selectedVariant: Variant,
+    relatedProducts: Product[]
 }
 
 interface ContextType {
@@ -29,13 +31,14 @@ interface ContextType {
 const ProductContext = createContext({} as ContextType);
 export const useProductContext = () => useContext(ProductContext);
 
-const ProductDetail = ({ product }: Props) => {
+const ProductDetail = ({ product, relatedProducts }: Props) => {
     const router = useRouter();
 
     const [productInfo, setProductInfo] = useState<ProductInfo>({
         product,
         selectedSeller: product.sellers[0],
-        selectedVariant: product.sellers[0].variants.find(item => item.available) as Variant
+        selectedVariant: product.sellers[0].variants.find(item => item.available) as Variant,
+        relatedProducts
     })
 
     return (
@@ -73,7 +76,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     return {
         props: {
-            product: data.product
+            product: data.product,
+            relatedProducts: data.relatedProducts
         }
     }
 }
