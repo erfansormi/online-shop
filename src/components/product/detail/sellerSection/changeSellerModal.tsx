@@ -30,7 +30,7 @@ interface Props {
 
 const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
   // context
-  const { productInfo, setProductInfo } = useProductContext();  
+  const { productInfo, setProductInfo } = useProductContext();
 
   const handleClose = () => {
     setChangeSeller(false);
@@ -115,7 +115,10 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                           setProductInfo({
                             ...productInfo,
                             selectedSeller: productInfo.product.sellers[index],
-                            selectedVariant: productInfo.product.sellers[index].variants.find(item => item.available) as Variant
+                            selectedVariant: {
+                              ...productInfo.product.sellers[index].variants.find(item => item.available) as Variant,
+                              selectedColor: (productInfo.product.sellers[index].variants.find(item => item.available) as Variant).colors[0]
+                            }
                           })
 
                           // set toast

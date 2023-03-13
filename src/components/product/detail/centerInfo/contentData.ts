@@ -90,3 +90,15 @@ export const colors: Color[] = [
     },
 ]
 export const whiteCheck = ["black", "gray", "red", "blue", "green", "purple", "rose", "pink", "slate"];
+
+// handle product color
+export const handleColor = (colorName: string) => {
+    const matchedColor = colors.find(item => item.name === colorName);
+
+    if (matchedColor) {
+        return matchedColor.color_class
+    }
+    else {
+        return `bg-${colorName}-500`
+    }
+}

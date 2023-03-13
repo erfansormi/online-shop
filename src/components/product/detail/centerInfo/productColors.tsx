@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // context
 import { useProductContext } from '../../../../pages/product/[product_id]';
@@ -7,7 +7,7 @@ import { useProductContext } from '../../../../pages/product/[product_id]';
 import { BiCheck } from "react-icons/bi"
 
 // colors data
-import { colors, whiteCheck } from './contentData';
+import { whiteCheck, handleColor } from './contentData';
 
 // mui
 import { Tooltip } from '@mui/material';
@@ -15,23 +15,16 @@ import { Tooltip } from '@mui/material';
 const ProductColors = () => {
 
     // context
-    const { productInfo } = useProductContext();
+    const { productInfo, setProductInfo } = useProductContext();
     const { selectedVariant } = productInfo;
 
     // active color
-    const [activeColor, setActiveColor] = useState(selectedVariant.colors[0]);
+    const [activeColor, setActiveColor] = useState(selectedVariant.selectedColor);
 
-    // handle product color
-    const handleColor = (colorName: string) => {
-        const matchedColor = colors.find(item => item.name === colorName);
+    useEffect(() => {
+        setActiveColor(selectedVariant.selectedColor)
+    }, [selectedVariant.selectedColor])
 
-        if (matchedColor) {
-            return matchedColor.color_class
-        }
-        else {
-            return `bg-${colorName}-500`
-        }
-    }
 
     return (
         <div className='flex flex-col gap-y-5'>
@@ -47,7 +40,15 @@ const ProductColors = () => {
                     >
                         <span
                             className={`${handleColor(item)} ${activeColor === item ? "ring-offset-1 ring-4 ring-cyan-500" : "ring-offset-[4px] ring-1 ring-gray-300"} cursor-pointer rounded-full w-9 h-9 flex items-center justify-center`}
-                            onClick={() => setActiveColor(item)}
+                            onClick={() =>
+                                setProductInfo({
+                                    ...productInfo,
+                                    selectedVariant: {
+                                        ...productInfo.selectedVariant,
+                                        selectedColor: item
+                                    }
+                                })
+                            }
                         >
                             {
                                 activeColor === item ?

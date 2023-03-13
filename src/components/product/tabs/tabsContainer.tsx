@@ -1,9 +1,9 @@
 import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { Box, Divider, Tab, Tabs } from '@mui/material';
 import TabContent from './tabContent';
-import SellerBox from '../detail/sellerSection/sellerBox';
 import ProductDescription from './description';
 import ProductComments from './comments';
+import MiniBuyBox from './miniBuyBox';
 
 function a11yProps(index: number) {
     return {
@@ -109,8 +109,8 @@ const TabsContainer = () => {
                 </div>
 
                 {/* seller box */}
-                <div className="md:w-fit md:min-w-[320px] h-fit sticky right-6 top-1/3">
-                    <SellerBox />
+                <div className="md:w-fit md:max-w-[330px] h-fit sticky right-6 top-1/3">
+                    <MiniBuyBox />
                 </div>
             </div>
         </div>

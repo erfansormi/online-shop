@@ -20,7 +20,7 @@ const ProductComments = () => {
             <div className='flex flex-col md:flex-row gap-x-10 gap-y-8'>
 
                 {/* rating and register a comment */}
-                <div className='md:w-2/6 md:max-w-[260px] flex flex-col gap-y-3 min-w-[210px]'>
+                <div className='md:w-2/6 md:max-w-[260px] flex flex-col gap-y-5 min-w-[210px]'>
 
                     {/* rate and count */}
                     <div className='flex flex-col gap-y-3'>

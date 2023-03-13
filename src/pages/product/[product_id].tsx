@@ -14,11 +14,15 @@ interface Props {
     relatedProducts: Product[]
 }
 
+interface SelectedVariant extends Variant {
+    selectedColor: string
+}
+
 // context type
 interface ProductInfo {
     product: ProductDetail,
     selectedSeller: SellerWithDetail,
-    selectedVariant: Variant,
+    selectedVariant: SelectedVariant,
     relatedProducts: Product[]
 }
 
@@ -37,7 +41,10 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
     const [productInfo, setProductInfo] = useState<ProductInfo>({
         product,
         selectedSeller: product.sellers[0],
-        selectedVariant: product.sellers[0].variants.find(item => item.available) as Variant,
+        selectedVariant: {
+            ...product.sellers[0].variants.find(item => item.available) as SelectedVariant,
+            selectedColor: (product.sellers[0].variants.find(item => item.available) as SelectedVariant).colors[0]
+        },
         relatedProducts
     })
 

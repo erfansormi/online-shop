@@ -15,7 +15,7 @@ import TabsContainer from './tabs/tabsContainer';
 const ProductContainer = () => {
     // context
     const { productInfo } = useProductContext();
-    const { product } = productInfo;
+    const { product, selectedVariant } = productInfo;
 
     return (
         <Layout max_w_3xl className='px-6 py-4'>

@@ -44,7 +44,10 @@ const ProductSizes = () => {
                                     onClick={() => {
                                         setProductInfo({
                                             ...productInfo,
-                                            selectedVariant: selectedSeller.variants[index]
+                                            selectedVariant: {
+                                                ...selectedSeller.variants[index],
+                                                selectedColor: selectedVariant.colors[0]
+                                            }
                                         })
                                     }}
                                 >
