@@ -5,7 +5,7 @@ import { useProductContext } from '../../pages/product/[product_id]';
 
 // components
 import Layout from '../layout/layout';
-import ProductImage from './detail/leftSection/productImage';
+import ProductImage from './detail/imageSection/productImage';
 import CenterInfo from './detail/centerInfo/centerInfo';
 import SellerBox from './detail/sellerSection/sellerBox';
 import RelatedProducts from './detail/relatedProducts';
@@ -18,19 +18,19 @@ const ProductContainer = () => {
     const { product } = productInfo;
 
     return (
-        <Layout max_w_3xl>
+        <Layout max_w_3xl className='px-6 py-4'>
             <div className='flex flex-col gap-y-8'>
 
                 {/* product info */}
-                <div className='flex justify-between gap-x-8 lg:mt-14 md:mt-8 sm:mt-6 mt-2'>
+                <div className='flex flex-col lg:flex-row justify-between gap-x-8 gap-y-12 lg:mt-14 md:mt-12 sm:mt-6 mt-2'>
 
                     {/* product image */}
-                    <div className='w-2/6'>
+                    <div className='lg:w-2/6'>
                         <ProductImage />
                     </div>
 
                     {/* other details */}
-                    <div className="flex flex-col w-4/6">
+                    <div className="flex flex-col lg:w-4/6">
 
                         {/* title */}
                         <div className="mb-1 relative">
@@ -44,15 +44,17 @@ const ProductContainer = () => {
                             </h1>
                         </div>
 
-                        <div className='flex gap-x-4'>
+                        <div className='flex flex-col md:flex-row gap-x-4 gap-y-8'>
 
                             {/* center details */}
-                            <div className='w-4/6'>
+                            <div className='md:w-4/6'>
                                 <CenterInfo />
                             </div>
 
+                            <Divider className='md:hidden' />
+
                             {/* seller box */}
-                            <div className='w-2/6 min-w-[290px] mt-1'>
+                            <div className='md:w-2/6 md:min-w-[290px] mt-1'>
                                 <SellerBox />
                             </div>
                         </div>

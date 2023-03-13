@@ -24,6 +24,8 @@ const SmallCardSlider = ({ data }: Props) => {
                 spaceBetween={3}
                 modules={[Navigation]}
                 className="mySwiper"
+                centerInsufficientSlides={true}
+                oneWayMovement={true}
             >
                 {
                     data.map((item, index) =>

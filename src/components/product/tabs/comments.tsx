@@ -1,5 +1,4 @@
 import { Button, Divider } from '@mui/material';
-import React, { LegacyRef } from 'react'
 
 // context
 import { useProductContext } from '../../../pages/product/[product_id]';
@@ -8,25 +7,20 @@ import { useProductContext } from '../../../pages/product/[product_id]';
 import SeeRating from '../../data_display/rating';
 import TabsTitle from './tabsTitle';
 
-// ts
-interface Props {
-    commentsRef: LegacyRef<HTMLDivElement> | undefined;
-}
-
-const ProductComments = ({ commentsRef }: Props) => {
+const ProductComments = () => {
     // context
     const { productInfo } = useProductContext();
     const { product } = productInfo;
 
     return (
-        <div ref={commentsRef}>
+        <div>
             {/* title */}
             <TabsTitle title='comments and rating' />
 
-            <div className='flex gap-x-10'>
+            <div className='flex flex-col md:flex-row gap-x-10 gap-y-8'>
 
                 {/* rating and register a comment */}
-                <div className='w-2/6 max-w-[260px] flex flex-col gap-y-3 min-w-[210px]'>
+                <div className='md:w-2/6 md:max-w-[260px] flex flex-col gap-y-3 min-w-[210px]'>
 
                     {/* rate and count */}
                     <div className='flex flex-col gap-y-3'>
@@ -54,6 +48,8 @@ const ProductComments = ({ commentsRef }: Props) => {
                     </div>
                 </div>
 
+                <Divider className='md:hidden' />
+
                 {/* comments */}
                 <div className="w-full text-gray-700">
                     {product.comments.length ?
@@ -61,7 +57,7 @@ const ProductComments = ({ commentsRef }: Props) => {
 
                         </div> :
                         <div className='capitalize'>
-                            <h6 className='mb-4 text-lg mt-1.5'>
+                            <h6 className='mb-4 text-lg md:mt-1.5'>
                                 You can also comment on this product
                             </h6>
                             <p className='text-sm text-gray-500'>

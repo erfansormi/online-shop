@@ -1,23 +1,14 @@
-import React, { LegacyRef } from 'react'
-
 // context
 import { useProductContext } from '../../../pages/product/[product_id]';
 
 // components
 import TabsTitle from './tabsTitle';
 
-// ts
-interface Props {
-    descriptionRef: LegacyRef<HTMLDivElement> | undefined;
-}
-
-const ProductDescription = ({ descriptionRef }: Props) => {
+const ProductDescription = () => {
     const { productInfo } = useProductContext();
 
     return (
-        <div
-            ref={descriptionRef}
-        >
+        <div>
             {/* title */}
             <TabsTitle title='description' />
 
