@@ -76,6 +76,7 @@ const TabsContainer = () => {
                         {
                             tabsData.map((item, index) =>
                                 <Tab
+                                    key={index * 50}
                                     label={item.label}
                                     {...a11yProps(index)}
                                     onClick={() => item.ref.current?.scrollIntoView({ block: "center" })}

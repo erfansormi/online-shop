@@ -16,7 +16,7 @@ const BeforeAndAfter = () => {
     const [spanOffsetX, setSpanOffsetX] = useState(0);
 
     const ref = useRef<HTMLDivElement>(null);
-    const layotOffsetLeft = ref.current?.parentElement?.offsetLeft ? ref.current.parentElement.offsetLeft : 0;
+    const layoutOffsetLeft = ref.current?.parentElement?.offsetLeft ? ref.current.parentElement.offsetLeft : 0;
 
     return (
         <Layout>
@@ -41,10 +41,10 @@ const BeforeAndAfter = () => {
                     bounds="parent"
                     handle={'.dragg-arrow'}
 
-                    // get x position with react draggable or mouse position 
+                    // get x position with react draggable or touch position
                     onDrag={(e: any) => {
                         if (e.type === "mousemove") {
-                            setX(e.clientX - spanOffsetX - layotOffsetLeft - 5)
+                            setX(e.clientX - spanOffsetX - layoutOffsetLeft - 5)
                         }
                         else {
                             setX(e.target.getBoundingClientRect().x + 5);
@@ -74,7 +74,7 @@ const BeforeAndAfter = () => {
                             alt="old shoe"
                         />
                     </div>
-                    <div className={`bg-[#fff] absolute inset-0 w-full h-full overflow-hidden`} style={{ width: x ? x : "50%" }}>
+                    <div className={`bg-[#fff] absolute inset-0 h-full overflow-hidden`} style={{ width: x ? x : "50%" }}>
                         <Image
                             className='object-contain w-[95vw] h-full'
                             width={850}
