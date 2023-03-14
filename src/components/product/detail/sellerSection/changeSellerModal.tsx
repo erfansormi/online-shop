@@ -49,32 +49,32 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
           change seller
         </DialogTitle>
 
-        <DialogContent>
+        <DialogContent className="md:p-5 p-0">
 
           {/* seller list */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col">
             {productInfo.product.sellers.map(({ seller, variants }, index) => (
               <div
                 key={index * 37}
-                className="border-b-2 border-gray-200 last:border-0 border-solid border-x-0 border-t-0 flex items-center gap-x-5 w-full p-5 even:bg-gray-100"
+                className="border-b-2 border-gray-200 last:border-0 border-solid border-x-0 border-t-0 flex items-center justify-between p-5 even:bg-gray-100 overflow-x-scroll"
               >
 
                 {/* seller */}
-                <div className="w-full justify-center flex items-center">
+                <div className="mr-6 last:mr-0 justify-center flex items-center">
                   {/* seller logo */}
                   <div className="flex mr-1">
                     <SellerSymbol shop_name={seller.shop_name} />
                   </div>
 
                   {/* shop name */}
-                  <span className="flex leading-[1.8] capitalize text-gray-700 font-[500]">
+                  <span className="flex leading-[1.8] w-max capitalize text-gray-700 font-[500]">
                     {seller.shop_name}
                   </span>
                 </div>
 
                 {/* performance */}
-                <div className="w-full items-center flex flex-col capitalize text-xs gap-y-1">
-                  <div>
+                <div className="mr-6 last:mr-0 items-center flex flex-col capitalize text-xs gap-y-1">
+                  <div className="flex items-center">
                     <SellerPerformance performance={seller.performance} />
                   </div>
 
@@ -87,13 +87,13 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                 </div>
 
                 {/* product price */}
-                <div className="w-full justify-center flex items-center gap-x-2">
+                <div className="mr-6 justify-center last:mr-0 flex items-center gap-x-2">
 
                   {/* old price */}
                   <OldPrice variant={variants} className="leading-[1.8] text-sm" />
 
                   {/* current price */}
-                  <Price variant={variants} className="leading-[1.8] text-xl" />
+                  <Price variant={variants} className="leading-[1.8] md:text-xl text-lg" />
 
                   {/* discount percentage */}
                   <DiscountPercentage variant={variants} />
@@ -101,36 +101,40 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                 </div>
 
                 {/* select seller product */}
-                <div className="w-full justify-center flex ">
+                <div className="mr-6 last:mr-0 flex">
                   {
+                    // check if selected seller?
                     productInfo.selectedSeller.seller._id === seller._id ?
                       <div className="flex items-center gap-x-1 text-green-500">
                         <span className="flex">
                           Selected
                         </span>
                         <BsCheckCircle />
-                      </div> :
-                      <Button
-                        onClick={() => {
-                          setProductInfo({
-                            ...productInfo,
-                            selectedSeller: productInfo.product.sellers[index],
-                            selectedVariant: {
-                              ...productInfo.product.sellers[index].variants.find(item => item.available) as Variant,
-                              selectedColor: (productInfo.product.sellers[index].variants.find(item => item.available) as Variant).colors[0]
-                            }
-                          })
+                      </div>
+                      :
+                      <div className="w-max">
+                        <Button
+                          onClick={() => {
+                            setProductInfo({
+                              ...productInfo,
+                              selectedSeller: productInfo.product.sellers[index],
+                              selectedVariant: {
+                                ...productInfo.product.sellers[index].variants.find(item => item.available) as Variant,
+                                selectedColor: (productInfo.product.sellers[index].variants.find(item => item.available) as Variant).colors[0]
+                              }
+                            })
 
-                          // set toast
-                          toastify("seller changed successfully!", "light", "success")
+                            // send toast
+                            toastify("seller changed successfully!", "light", "success")
 
-                          // close modal
-                          handleClose()
-                        }}
-                        variant="outlined"
-                      >
-                        select seller
-                      </Button>
+                            // close modal
+                            handleClose()
+                          }}
+                          variant="outlined"
+                        >
+                          select seller
+                        </Button>
+                      </div>
                   }
                 </div>
 

@@ -28,7 +28,7 @@ const SellerPerformance = ({ performance }: Props) => {
 
     return (
         <>
-            <span className={`${performanceColor(performance)} mr-1 capitalize`}>
+            <span className={`${performanceColor(performance)} mr-1 capitalize w-max`}>
                 {performance}
             </span>
             <span className='text-gray-600'>

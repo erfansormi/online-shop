@@ -6,6 +6,12 @@
   --navbar-height: 74px;
 }
 
+@media (max-width:767px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -17,6 +23,11 @@ body {
 
 body {
   padding: 0 !important;
+}
+
+*::selection{
+  background-color: rgb(38, 93, 194);
+  color: #fff;
 }
 
 * {

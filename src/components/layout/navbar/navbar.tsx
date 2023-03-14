@@ -88,20 +88,18 @@ const Navbar = () => {
                             <div>
                                 <ButtonGroup variant="text" color="inherit" aria-label="text button group">
                                     <Tooltip title={"Login"}>
-                                        <Button
-                                            className='text-gray-700 text-2xl'
-                                            onClick={() => router.push("/auth/login")}
-                                        >
-                                            <BsBoxArrowInRight />
-                                        </Button>
+                                        <Link href={"/auth/login"}>
+                                            <Button className='text-gray-700 text-2xl'>
+                                                <BsBoxArrowInRight />
+                                            </Button>
+                                        </Link>
                                     </Tooltip>
                                     <Tooltip title={"Signup"}>
-                                        <Button
-                                            className='text-gray-700 text-2xl'
-                                            onClick={() => router.push("/auth/signup")}
-                                        >
-                                            <TbUserPlus />
-                                        </Button>
+                                        <Link href={"/auth/signup"}>
+                                            <Button className='text-gray-700 text-2xl'>
+                                                <TbUserPlus />
+                                            </Button>
+                                        </Link>
                                     </Tooltip>
                                 </ButtonGroup>
                             </div>
