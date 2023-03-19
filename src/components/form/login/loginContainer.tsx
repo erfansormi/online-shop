@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React from 'react';
 
 // formik & yup
 import { Formik } from 'formik';
@@ -7,9 +6,6 @@ import { LoginSchema } from '../login/loginValidation';
 
 // mui
 import Box from '@mui/material/Box';
-
-// icons
-import { AiOutlinePhone, AiOutlineUser } from 'react-icons/ai';
 
 //signup data
 import { loginInputs } from '../login/loginData';
@@ -33,17 +29,10 @@ interface Props {
 }
 
 const LoginContainer = ({ handleSubmit, initialValues }: Props) => {
-
-    // if user logedd in, navigate to home
-    useEffect(() => {
-
-    }, [])
-
     return (
         <FormContainer
             title={`login`}
-            subTitle={`with email and password`}
-            titleClassName='mb-6'
+            titleClassName='mb-10'
         >
             <Formik
                 initialValues={initialValues}
@@ -61,7 +50,6 @@ const LoginContainer = ({ handleSubmit, initialValues }: Props) => {
                     <Box
                         component="form"
                         noValidate
-                        autoComplete="off"
                         onSubmit={handleSubmit}
                     >
                         {

@@ -3,9 +3,6 @@ import React from 'react';
 // formik & yup
 import { Formik } from 'formik';
 
-// icons
-import { AiOutlinePhone, AiOutlineMail } from 'react-icons/ai';
-
 // mui
 import Box from '@mui/material/Box';
 

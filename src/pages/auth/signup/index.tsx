@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import axios from 'axios';
+import { setCookie } from 'nookies'
 
 // components
 import SignupContainer from '../../../components/form/signup/signupContainer';
@@ -26,9 +27,8 @@ import { useUserContext } from '../../../context/userContext';
 const Signup: React.FC = () => {
     const router = useRouter();
 
-    // user context
-    const { user, setUser } = useUserContext();
-    console.log(user);
+    // token context
+    const { token, setToken } = useUserContext();
 
     // states
     const [loading, setLoading] = useState(false);
@@ -56,13 +56,15 @@ const Signup: React.FC = () => {
             })
                 .then((res) => {
                     setLoading(false);
+                    setCookie(null, "token", res.data.token, {
+                        maxAge: 30 * 24 * 60 * 60,
+                    })
+                    setToken(res.data.token);
                     toastify(res.data.message, "light", "success");
                     router.push("/");
                 })
-
-            await axios.get(`${process.env.URL}/api/v1/users/me`)
-                .then(res => {
-                    setUser(res.data)
+                .finally(() => {
+                    setLoading(false);
                 })
         }
         catch (err: any) {
@@ -70,12 +72,12 @@ const Signup: React.FC = () => {
         }
     }
 
-    // if user logedd in, navigate to home
-    // useEffect(() => {
-    //     if (!!user) {
-    //         router.push("/");
-    //     }
-    // }, [user])
+    // if user logged in, navigate to home
+    useEffect(() => {
+        if (token) {
+            router.push("/")
+        }
+    }, [])
 
     return (
         <>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import axios from "axios";
+import { destroyCookie } from 'nookies';
 
 // toast
 import { toastify } from '../../../utils/toastify/toastifyFunc';
@@ -14,7 +16,7 @@ import { MdLogout } from 'react-icons/md';
 import { profileMenuItem } from './profileIconData';
 
 // components
-import Modal from '../../../utils/modal/modal';
+import QuestionModal from '../../../utils/modal/questionModal';
 
 // types
 interface Props {
@@ -23,7 +25,11 @@ interface Props {
     open: boolean
 }
 
+// context
+import { useUserContext } from '../../../../context/userContext';
+
 const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
+    const { token, setToken } = useUserContext();
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -32,10 +38,23 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
     // logout modal
     const [modal, setModal] = useState(false);
 
-    const handleLogout = () => {
-        setModal(false);
-        handleClose();
-        toastify("logout successfuly!", "dark", "success");
+    const handleLogout = async () => {
+        try {
+            await axios.get(`${process.env.URL as string}/api/v1/users/logout`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            destroyCookie(null, "token");
+            setToken("");
+            setModal(false);
+            handleClose();
+            toastify("logout successfully!", "light", "success");
+        }
+        catch (err: any) {
+            setModal(false);
+            toastify(err.response.data.message || err.message, "light", "error");
+        }
     }
 
     return (
@@ -88,11 +107,7 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
                             </span>
                         </Link>
                     </MenuItem>
-                    {
-                        index == 0 ?
-                            <Divider />
-                            : null
-                    }
+                    {index == 0 && <Divider />}
                 </div>
             )}
 
@@ -107,7 +122,7 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
             </MenuItem>
 
             {/* logout modal */}
-            <Modal
+            <QuestionModal
                 buttonFunc={handleLogout}
                 description={"are you sure to logout to your account?"}
                 open={modal}

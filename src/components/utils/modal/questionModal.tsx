@@ -11,7 +11,7 @@ interface Props {
     buttonFunc: any
 }
 
-const Modal = ({ open, setOpen, description, title, buttonFunc }: Props) => {
+const QuestionModal = ({ open, setOpen, description, title, buttonFunc }: Props) => {
     const handleClose = () => setOpen(false);
 
     return (
@@ -25,7 +25,7 @@ const Modal = ({ open, setOpen, description, title, buttonFunc }: Props) => {
             >
 
                 {/* title */}
-                <DialogTitle variant='h2' id="alert-dialog-title" sx={{ paddingTop: "10px" }}>
+                <DialogTitle className='text-gray-800' variant='h2' id="alert-dialog-title" sx={{ paddingTop: "10px" }}>
                     {title}
                 </DialogTitle>
 
@@ -55,4 +55,4 @@ const Modal = ({ open, setOpen, description, title, buttonFunc }: Props) => {
     );
 }
 
-export default Modal;
+export default QuestionModal;

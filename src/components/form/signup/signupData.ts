@@ -25,7 +25,7 @@ export const signupInputs: signupInputs[] = [
     },
     {
         name: "password",
-        placeholder: "Password",
+        placeholder: "password",
         type: "password"
     },
     {

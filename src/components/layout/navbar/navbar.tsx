@@ -2,26 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { parseCookies } from 'nookies';
 
 // mui
-import { IconButton, Tooltip, ButtonGroup, Button } from '@mui/material';
+import { IconButton, Tooltip, ButtonGroup, Button, Skeleton } from '@mui/material';
 
 // icons
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { TbUserPlus } from "react-icons/tb";
 
 // navbar data
-import { navbarData } from './navbarData';
+import { userLoggedInIcons } from './navbarData';
 
 // font
 import { fredoka } from '../../../pages/_app';
+
+// context
+import { useUserContext } from '../../../context/userContext';
 
 // components
 import ProfileIcon from './profileIcon/profileIcon';
 import SmNavbar from './smNavbar';
 
 const Navbar = () => {
-    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+    const { token, setToken } = useUserContext();
+
+    useEffect(() => {
+        setLoading(false);
+    }, [token, setToken])
 
     return (
         <>
@@ -32,8 +41,8 @@ const Navbar = () => {
             >
 
                 {/* left buttons */}
-                <div className='h-full flex items-center'>
-                    <div className='h-full mr-5'>
+                <div className='h-full flex items-center gap-x-5'>
+                    <div className='h-full'>
                         <Link
                             href={"/"}
                             as={"/"}
@@ -62,59 +71,60 @@ const Navbar = () => {
                 </div>
 
                 {/* right buttons */}
-                <div className='flex items-center gap-x-2'>
-                    {
-                        navbarData(null).map((item, index) =>
-                            <Tooltip title={item.title} key={index * 7}>
-                                <div
-                                    className='text-2xl'
-                                >
-                                    <Link href={item.link} className="flex">
-                                        <IconButton
-                                            sx={{ margin: 0 }}
-                                            className='text-2xl text-gray-700'
-                                        >
-                                            {item.icon}
-                                        </IconButton>
-                                    </Link>
+                {
+                    loading ?
+                        <div className='flex items-center gap-x-5'>
+                            <Skeleton variant='rounded' className="w-9 h-9" />
+                            <Skeleton variant='rounded' className="w-9 h-9" />
+                            <Skeleton variant='rounded' className="w-9 h-9" />
+                        </div> :
+
+                        <div className='flex items-center gap-x-2'>
+
+                            {/* user logged in  buttons*/}
+                            {
+                                token && userLoggedInIcons.map((item, index) =>
+                                    <Tooltip title={item.title} key={index * 7}>
+                                        <div className='text-2xl'>
+                                            <Link href={item.link} className="flex">
+                                                <IconButton
+                                                    className='text-2xl text-gray-700 m-0'
+                                                >
+                                                    {item.icon}
+                                                </IconButton>
+                                            </Link>
+                                        </div>
+                                    </Tooltip>
+                                )
+                            }
+
+                            {/* login or signup buttons */}
+                            {
+                                !token &&
+                                <div>
+                                    <ButtonGroup variant="text" color="inherit" aria-label="text button group">
+                                        <Tooltip title={"Login"}>
+                                            <Link href={"/auth/login"}>
+                                                <Button className='text-gray-700 text-2xl'>
+                                                    <BsBoxArrowInRight />
+                                                </Button>
+                                            </Link>
+                                        </Tooltip>
+                                        <Tooltip title={"Signup"}>
+                                            <Link href={"/auth/signup"}>
+                                                <Button className='text-gray-700 text-2xl'>
+                                                    <TbUserPlus />
+                                                </Button>
+                                            </Link>
+                                        </Tooltip>
+                                    </ButtonGroup>
                                 </div>
-                            </Tooltip>
-                        )
-                    }
+                            }
 
-                    {/* login or signup buttons */}
-                    {
-                        null == null ?
-                            <div>
-                                <ButtonGroup variant="text" color="inherit" aria-label="text button group">
-                                    <Tooltip title={"Login"}>
-                                        <Link href={"/auth/login"}>
-                                            <Button className='text-gray-700 text-2xl'>
-                                                <BsBoxArrowInRight />
-                                            </Button>
-                                        </Link>
-                                    </Tooltip>
-                                    <Tooltip title={"Signup"}>
-                                        <Link href={"/auth/signup"}>
-                                            <Button className='text-gray-700 text-2xl'>
-                                                <TbUserPlus />
-                                            </Button>
-                                        </Link>
-                                    </Tooltip>
-                                </ButtonGroup>
-                            </div>
-                            : null
-                    }
-
-                    {/* profle */}
-                    {/* {
-                        user !== null ?
-                            null :
-                            <>
-                                <ProfileIcon />
-                            </>
-                    } */}
-                </div>
+                            {/* user profile */}
+                            {token && <ProfileIcon />}
+                        </div>
+                }
             </nav>
         </>
     )
