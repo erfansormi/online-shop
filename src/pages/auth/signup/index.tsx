@@ -27,7 +27,8 @@ const Signup: React.FC = () => {
     const router = useRouter();
 
     // user context
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
+    console.log(user);
 
     // states
     const [loading, setLoading] = useState(false);
@@ -57,6 +58,11 @@ const Signup: React.FC = () => {
                     setLoading(false);
                     toastify(res.data.message, "light", "success");
                     router.push("/");
+                })
+
+            await axios.get(`${process.env.URL}/api/v1/users/me`)
+                .then(res => {
+                    setUser(res.data)
                 })
         }
         catch (err: any) {

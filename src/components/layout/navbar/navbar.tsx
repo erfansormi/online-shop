@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import axios from "axios";
 
 // mui
 import { IconButton, Tooltip, ButtonGroup, Button } from '@mui/material';
@@ -21,22 +20,8 @@ import { fredoka } from '../../../pages/_app';
 import ProfileIcon from './profileIcon/profileIcon';
 import SmNavbar from './smNavbar';
 
-// context
-import { useUserContext } from '../../../context/userContext';
-
 const Navbar = () => {
     const router = useRouter();
-
-    // user context
-    const { user, setUser } = useUserContext();
-    console.log(user);
-
-    useEffect(() => {
-        axios.get(`${process.env.URL}/api/v1/users/me`)
-            .then(res => {
-                setUser(res.data)
-            })
-    }, [])
 
     return (
         <>
