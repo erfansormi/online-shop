@@ -1,6 +1,5 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React from "react";
 import type { AppProps } from 'next/app';
-import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
@@ -33,43 +32,25 @@ export const fredoka = Fredoka({
   weight: ["400", "500", "600"],
 })
 
-// context
-interface IGeneralContext {
-  width: number | null
-}
-const GeneralContext = createContext({} as IGeneralContext)
-export const useGeneralContext = () => useContext(GeneralContext)
+// contexts
+import UserContextProvider from "../context/userContext";
+import GeneralContextProvider from "../context/generalContext";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // context
-  const [general, setGeneral] = useState<IGeneralContext>({
-    width: null
-  });
-
-  const handleWidth = () => {
-    if (typeof window !== "undefined") {
-      setGeneral({ width: window.innerWidth })
-    }
-  }
-
-  // handle page width
-  useEffect(() => {
-    handleWidth();
-    addEventListener("resize", handleWidth)
-  }, [])
-
   return (
     <>
-      <GeneralContext.Provider value={general}>
-        <ThemeProvider theme={muiTheme}>
-          <Navbar />
-          <main className={fredoka.className}>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
-          <ToastContainer />
-        </ThemeProvider>
-      </GeneralContext.Provider>
+      <UserContextProvider>
+        <GeneralContextProvider>
+          <ThemeProvider theme={muiTheme}>
+            <Navbar />
+            <main className={fredoka.className}>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+            <ToastContainer />
+          </ThemeProvider>
+        </GeneralContextProvider>
+      </UserContextProvider>
     </>
   )
 }

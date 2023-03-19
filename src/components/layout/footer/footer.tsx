@@ -10,19 +10,22 @@ import Input from '../../form/input/input';
 // data
 import { footerData, footerIcons } from './footerData';
 
-// font & context hook
-import { fredoka, useGeneralContext } from '../../../pages/_app';
+// font
+import { fredoka } from '../../../pages/_app';
+
+// context hook
+import { useGeneralContext } from '../../../context/generalContext';
 
 const Footer = () => {
     const general = useGeneralContext();
 
     return (
-        <div
+        <footer
             className={`${fredoka.className} w-full capitalize`}
             style={{ marginBottom: general.width != null && general.width <= 768 ? "var(--navbar-height)" : 0 }}
         >
             <Divider />
-            <footer className='px-5 py-10 w-full text-gray-800'>
+            <div className='px-5 py-10 w-full text-gray-800'>
                 <div className='flex w-full flex-wrap gap-y-10 gap-x-4 md:justify-between xl:justify-around 2xl:gap-16 2xl:justify-center'>
 
                     {/* footer lists */}
@@ -82,8 +85,8 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
     )
 }
 
