@@ -20,5 +20,9 @@ const nextConfig = {
       }
     ],
   },
+  env: {
+    URL: "https://onlineshop.iran.liara.run",
+    DEV_URL: "http://localhost:4000"
+  }
 }
 module.exports = nextConfig;

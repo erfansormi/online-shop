@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 // formik & yup
 import { Formik } from 'formik';
-import { LoginSchema, PhoneLoginSchema } from '../login/loginValidation';
+import { LoginSchema } from '../login/loginValidation';
 
 // mui
 import Box from '@mui/material/Box';
@@ -23,19 +23,16 @@ import SubmitButton from '../submitButton';
 
 // types
 interface InitialValues {
-    user: string,
+    email: string,
     password: string,
-    phone: string
 }
 
 interface Props {
-    setLoginMethod: React.Dispatch<React.SetStateAction<"user&pass" | "phone">>,
     handleSubmit: (e: InitialValues) => void,
     initialValues: InitialValues,
-    loginMethod: "user&pass" | "phone"
 }
 
-const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMethod }: Props) => {
+const LoginContainer = ({ handleSubmit, initialValues }: Props) => {
 
     // if user logedd in, navigate to home
     useEffect(() => {
@@ -45,12 +42,12 @@ const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMeth
     return (
         <FormContainer
             title={`login`}
-            subTitle={`with ${loginMethod == "phone" ? "phone number" : "username & password"}`}
+            subTitle={`with email and password`}
             titleClassName='mb-6'
         >
             <Formik
                 initialValues={initialValues}
-                validationSchema={loginMethod == "user&pass" ? LoginSchema : PhoneLoginSchema}
+                validationSchema={LoginSchema}
                 onSubmit={handleSubmit}
             >
                 {({
@@ -68,51 +65,33 @@ const LoginContainer = ({ setLoginMethod, handleSubmit, initialValues, loginMeth
                         onSubmit={handleSubmit}
                     >
                         {
-                            loginMethod == "user&pass" ?
-                                loginInputs.map((item, index) =>
-                                    <Input
-                                        key={index * 9}
-                                        placeholder={item.placeholder}
-                                        name={item.name}
-                                        type={item.type}
-                                        value={values[item.name]}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        error={errors[item.name]}
-                                        touched={touched[item.name]}
-                                        useInForm
-                                    />
-                                ) :
+                            loginInputs.map((item, index) =>
                                 <Input
-                                    placeholder={"Enter phone number"}
-                                    name={"phone"}
-                                    type={"text"}
-                                    value={values.phone}
+                                    key={index * 9}
+                                    placeholder={item.placeholder}
+                                    name={item.name}
+                                    type={item.type}
+                                    value={values[item.name]}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    error={errors.phone}
-                                    touched={touched.phone}
+                                    error={errors[item.name]}
+                                    touched={touched[item.name]}
                                     useInForm
                                 />
+                            )
                         }
 
                         {/* submit login */}
                         <SubmitButton text='login' />
 
                         {/* forget password */}
-                        <div className='w-full text-blue-500 text-sm cursor-pointer'>
+                        {/* <div className='w-full text-blue-500 text-sm cursor-pointer'>
                             <Link href={"/auth/reset-password"}>
                                 Forget your password?
                             </Link>
-                        </div>
+                        </div> */}
 
                         {/* other way to login */}
-                        <SigninOtherWay
-                            buttonText={loginMethod == "phone" ? "username and password" : "phone number"}
-                            handleClick={() => setLoginMethod(loginMethod == "user&pass" ? "phone" : "user&pass")}
-                            Icon={loginMethod == "user&pass" ? <AiOutlinePhone /> : <AiOutlineUser />}
-                            title='Or login with'
-                        />
                         <SigninOtherWay
                             buttonText='google'
                             handleClick={() => ""}

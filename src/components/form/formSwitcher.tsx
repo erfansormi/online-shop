@@ -17,7 +17,7 @@ const FormSwitcher = ({ type }: Props) => {
                             "Don't have an account?"
                     }
                 </span>
-                <Link href={type == "login" ? "/auth/login" : "/auth/signup"} className="text-blue-600">
+                <Link href={type == "login" ? "/auth/login" : "/auth/signup"} className="text-cyan-500">
                     {type == "login" ? "Login" : "Signup"}
                 </Link>
             </div>
