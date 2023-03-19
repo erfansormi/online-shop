@@ -1,5 +1,6 @@
-import React, { useContext, createContext } from 'react'
+import React, { useContext, createContext, useEffect } from 'react'
 import Head from 'next/head';
+import axios from "axios";
 
 // data
 import { topSlidersData } from '../components/home/sliders/topSlidersData';
@@ -17,6 +18,7 @@ import { GetStaticProps } from 'next';
 
 // types
 import { Product } from '../types/product/productTypes';
+import { useUserContext } from '../context/userContext';
 
 interface HomeData {
   success: boolean;
@@ -34,6 +36,17 @@ const HomePage = createContext({} as HomeData);
 export const useHomeContext = () => useContext(HomePage);
 
 const Home = ({ data }: Props) => {
+  // user context
+  const { user, setUser } = useUserContext();
+  console.log(user);
+
+  useEffect(() => {
+    axios.get(`${process.env.URL}/api/v1/users/me`)
+      .then(res => {
+        setUser(res.data)
+      })
+  }, [])
+
   return (
     <HomePage.Provider value={data}>
       <Head>

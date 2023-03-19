@@ -13,19 +13,16 @@ const Login = () => {
     const router = useRouter();
 
     // states
-    const [loginMethod, setLoginMethod] = useState<"user&pass" | "phone">("user&pass")
     const [loading, setLoading] = useState(false);
 
     // initialValues
     interface InitialValues {
-        user: string,
+        email: string,
         password: string,
-        phone: string
     }
     const initialValues: InitialValues = {
-        user: "",
+        email: "",
         password: "",
-        phone: ""
     }
 
     // form submit
@@ -44,10 +41,8 @@ const Login = () => {
                 <title>Login</title>
             </Head>
             <LoginContainer
-                setLoginMethod={setLoginMethod}
                 initialValues={initialValues}
                 handleSubmit={handleSubmit}
-                loginMethod={loginMethod}
             />
             <Loading loading={loading} />
         </>
