@@ -28,7 +28,7 @@ const UserContextProvider = ({ children }: Props) => {
 
     useEffect(() => {
         setToken({ cookies }.cookies.token);
-    }, [token, setToken])
+    }, [token, setToken, cookies])
 
     return (
         <UserContext.Provider value={{ user, setUser, token, setToken }}>

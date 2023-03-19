@@ -68,7 +68,7 @@ const Login = () => {
         if (token) {
             router.push("/")
         }
-    }, [])
+    }, [token])
 
     return (
         <>

@@ -77,7 +77,7 @@ const Signup: React.FC = () => {
         if (token) {
             router.push("/")
         }
-    }, [])
+    }, [token])
 
     return (
         <>
