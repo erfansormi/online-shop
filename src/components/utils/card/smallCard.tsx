@@ -18,7 +18,7 @@ const SmallCard = ({ image, category, rating, title, sellers, slug }: Product) =
 
     return (
         <section className='w-full h-full flex flex-col justify-between h-64 overflow-hidden w-44'>
-            <Link href={`/product/${slug}`} target={'_blank'} className="block h-full">
+            <Link href={`/product/${slug}`} target={'_parent'} className="block h-full">
 
                 {/* card image */}
                 <div className='flex justify-center items-center bg-white h-3/5 overflow-hidden'>

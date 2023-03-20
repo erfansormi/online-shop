@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { parseCookies } from 'nookies';
+import { axiosInstance } from '../functions/axiosInstance';
 
 // types
 import { User } from '../types/user/userTypes';
@@ -20,15 +20,24 @@ const UserContext = createContext({} as IUserContext);
 export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = ({ children }: Props) => {
+    // states
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState("");
 
-    // cookies
-    const cookies = parseCookies();
+    const getUser = async () => {
+        await axiosInstance.get("/api/v1/users/me")
+            .then(res => {
+                setUser(res.data)
+            })
+            .catch(err => {
+                setToken("")
+                console.log(err);
+            })
+    }
 
     useEffect(() => {
-        setToken({ cookies }.cookies.token);
-    }, [token, setToken, cookies])
+        getUser();
+    }, [token, setToken])
 
     return (
         <UserContext.Provider value={{ user, setUser, token, setToken }}>

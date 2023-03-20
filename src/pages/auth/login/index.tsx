@@ -16,6 +16,9 @@ import { useUserContext } from '../../../context/userContext';
 // nookie lib
 import { setCookie } from 'nookies';
 
+// axios
+import { axiosInstance } from '../../../functions/axiosInstance';
+
 const Login = () => {
     const router = useRouter();
 
@@ -41,15 +44,15 @@ const Login = () => {
 
         try {
             // post data
-            await axios.post(`${process.env.URL as string}/api/v1/users/login`, {
+            await axiosInstance.post('/api/v1/users/login', {
                 email: e.email,
                 password: e.password
             })
                 .then((res) => {
                     setLoading(false);
-                    setCookie(null, "token", res.data.token, {
-                        maxAge: 30 * 24 * 60 * 60,
-                    })
+                    // setCookie(null, "token", res.data.token, {
+                    //     maxAge: 30 * 24 * 60 * 60,
+                    // })
                     setToken(res.data.token);
                     toastify(res.data.message, "light", "success");
                     router.push("/");

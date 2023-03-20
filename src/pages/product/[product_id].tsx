@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, createContext, useState } from 'react'
+import React, { useContext, createContext, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
@@ -49,9 +49,9 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
     })
 
 
-    if (router.isFallback) {
-        return <Loading loading />
-    }
+    // if (router.isFallback) {
+    //     return <Loading loading />
+    // }
     return (
         <ProductContext.Provider value={{ productInfo, setProductInfo }}>
             <ProductContainer />
@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: true
+        fallback: "blocking"
     }
 }
 
