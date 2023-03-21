@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import axios from "axios";
-import { destroyCookie } from 'nookies';
+
+// axios
+import { axiosInstance } from '../../../../functions/axiosInstance';
 
 // toast
 import { toastify } from '../../../utils/toastify/toastifyFunc';
@@ -29,7 +30,7 @@ interface Props {
 import { useUserContext } from '../../../../context/userContext';
 
 const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
-    const { token, setToken } = useUserContext();
+    const { setUser } = useUserContext();
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -40,16 +41,11 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
 
     const handleLogout = async () => {
         try {
-            await axios.get(`${process.env.URL as string}/api/v1/users/logout`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            destroyCookie(null, "token");
-            setToken("");
+            await axiosInstance.get("/api/v1/users/logout")
+            setUser(null);
             setModal(false);
             handleClose();
-            toastify("logout successfully!", "light", "success");
+            toastify("logout successfully!", "light", "warning");
         }
         catch (err: any) {
             setModal(false);

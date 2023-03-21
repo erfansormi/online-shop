@@ -7,8 +7,8 @@ import { User } from '../types/user/userTypes';
 interface IUserContext {
     user: User | null,
     setUser: React.Dispatch<React.SetStateAction<User | null>>,
-    token: string,
-    setToken: React.Dispatch<React.SetStateAction<string>>
+    loading: boolean,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface Props {
@@ -22,25 +22,27 @@ export const useUserContext = () => useContext(UserContext);
 const UserContextProvider = ({ children }: Props) => {
     // states
     const [user, setUser] = useState<User | null>(null);
-    const [token, setToken] = useState("");
+    const [loading, setLoading] = useState(true);
 
     const getUser = async () => {
         await axiosInstance.get("/api/v1/users/me")
             .then(res => {
                 setUser(res.data)
             })
-            .catch(err => {
-                setToken("")
-                console.log(err);
+            .catch(() => {
+                setUser(null)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
     useEffect(() => {
         getUser();
-    }, [token, setToken])
+    }, [setUser])
 
     return (
-        <UserContext.Provider value={{ user, setUser, token, setToken }}>
+        <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
             {children}
         </UserContext.Provider>
     )

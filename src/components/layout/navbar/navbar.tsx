@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 // mui
 import { IconButton, Tooltip, ButtonGroup, Button, Skeleton } from '@mui/material';
@@ -16,7 +15,7 @@ import { userLoggedInIcons } from './navbarData';
 // font
 import { fredoka } from '../../../pages/_app';
 
-// context
+// user context
 import { useUserContext } from '../../../context/userContext';
 
 // components
@@ -24,12 +23,7 @@ import ProfileIcon from './profileIcon/profileIcon';
 import SmNavbar from './smNavbar';
 
 const Navbar = () => {
-    const [loading, setLoading] = useState(true);
-    const { token, setToken } = useUserContext();
-
-    useEffect(() => {
-        setLoading(false);
-    }, [token, setToken])
+    const { loading, user } = useUserContext();
 
     return (
         <>
@@ -82,7 +76,7 @@ const Navbar = () => {
 
                             {/* user logged in  buttons*/}
                             {
-                                token && userLoggedInIcons.map((item, index) =>
+                                user !== null && userLoggedInIcons.map((item, index) =>
                                     <Tooltip title={item.title} key={index * 7}>
                                         <div className='text-2xl'>
                                             <Link href={item.link} className="flex">
@@ -99,7 +93,7 @@ const Navbar = () => {
 
                             {/* login or signup buttons */}
                             {
-                                !token &&
+                                !user &&
                                 <div>
                                     <ButtonGroup variant="text" color="inherit" aria-label="text button group">
                                         <Tooltip title={"Login"}>
@@ -121,7 +115,7 @@ const Navbar = () => {
                             }
 
                             {/* user profile */}
-                            {token && <ProfileIcon />}
+                            {user !== null && <ProfileIcon />}
                         </div>
                 }
             </nav>
