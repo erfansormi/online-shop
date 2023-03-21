@@ -49,9 +49,9 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
     })
 
 
-    // if (router.isFallback) {
-    //     return <Loading loading />
-    // }
+    if (router.isFallback) {
+        return <Loading loading />
+    }
     return (
         <ProductContext.Provider value={{ productInfo, setProductInfo }}>
             <ProductContainer />
@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: false
+        fallback: true
     }
 }
 
