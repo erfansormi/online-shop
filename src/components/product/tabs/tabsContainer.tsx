@@ -93,7 +93,7 @@ const TabsContainer = () => {
                     {/* tabs content */}
                     {
                         tabsContentData.map((item, index) =>
-                            <>
+                            <div key={index * 53}>
                                 <div ref={item.ref}>
                                     <TabContent index={index} value={value}>
                                         <item.components />
@@ -103,7 +103,7 @@ const TabsContainer = () => {
                                     index !== tabsContentData.length - 1 &&
                                     <Divider />
                                 }
-                            </>
+                            </div>
                         )
                     }
 
