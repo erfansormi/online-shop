@@ -7,7 +7,7 @@ import { Divider } from '@mui/material';
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
 // context
-import { useProductContext } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../productContainer';
 
 // handle product color
 import { handleColor } from '../detail/centerInfo/contentData';

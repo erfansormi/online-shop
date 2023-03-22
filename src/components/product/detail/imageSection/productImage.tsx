@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // context
-import { useProductContext } from '../../../../pages/product/[product_id]';
+import { useProductContext } from '../../productContainer';
 
 // mui
 import { Skeleton } from '@mui/material';

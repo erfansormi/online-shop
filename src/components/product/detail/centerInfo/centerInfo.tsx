@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Divider, Rating } from '@mui/material';
 
 // context
-import { useProductContext } from '../../../../pages/product/[product_id]';
+import { useProductContext } from '../../productContainer';
 
 // components
 import ProductColors from './productColors';

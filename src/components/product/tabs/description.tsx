@@ -1,5 +1,5 @@
 // context
-import { useProductContext } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../productContainer';
 
 // components
 import TabsTitle from './tabsTitle';

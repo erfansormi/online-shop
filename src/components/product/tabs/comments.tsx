@@ -1,7 +1,7 @@
 import { Button, Divider } from '@mui/material';
 
 // context
-import { useProductContext } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../productContainer';
 
 // components
 import SeeRating from '../../data_display/rating';

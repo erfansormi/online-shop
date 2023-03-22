@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import SellerPerformance from "../../../data_display/sellerPerformance";
 
 // context
-import { useProductContext } from "../../../../pages/product/[product_id]";
+import { useProductContext } from '../../productContainer';
 import SellerSymbol from "../../../utils/seller/sellerSymbol";
 import Consent from "../../../data_display/consent";
 import DiscountPercentage from "../../../utils/price/discountPercentage";

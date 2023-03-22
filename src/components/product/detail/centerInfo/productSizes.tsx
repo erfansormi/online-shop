@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 // context
-import { useProductContext } from '../../../../pages/product/[product_id]';
+import { useProductContext } from '../../productContainer';
 
 const ProductSizes = () => {
 

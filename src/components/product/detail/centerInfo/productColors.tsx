@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // context
-import { useProductContext } from '../../../../pages/product/[product_id]';
+import { useProductContext } from '../../productContainer';
 
 // icons
 import { BiCheck } from "react-icons/bi"

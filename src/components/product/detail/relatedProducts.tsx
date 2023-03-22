@@ -1,7 +1,7 @@
 import React from 'react';
 
 // context
-import { useProductContext } from '../../../pages/product/[product_id]';
+import { useProductContext } from '../productContainer';
 
 // components
 import SmallCardSlider from '../../utils/sliders/smallCardSlider';

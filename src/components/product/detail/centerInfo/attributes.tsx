@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 // context
-import { useProductContext } from '../../../../pages/product/[product_id]';
+import { useProductContext } from '../../productContainer';
 
 const Attributes = () => {
     // context
