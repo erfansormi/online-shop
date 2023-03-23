@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Fredoka } from "@next/font/google";
 
 // mui theme
-import { muiTheme } from "../components/mui/costumizeMui";
+import { muiTheme } from "../components/utils/mui/costumizeMui";
 import { ThemeProvider } from "@mui/material/styles";
 
 // components

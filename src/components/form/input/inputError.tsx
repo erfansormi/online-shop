@@ -1,12 +1,13 @@
 import React from 'react'
 
 interface Props {
-    error: string | undefined
+    error: string | undefined,
+    noMargin?: boolean
 }
 
-const InputError = ({ error }: Props) => {
+const InputError = ({ error, noMargin }: Props) => {
     return (
-        <span className='ml-3 text-xs text-red-500'>
+        <span className={`text-xs text-red-500 ${noMargin ? "" : "ml-3"}`}>
             {error}
         </span>
     )

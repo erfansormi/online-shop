@@ -33,7 +33,7 @@ const Input = ({ height, error, touched, className, useInForm, ...props }: Props
     return (
         <div className={`w-full ${useInForm ? "h-16 mb-1" : "h-full"}`}>
             <input
-                className={`${className ? className : ""} ${styles.input} w-full normal-case rounded-md  ${sizesClasses()} p-3 bg-gray-200 focus:outline-gray-400 focus:outline focus:outline-2 ${errorClasses()}`}
+                className={`${className ? className : ""} ${styles.input} w-full text-base normal-case rounded-md  ${sizesClasses()} p-3 bg-gray-200 focus:outline-gray-400 focus:outline focus:outline-2 ${errorClasses()}`}
                 spellCheck={false}
                 {...props}
             />

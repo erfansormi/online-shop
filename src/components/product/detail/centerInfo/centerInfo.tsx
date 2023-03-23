@@ -10,7 +10,7 @@ import { useProductContext } from '../../productContainer';
 import ProductColors from './productColors';
 import ProductSizes from './productSizes';
 import Attributes from './attributes';
-import SeeRating from '../../../data_display/rating';
+import SeeRating from '../../../data_display/seeRating';
 
 const CenterInfo = () => {
     // context
