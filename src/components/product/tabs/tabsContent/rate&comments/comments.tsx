@@ -36,25 +36,23 @@ const Comments = ({ comment_text, created_at, is_buyer, rate, user, is_suggest, 
 
                 {/* header */}
                 <div>
-                    <div className='mb-5'>
-                        {/* rate */}
-                        <span className={`text-white mr-2 text-base w-[10%] ${handleRateClass(rate)} py-0.25 px-2.5 rounded-md`}>
-                            {rate}
-                        </span>
+                    {/* rate */}
+                    <span className={`text-white mr-2 text-base w-[10%] ${handleRateClass(rate)} py-0.25 px-2.5 rounded-md`}>
+                        {rate}
+                    </span>
 
-                        {/* title */}
-                        {
-                            title &&
-                            <h6 className='inline-block text-lg w-[90%] capitalize'>
-                                {title}
-                            </h6>
-                        }
-                    </div>
+                    {/* title */}
+                    {
+                        title &&
+                        <h6 className='inline-block text-lg w-[90%] capitalize mb-5'>
+                            {title}
+                        </h6>
+                    }
 
-                    <div className='inline-flex'>
+                    <div className='inline-flex text-gray-400 text-sm'>
 
                         {/* date */}
-                        <span className="text-gray-500 text-sm">
+                        <span>
                             {new Date(created_at).toLocaleDateString()}
                         </span>
                     </div>

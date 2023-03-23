@@ -2,7 +2,7 @@ import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { Box, Divider, Tab, Tabs } from '@mui/material';
 import TabContentContainer from './tabsContent/tabContentContainer';
 import ProductDescription from './tabsContent/description/description';
-import RateAndComments from './tabsContent/rate&comments/rateAndComments';
+import RateAndCommentsContainer from './tabsContent/rate&comments/rate&commentsContainer';
 import MiniBuyBox from './miniBuyBox';
 
 function a11yProps(index: number) {
@@ -44,7 +44,7 @@ const TabsContainer = () => {
             ref: descriptionRef
         },
         {
-            components: RateAndComments,
+            components: RateAndCommentsContainer,
             ref: commentsRef
         }
     ]
@@ -55,7 +55,7 @@ const TabsContainer = () => {
             if (commentsRef.current) {
                 let { offsetTop, offsetHeight } = commentsRef.current;
 
-                if (pageYOffset >= offsetTop - (offsetHeight + 200)) {
+                if (pageYOffset >= offsetTop - (offsetHeight / 2)) {
                     setValue(1)
                 }
                 else {
