@@ -27,16 +27,21 @@ import { useUserContext } from '../../../../../context/userContext';
 // icons
 import { AiOutlineClose } from 'react-icons/ai';
 
+// axios
+import { axiosInstance } from '../../../../../functions/axiosInstance';
+
 // components
 import InputError from '../../../../form/input/inputError';
 import Label from '../../../../data_display/label';
 import IsSuggest from './isSuggest';
+import Loading from '../../../../utils/loading/loading';
 
 const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
     // states
     const [rating, setRating] = useState<null | number>(0);
     const [suggest, setSuggest] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // contexts
     const { productInfo: { product } } = useProductContext();
@@ -44,9 +49,24 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
     // form submit
     const handleSubmit = async (values: CommentInitialValues) => {
-        console.log(values);
         if (user === null) {
             toastify("please login into your account!", "light", "warning")
+        }
+        else {
+            handleClose()
+            setLoading(true);
+            await axiosInstance.post(`/api/v1/products/${product._id}/comments`, {
+                values
+            })
+                .then(res => {
+                    toastify(res.data.message, "light", "success")
+                })
+                .catch(err => {
+                    toastify(err.response.data.message, "light", "error")
+                })
+                .finally(() => {
+                    setLoading(false)
+                })
         }
     }
 
@@ -207,8 +227,9 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                         </Formik>
                     </div>
                 </div>
-            </Dialog >
-        </div >
+            </Dialog>
+            <Loading loading={loading} />
+        </div>
     )
 }
 
