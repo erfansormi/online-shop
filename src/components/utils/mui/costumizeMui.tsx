@@ -16,6 +16,20 @@ export const muiTheme = createTheme({
         },
         neutral: {
             main: '#64748B',
+            light: "#94a3b8",
+            dark: "#475569",
+            contrastText: '#fff',
+        },
+        success: {
+            main: '#22c55e',
+            light: "#4ade80",
+            dark: "#16a34a",
+            contrastText: '#fff',
+        },
+        error: {
+            main: '#ef4444',
+            light: "#f87171",
+            dark: "#dc2626",
             contrastText: '#fff',
         },
         divider: "#e0e0e6",
