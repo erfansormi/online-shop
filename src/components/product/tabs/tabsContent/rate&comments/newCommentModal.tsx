@@ -28,6 +28,7 @@ import { useUserContext } from '../../../../../context/userContext';
 import Input from '../../../../form/input/input';
 import InputError from '../../../../form/input/inputError';
 import TextArea from '../../../../form/input/textArea';
+import Label from '../../../../data_display/label';
 
 const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
     const handleClose = () => {
@@ -90,9 +91,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
                                         {/* rate */}
                                         <div className='flex flex-col gap-y-2'>
-                                            <h6 className='text-gray-800 capitalize text-base'>
-                                                give rating
-                                            </h6>
+                                            <Label label={'give rating'} required />
                                             <Rating
                                                 name='rate'
                                                 onChange={(e, index) => {
@@ -103,7 +102,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                                 value={rating}
                                             />
                                             {
-                                                errors.rate && touched.rate && <InputError noMargin error={errors.rate} />
+                                                errors.rate && rating === 0 && <InputError noMargin error={errors.rate} />
                                             }
                                         </div>
 
@@ -116,9 +115,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
                                             {/* title */}
                                             <div className='flex flex-col gap-y-2'>
-                                                <h6 className='text-gray-800 capitalize text-base'>
-                                                    comment title
-                                                </h6>
+                                                <Label label={'comment title'} />
                                                 <Input
                                                     name='title'
                                                     onChange={handleChange}
@@ -132,9 +129,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
                                             {/* comment text */}
                                             <div className='flex flex-col gap-y-2'>
-                                                <h6 className='text-gray-800 capitalize text-base'>
-                                                    comment text
-                                                </h6>
+                                                <Label label='comment text' required />
                                                 <TextArea
                                                     name='commentText'
                                                     onChange={handleChange}
