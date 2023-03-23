@@ -6,13 +6,13 @@ interface TabPanelProps extends React.HTMLProps<HTMLDivElement> {
     value: number;
 }
 
-const TabContent = ({ children, value, index, ...other }: TabPanelProps) => {
-
+const TabContentContainer = ({ children, value, index, ...other }: TabPanelProps) => {
     return (
         <div
             role="tabpanel"
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
+            className="pb-10"
             {...other}
         >
             <Box sx={{ px: 3 }}>
@@ -22,4 +22,4 @@ const TabContent = ({ children, value, index, ...other }: TabPanelProps) => {
     );
 }
 
-export default TabContent;
+export default TabContentContainer;

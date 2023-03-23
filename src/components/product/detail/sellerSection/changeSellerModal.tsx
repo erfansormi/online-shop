@@ -56,7 +56,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
             {productInfo.product.sellers.map(({ seller, variants }, index) => (
               <div
                 key={index * 37}
-                className="border-b-2 border-gray-200 last:border-0 border-solid border-x-0 border-t-0 flex items-center justify-between p-5 even:bg-gray-100 overflow-x-scroll"
+                className="border-b-2 border-gray-200 last:border-0 border-solid border-x-0 border-t-0 flex items-center justify-between p-5 even:bg-gray-100 overflow-x-auto"
               >
 
                 {/* seller */}

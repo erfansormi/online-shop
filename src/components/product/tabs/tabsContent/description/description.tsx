@@ -1,8 +1,8 @@
 // context
-import { useProductContext } from '../productContainer';
+import { useProductContext } from '../../../productContainer';
 
 // components
-import TabsTitle from './tabsTitle';
+import TabsTitle from '../tabsTitle';
 
 const ProductDescription = () => {
     const { productInfo } = useProductContext();

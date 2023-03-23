@@ -1,8 +1,8 @@
 import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { Box, Divider, Tab, Tabs } from '@mui/material';
-import TabContent from './tabContent';
-import ProductDescription from './description';
-import ProductComments from './comments';
+import TabContentContainer from './tabsContent/tabContentContainer';
+import ProductDescription from './tabsContent/description/description';
+import RateAndComments from './tabsContent/rate&comments/rateAndComments';
 import MiniBuyBox from './miniBuyBox';
 
 function a11yProps(index: number) {
@@ -44,7 +44,7 @@ const TabsContainer = () => {
             ref: descriptionRef
         },
         {
-            components: ProductComments,
+            components: RateAndComments,
             ref: commentsRef
         }
     ]
@@ -71,7 +71,7 @@ const TabsContainer = () => {
             <Box className="sticky z-50 bg-white max-[767px]:top-0" sx={{ width: '100%', top: "var(--navbar-height)" }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="px-3">
 
-                    {/* tabs */}
+                    {/* tabs title */}
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                         {
                             tabsData.map((item, index) =>
@@ -88,16 +88,16 @@ const TabsContainer = () => {
             </Box>
 
             <div className='flex flex-col md:flex-row gap-8'>
-                <div className="w-full flex flex-col gap-y-14">
+                <div className="w-full flex flex-col gap-y-12">
 
                     {/* tabs content */}
                     {
                         tabsContentData.map((item, index) =>
                             <div key={index * 53}>
                                 <div ref={item.ref}>
-                                    <TabContent index={index} value={value}>
+                                    <TabContentContainer index={index} value={value}>
                                         <item.components />
-                                    </TabContent>
+                                    </TabContentContainer>
                                 </div>
                                 {
                                     index !== tabsContentData.length - 1 &&

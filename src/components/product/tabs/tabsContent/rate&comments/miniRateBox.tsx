@@ -1,0 +1,46 @@
+import React from 'react';
+
+// mui
+import { Button, Divider } from '@mui/material';
+
+// context
+import { useProductContext } from '../../../productContainer';
+
+// components
+import SeeRating from '../../../../data_display/rating';
+
+const MiniRateBox = () => {
+    const { productInfo: { product } } = useProductContext();
+
+    return (
+        <div className='md:w-2/6 md:max-w-[260px] flex flex-col gap-y-5 min-w-[210px] h-fit sticky left-0 top-1/3'>
+
+            {/* rate and count */}
+            <div className='flex flex-col gap-y-3'>
+                <div className="flex items-center gap-x-1">
+                    <span className='font-bold text-2xl text-gray-800'>
+                        {product.rating.rate}
+                    </span>
+                    <span className='text-xs text-gray-600'>
+                        out of 5
+                    </span>
+                </div>
+                <div>
+                    <SeeRating size='small' rate={product.rating.rate} count={product.rating.count} />
+                </div>
+            </div>
+
+            <Divider />
+
+            {/* register a comment */}
+            <div className='flex flex-col gap-y-2'>
+                <span className='text-xs text-gray-500'>leave a comment about this product</span>
+                <Button variant="outlined">
+                    register comment
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+export default MiniRateBox;

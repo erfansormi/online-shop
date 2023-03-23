@@ -1,11 +1,11 @@
 import React from 'react';
 
 // context
-import { useProductContext } from '../productContainer';
+import { useProductContext } from './productContainer';
 
 // components
-import SmallCardSlider from '../../utils/sliders/smallCardSlider';
-import TitleSection from '../../utils/title/titleSection';
+import SmallCardSlider from '../utils/sliders/smallCardSlider';
+import TitleSection from '../utils/title/titleSection';
 
 const RelatedProducts = () => {
     // context
