@@ -5,10 +5,10 @@ import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai'
 
 type IsSuggest = "yes" | "no" | "unsure" | undefined;
 
-const IsSuggest = ({ suggest }: { suggest: IsSuggest }) => {
+const IsSuggest = ({ suggest, isWhite }: { suggest: IsSuggest, isWhite?: boolean }) => {
     if (suggest === "yes") {
         return (
-            <div className='flex items-center gap-x-2 leading-4 text-green-500'>
+            <div className={`flex items-center gap-x-2 leading-4 ${isWhite ? "text-white" : "text-green-500"}`}>
                 <span className="flex">
                     <AiOutlineLike />
                 </span>
@@ -21,7 +21,7 @@ const IsSuggest = ({ suggest }: { suggest: IsSuggest }) => {
 
     else if (suggest === "no") {
         return (
-            <div className='flex items-center gap-x-2 leading-4 text-red-500'>
+            <div className={`flex items-center gap-x-2 leading-4 ${isWhite ? "text-white" : "text-red-500"}`}>
                 <span className="flex">
                     <AiOutlineDislike />
                 </span>
@@ -34,8 +34,8 @@ const IsSuggest = ({ suggest }: { suggest: IsSuggest }) => {
 
     else if (suggest === "unsure") {
         return (
-            <div className='flex items-center gap-x-2 leading-4 text-gray-500'>
-                <span className='w-1 h-1 rounded-full bg-gray-500'>
+            <div className={`flex items-center gap-x-2 leading-4 ${isWhite ? "text-white" : "text-gray-500"}`}>
+                <span className={`w-1 h-1 rounded-full ${isWhite ? "bg-white" : "bg-gray-500"}`}>
                 </span>
                 <span className="flex">
                     not sure

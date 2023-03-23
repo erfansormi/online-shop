@@ -9,7 +9,7 @@ import TabsTitle from '../tabsTitle';
 import MiniRateBox from './miniRateBox';
 import Comments from './comments';
 
-const RateAndCommentsContainer = () => {
+const CommentsContainer = () => {
     // context
     const { productInfo } = useProductContext();
     const { product } = productInfo;
@@ -53,4 +53,4 @@ const RateAndCommentsContainer = () => {
     )
 }
 
-export default RateAndCommentsContainer;
+export default CommentsContainer;

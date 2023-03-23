@@ -14,6 +14,10 @@ export const muiTheme = createTheme({
             dark: "#0e7490",
             contrastText: "#fff"
         },
+        neutral: {
+            main: '#64748B',
+            contrastText: '#fff',
+        },
         divider: "#e0e0e6",
     },
     typography: {
@@ -69,3 +73,21 @@ export const muiTheme = createTheme({
         borderRadius: 6
     },
 });
+
+declare module '@mui/material/styles' {
+    interface Palette {
+        neutral: Palette['primary'];
+    }
+
+    // allow configuration using `createTheme`
+    interface PaletteOptions {
+        neutral?: PaletteOptions['primary'];
+    }
+}
+
+// Update the Button's color prop options
+declare module '@mui/material/Button' {
+    interface ButtonPropsColorOverrides {
+        neutral: true;
+    }
+}

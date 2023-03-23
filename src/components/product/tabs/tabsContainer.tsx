@@ -2,7 +2,7 @@ import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 import { Box, Divider, Tab, Tabs } from '@mui/material';
 import TabContentContainer from './tabsContent/tabContentContainer';
 import ProductDescription from './tabsContent/description/description';
-import RateAndCommentsContainer from './tabsContent/rate&comments/rate&commentsContainer';
+import CommentsContainer from './tabsContent/comments/commentsContainer';
 import MiniBuyBox from './miniBuyBox';
 
 function a11yProps(index: number) {
@@ -44,7 +44,7 @@ const TabsContainer = () => {
             ref: descriptionRef
         },
         {
-            components: RateAndCommentsContainer,
+            components: CommentsContainer,
             ref: commentsRef
         }
     ]

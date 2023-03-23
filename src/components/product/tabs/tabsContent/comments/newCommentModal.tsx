@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Formik } from 'formik';
 
 //data
-import { commentInitialValues, NewCommentSchema, CommentInitialValues } from './newCommentData';
+import { commentInitialValues, NewCommentSchema, CommentInitialValues, isSuggestBtns } from './newCommentData';
 
 // mui
 import Button from '@mui/material/Button';
@@ -29,14 +29,13 @@ import Input from '../../../../form/input/input';
 import InputError from '../../../../form/input/inputError';
 import TextArea from '../../../../form/input/textArea';
 import Label from '../../../../data_display/label';
+import IsSuggest from './isSuggest';
 
 const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
-    const handleClose = () => {
-        setCommentModal(false);
-    };
 
-    // rating value
+    // states
     const [rating, setRating] = useState<null | number>(0);
+    const [suggest, setSuggest] = useState("");
 
     // contexts
     const { productInfo: { product } } = useProductContext();
@@ -50,6 +49,12 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
         }
     }
 
+    const handleClose = () => {
+        setCommentModal(false);
+        setRating(0);
+        setSuggest("");
+    };
+
     return (
         <div>
             <Dialog
@@ -57,10 +62,10 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                 onClose={handleClose}
                 fullWidth
             >
-                <div className="px-6 py-4 flex flex-col gap-y-4">
+                <div className="px-6 pt-5 pb-7 flex flex-col gap-y-4">
 
                     {/* title */}
-                    <div className='flex flex-col gap-y-2 sticky top-0 bg-white z-[50] pt-3'>
+                    <div className='flex flex-col gap-y-2 sticky top-0 bg-white z-[50] pt-2'>
                         <h5 className="text-gray-800 text-lg">
                             your point of view
                         </h5>
@@ -84,7 +89,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                 handleChange,
                                 handleBlur,
                                 handleSubmit,
-                                isSubmitting,
+                                setFieldValue
                             }) => (
                                 <form onSubmit={handleSubmit}>
                                     <div className='flex flex-col gap-y-4'>
@@ -108,12 +113,12 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
 
                                         <Divider />
 
-                                        <div className='flex flex-col gap-y-8'>
+                                        <div className='flex flex-col gap-y-6'>
                                             <h6 className='text-gray-800 font-bold text-base'>
                                                 Describe your point of view
                                             </h6>
 
-                                            {/* title */}
+                                            {/* comment title */}
                                             <div className='flex flex-col gap-y-2'>
                                                 <Label label={'comment title'} />
                                                 <Input
@@ -125,6 +130,36 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                                 {
                                                     errors.title && touched.title && <InputError noMargin error={errors.title} />
                                                 }
+                                            </div>
+
+                                            {/* is suggest? */}
+                                            <div className='flex flex-col gap-y-2'>
+                                                <Label label='do you suggest buying this product?' />
+                                                <div className='flex item-center gap-2'>
+                                                    {
+                                                        isSuggestBtns.map((item, index) =>
+                                                            <div key={index * 61}>
+                                                                <Button
+                                                                    className={`p-4 rounded-lg`}
+                                                                    variant={suggest === item.value ? "contained" : "outlined"}
+                                                                    color={item.color}
+                                                                    onClick={() => {
+                                                                        if (suggest === item.value) {
+                                                                            setFieldValue("isSuggest", undefined)
+                                                                            setSuggest("")
+                                                                        }
+                                                                        else {
+                                                                            setFieldValue("isSuggest", item.value)
+                                                                            setSuggest(item.value);
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <IsSuggest suggest={item.value} isWhite={suggest === item.value ? true : false} />
+                                                                </Button>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </div>
                                             </div>
 
                                             {/* comment text */}
@@ -147,10 +182,10 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                                     checked={values.unknown}
                                                     name="unknown"
                                                     onChange={handleChange}
+                                                    id="anonymously-checkbox-comment"
+                                                    color='info'
                                                 />
-                                                <h6 className='text-gray-700 text-sm capitalize'>
-                                                    post comment anonymously
-                                                </h6>
+                                                <Label label='post comment anonymously' htmlFor='anonymously-checkbox-comment' />
                                             </div>
 
                                         </div>
@@ -171,8 +206,8 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                         </Formik>
                     </div>
                 </div>
-            </Dialog>
-        </div>
+            </Dialog >
+        </div >
     )
 }
 

@@ -27,7 +27,27 @@ export const NewCommentSchema = Yup.object().shape({
         .required(required("comment text"))
         .min(3, minLength("comment text", 3))
         .max(500, maxLength("comment text", 500)),
-    isSuggest: Yup.string()
-        .matches(/^yes$ | ^no$ | ^unsure$/, "invalid value!"),
+    isSuggest: Yup.string(),
     unknown: Yup.boolean()
 });
+
+// is suggest btns
+interface IsSuggestBtns {
+    value: "yes" | "no" | "unsure",
+    color: "success" | "error" | "neutral"
+}
+
+export const isSuggestBtns: IsSuggestBtns[] = [
+    {
+        value: "yes",
+        color: "success"
+    },
+    {
+        value: "unsure",
+        color: "neutral"
+    },
+    {
+        value: "no",
+        color: "error"
+    }
+]
