@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Formik } from 'formik';
 
 //data
-import { commentInitialValues, NewCommentSchema, CommentInitialValues, isSuggestBtns } from './newCommentData';
+import { commentInitialValues, NewCommentSchema, CommentInitialValues, isSuggestBtns, commentInputs } from './newCommentData';
 
 // mui
 import Button from '@mui/material/Button';
@@ -24,10 +24,11 @@ interface Props {
 import { useProductContext } from '../../../productContainer';
 import { useUserContext } from '../../../../../context/userContext';
 
+// icons
+import { AiOutlineClose } from 'react-icons/ai';
+
 // components
-import Input from '../../../../form/input/input';
 import InputError from '../../../../form/input/inputError';
-import TextArea from '../../../../form/input/textArea';
 import Label from '../../../../data_display/label';
 import IsSuggest from './isSuggest';
 
@@ -62,16 +63,23 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                 onClose={handleClose}
                 fullWidth
             >
-                <div className="px-6 pt-5 pb-7 flex flex-col gap-y-4">
+                <div className="px-6 pt-3 pb-7 flex flex-col gap-y-4">
 
                     {/* title */}
-                    <div className='flex flex-col gap-y-2 sticky top-0 bg-white z-[50] pt-2'>
-                        <h5 className="text-gray-800 text-lg">
-                            your point of view
-                        </h5>
-                        <span className='text-gray-500 text-sm lowercase mb-2'>
-                            about {product.title}
-                        </span>
+                    <div className='flex flex-col sticky justify-between top-0 bg-white z-[50] pt-4 gap-y-2'>
+                        <div className='flex justify-between'>
+                            <div className='flex flex-col gap-y-2'>
+                                <h5 className="text-gray-800 text-lg">
+                                    your point of view
+                                </h5>
+                                <span className='text-gray-500 text-sm lowercase mb-2'>
+                                    about {product.title}
+                                </span>
+                            </div>
+                            <span onClick={handleClose} className="cursor-pointer text-lg">
+                                <AiOutlineClose />
+                            </span>
+                        </div>
                         <Divider />
                     </div>
 
@@ -89,7 +97,8 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                 handleChange,
                                 handleBlur,
                                 handleSubmit,
-                                setFieldValue
+                                setFieldValue,
+                                submitCount
                             }) => (
                                 <form onSubmit={handleSubmit}>
                                     <div className='flex flex-col gap-y-4'>
@@ -98,6 +107,8 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                         <div className='flex flex-col gap-y-2'>
                                             <Label label={'give rating'} required />
                                             <Rating
+                                                style={{ marginLeft: -5 }}
+                                                size="large"
                                                 name='rate'
                                                 onChange={(e, index) => {
                                                     setRating(index);
@@ -107,7 +118,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                                 value={rating}
                                             />
                                             {
-                                                errors.rate && rating === 0 && <InputError noMargin error={errors.rate} />
+                                                errors.rate && rating === 0 && submitCount ? <InputError noMargin error={errors.rate} /> : null
                                             }
                                         </div>
 
@@ -117,20 +128,6 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                             <h6 className='text-gray-800 font-bold text-base'>
                                                 Describe your point of view
                                             </h6>
-
-                                            {/* comment title */}
-                                            <div className='flex flex-col gap-y-2'>
-                                                <Label label={'comment title'} />
-                                                <Input
-                                                    name='title'
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    value={values.title}
-                                                />
-                                                {
-                                                    errors.title && touched.title && <InputError noMargin error={errors.title} />
-                                                }
-                                            </div>
 
                                             {/* is suggest? */}
                                             <div className='flex flex-col gap-y-2'>
@@ -162,19 +159,23 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                                 </div>
                                             </div>
 
-                                            {/* comment text */}
-                                            <div className='flex flex-col gap-y-2'>
-                                                <Label label='comment text' required />
-                                                <TextArea
-                                                    name='commentText'
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    value={values.commentText}
-                                                />
-                                                {
-                                                    errors.commentText && touched.commentText && <InputError noMargin error={errors.commentText} />
-                                                }
-                                            </div>
+                                            {/* comment title and text  */}
+                                            {
+                                                commentInputs.map((item, index) =>
+                                                    <div className='flex flex-col gap-y-2' key={index * 65}>
+                                                        <Label label={item.label} required={item.required} />
+                                                        <item.inputComponent
+                                                            name={item.name}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={values[item.name]}
+                                                        />
+                                                        {
+                                                            errors[item.name] && touched[item.name] && <InputError noMargin error={errors[item.name]} />
+                                                        }
+                                                    </div>
+                                                )
+                                            }
 
                                             {/* is unknown comment? */}
                                             <div className='flex items-center'>

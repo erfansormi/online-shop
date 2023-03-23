@@ -1,6 +1,10 @@
 import * as Yup from 'yup';
 import { maxLength, minLength, required } from "../../../../../functions/validation";
 
+// components
+import Input from '../../../../form/input/input';
+import TextArea from '../../../../form/input/textArea';
+
 // ts
 export interface CommentInitialValues {
     rate: number,
@@ -49,5 +53,27 @@ export const isSuggestBtns: IsSuggestBtns[] = [
     {
         value: "no",
         color: "error"
+    }
+]
+
+interface CommentInputs {
+    label: string;
+    name: keyof CommentInitialValues;
+    inputComponent: any
+    required: boolean;
+}
+
+export const commentInputs: CommentInputs[] = [
+    {
+        label: "comment title",
+        name: "title",
+        inputComponent: Input,
+        required: false
+    },
+    {
+        label: "comment text",
+        name: "commentText",
+        inputComponent: TextArea,
+        required: true
     }
 ]
