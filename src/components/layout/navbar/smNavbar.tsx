@@ -5,8 +5,14 @@ import { useRouter } from 'next/router';
 // data
 import { smNavData } from './navbarData';
 
+// user context
+import { useUserContext } from '../../../context/userContext';
+
 const SmNavbar = () => {
     const router = useRouter();
+
+    // user context
+    const { user } = useUserContext();
 
     return (
         <nav
@@ -15,7 +21,7 @@ const SmNavbar = () => {
         >
             <div className='w-full h-full flex justify-around'>
                 {
-                    smNavData.map((item, index) =>
+                    smNavData(user).map((item, index) =>
                         <div key={index * 37}>
                             <Link
                                 href={item.link}
