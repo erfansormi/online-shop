@@ -1,6 +1,5 @@
-import React, { useContext, createContext, useEffect } from 'react'
+import React, { useContext, createContext } from 'react'
 import Head from 'next/head';
-import axios from "axios";
 
 // data
 import { topSlidersData } from '../components/home/sliders/topSlidersData';
@@ -18,8 +17,6 @@ import { GetStaticProps } from 'next';
 
 // types
 import { Product } from '../types/product/productTypes';
-import { useUserContext } from '../context/userContext';
-import { destroyCookie, parseCookies } from 'nookies';
 
 interface HomeData {
   success: boolean;

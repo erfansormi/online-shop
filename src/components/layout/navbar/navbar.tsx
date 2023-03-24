@@ -30,7 +30,7 @@ const Navbar = () => {
             <SmNavbar />
             <nav
                 style={{ height: "var(--navbar-height)" }}
-                className={`hidden md:flex py-3 capitalize md:px-12 px-8 shadow-md justify-between items-center sticky top-0 left-0 right-0 bg-white z-[1000] ${fredoka.className}`}
+                className={`hidden md:flex py-3 capitalize md:px-12 px-8 shadow-md justify-between items-center sticky top-0 left-0 right-0 bg-white z-50 ${fredoka.className}`}
             >
 
                 {/* left buttons */}

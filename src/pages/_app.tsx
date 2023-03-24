@@ -25,6 +25,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Navbar from '../components/layout/navbar/navbar';
 import Footer from "../components/layout/footer/footer";
 import LoadingAfterChngLink from "../components/utils/loading/loadingAfterChngLink";
+import Loading from "../components/utils/loading/loading";
 
 // font
 export const fredoka = Fredoka({
@@ -42,6 +43,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <UserContextProvider>
         <GeneralContextProvider>
           <ThemeProvider theme={muiTheme}>
+            <Loading />
             <Navbar />
             <main className={fredoka.className}>
               <Component {...pageProps} />

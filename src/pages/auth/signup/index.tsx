@@ -22,17 +22,16 @@ export interface SignupInitialValues {
 }
 export type signupKeys = keyof SignupInitialValues;
 
-// user context
+// contexts hooks
 import { useUserContext } from '../../../context/userContext';
+import { useGeneralContext } from '../../../context/generalContext';
 
 const Signup: React.FC = () => {
     const router = useRouter();
 
-    // token context
+    // contexts
     const { user, setUser } = useUserContext();
-
-    // states
-    const [loading, setLoading] = useState(false);
+    const { general, setGeneral } = useGeneralContext();
 
     // signup initial values
     const signupInitialValues: SignupInitialValues = {
@@ -45,7 +44,10 @@ const Signup: React.FC = () => {
 
     // form submit
     const handleSubmit = async (e: SignupInitialValues) => {
-        setLoading(true);
+        setGeneral({
+            ...general,
+            loading: true
+        })
 
         // post data
         await axiosInstance.post("/api/v1/users/signup", {
@@ -55,7 +57,6 @@ const Signup: React.FC = () => {
             password: e.password
         })
             .then((res) => {
-                setLoading(false);
                 setUser(res.data);
                 toastify(res.data.message, "light", "success");
                 router.push("/");
@@ -64,7 +65,10 @@ const Signup: React.FC = () => {
                 toastify(err.response.data.message, "light", "error");
             })
             .finally(() => {
-                setLoading(false);
+                setGeneral({
+                    ...general,
+                    loading: false
+                })
             })
     }
 
@@ -84,7 +88,6 @@ const Signup: React.FC = () => {
                 handleSubmit={handleSubmit}
                 initialValues={signupInitialValues}
             />
-            <Loading loading={loading} />
         </>
     );
 };

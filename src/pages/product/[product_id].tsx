@@ -2,9 +2,11 @@ import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
+// general context hook
+import { useGeneralContext } from '../../context/generalContext';
+
 // components
 import ProductContainer from '../../components/product/productContainer';
-import Loading from '../../components/utils/loading/loading';
 
 // types
 import { Product, ProductDetail } from '../../types/product/productTypes';
@@ -17,9 +19,16 @@ interface Props {
 const ProductDetail = ({ product, relatedProducts }: Props) => {
     const router = useRouter();
 
+    // general context
+    const { general, setGeneral } = useGeneralContext();
+
     // If the page is not yet generated, this will be displayed
     if (router.isFallback) {
-        return <Loading loading />
+        setGeneral({
+            ...general,
+            loading: true
+        })
+        return
     }
 
     return (

@@ -6,11 +6,11 @@ import Head from 'next/head';
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 // components
-import Loading from '../../../components/utils/loading/loading';
 import LoginContainer from '../../../components/form/login/loginContainer';
 
-// user context
+// contexts hooks
 import { useUserContext } from '../../../context/userContext';
+import { useGeneralContext } from '../../../context/generalContext';
 
 // axios
 import { axiosInstance } from '../../../functions/axiosInstance';
@@ -18,11 +18,9 @@ import { axiosInstance } from '../../../functions/axiosInstance';
 const Login = () => {
     const router = useRouter();
 
-    // user context
+    // contexts
     const { user, setUser } = useUserContext();
-
-    // loading state
-    const [loading, setLoading] = useState(false);
+    const { general, setGeneral } = useGeneralContext();
 
     // initialValues
     interface InitialValues {
@@ -36,7 +34,10 @@ const Login = () => {
 
     // form submit
     const handleSubmit = async (e: InitialValues) => {
-        setLoading(true);
+        setGeneral({
+            ...general,
+            loading: true
+        })
 
         // post data
         await axiosInstance.post('/api/v1/users/login', {
@@ -44,7 +45,6 @@ const Login = () => {
             password: e.password
         })
             .then((res) => {
-                setLoading(false);
                 toastify(res.data.message, "light", "success");
                 setUser(res.data);
                 router.push("/");
@@ -53,7 +53,10 @@ const Login = () => {
                 toastify(err.response.data.message, "light", "error");
             })
             .finally(() => {
-                setLoading(false);
+                setGeneral({
+                    ...general,
+                    loading: false
+                })
             })
     }
 
@@ -73,7 +76,6 @@ const Login = () => {
                 initialValues={initialValues}
                 handleSubmit={handleSubmit}
             />
-            <Loading loading={loading} />
         </>
     )
 }

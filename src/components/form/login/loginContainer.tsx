@@ -91,7 +91,6 @@ const LoginContainer = ({ handleSubmit, initialValues }: Props) => {
 
             {/* switch to signup */}
             <FormSwitcher type='signup' />
-
         </FormContainer>
     )
 }

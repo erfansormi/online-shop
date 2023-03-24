@@ -30,18 +30,20 @@ import { AiOutlineClose } from 'react-icons/ai';
 // axios
 import { axiosInstance } from '../../../../../functions/axiosInstance';
 
+// use context
+import { useGeneralContext } from '../../../../../context/generalContext';
+
 // components
 import InputError from '../../../../form/input/inputError';
 import Label from '../../../../data_display/label';
 import IsSuggest from './isSuggest';
-import Loading from '../../../../utils/loading/loading';
 
 const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
+    const { general, setGeneral } = useGeneralContext();
 
     // states
     const [rating, setRating] = useState<null | number>(0);
     const [suggest, setSuggest] = useState("");
-    const [loading, setLoading] = useState(false);
 
     // contexts
     const { productInfo: { product } } = useProductContext();
@@ -51,10 +53,14 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
     const handleSubmit = async (values: CommentInitialValues) => {
         if (user === null) {
             toastify("please login into your account!", "light", "warning")
+            handleClose();
         }
         else {
-            handleClose()
-            setLoading(true);
+            handleClose();
+            setGeneral({
+                ...general,
+                loading: true
+            });
             await axiosInstance.post(`/api/v1/products/${product._id}/comments`, {
                 values
             })
@@ -65,7 +71,10 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                     toastify(err.response.data.message, "light", "error")
                 })
                 .finally(() => {
-                    setLoading(false)
+                    setGeneral({
+                        ...general,
+                        loading: false
+                    });
                 })
         }
     }
@@ -228,7 +237,6 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                     </div>
                 </div>
             </Dialog>
-            <Loading loading={loading} />
         </div>
     )
 }

@@ -17,7 +17,7 @@ import { fredoka } from '../../../pages/_app';
 import { useGeneralContext } from '../../../context/generalContext';
 
 const Footer = () => {
-    const general = useGeneralContext();
+    const { general } = useGeneralContext();
 
     return (
         <footer

@@ -68,7 +68,7 @@ const TabsContainer = () => {
 
     return (
         <div className="flex flex-col gap-y-10">
-            <Box className="sticky z-50 bg-white max-[767px]:top-0" sx={{ width: '100%', top: "var(--navbar-height)" }}>
+            <Box className="sticky z-40 bg-white max-[767px]:top-0" sx={{ width: '100%', top: "var(--navbar-height)" }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="px-3">
 
                     {/* tabs title */}
