@@ -3,6 +3,9 @@ import React from 'react'
 // css
 import styles from "./input.module.css";
 
+// font
+import { fredoka } from '../../../pages/_app';
+
 // components
 import InputError from './inputError';
 
@@ -26,7 +29,7 @@ const TextArea = ({ height, error, touched, className, useInForm, ...props }: Pr
     return (
         <>
             <textarea
-                className={`${className ? className : ""} ${styles.input} w-full normal-case rounded-md p-3 bg-gray-200 focus:outline-gray-400 border-0 focus:outline focus:outline-2 ${errorClasses()} resize-y min-h-[100px] max-h-[200px] text-base`}
+                className={`${className ? className : ""} ${styles.input} ${fredoka.className} w-full normal-case rounded-md p-3 bg-gray-200 focus:outline-gray-400 border-0 focus:outline focus:outline-2 ${errorClasses()} resize-y min-h-[100px] max-h-[200px] text-sm`}
                 {...props}
             >
             </textarea>
