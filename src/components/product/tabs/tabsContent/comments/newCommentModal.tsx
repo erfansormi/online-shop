@@ -161,7 +161,7 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                                             {/* is suggest? */}
                                             <div className='flex flex-col gap-y-2'>
                                                 <Label label='do you suggest buying this product?' />
-                                                <div className='flex item-center gap-2'>
+                                                <div className='flex sm:flex-row flex-col item-center gap-2'>
                                                     {
                                                         isSuggestBtns.map((item, index) =>
                                                             <div key={index * 61}>

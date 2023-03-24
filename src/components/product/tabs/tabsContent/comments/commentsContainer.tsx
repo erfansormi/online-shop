@@ -19,7 +19,7 @@ const CommentsContainer = () => {
             {/* title */}
             <TabsTitle title='comments and rating' />
 
-            <div className='flex flex-col md:flex-row gap-x-10 gap-y-8'>
+            <div className='flex flex-col lg:flex-row gap-x-10 gap-y-8'>
 
                 {/* rating and register a comment */}
                 <MiniRateBox />

@@ -44,7 +44,7 @@ const Comments = ({ comment_text, created_at, is_buyer, rate, user, is_suggest, 
                     {/* title */}
                     {
                         title &&
-                        <h6 className='inline-block text-lg w-[90%] capitalize mb-5'>
+                        <h6 className='inline-block text-lg sm:w-[90%] w-[85%] capitalize mb-5'>
                             {title}
                         </h6>
                     }

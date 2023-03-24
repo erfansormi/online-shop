@@ -17,7 +17,7 @@ const MiniRateBox = () => {
     const [commentModal, setCommentModal] = useState(false);
 
     return (
-        <div className='md:w-2/6 md:max-w-[260px] flex flex-col gap-y-5 min-w-[210px] h-fit sticky left-0 top-1/3'>
+        <div className='lg:w-2/6 lg:max-w-[260px] flex flex-col gap-y-5 min-w-[210px] h-fit static lg:sticky left-0 top-1/3'>
 
             {/* rate and count */}
             <div className='flex flex-col gap-y-3'>
