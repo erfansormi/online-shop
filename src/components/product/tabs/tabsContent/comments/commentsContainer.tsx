@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider } from '@mui/material';
+import { Divider, Skeleton } from '@mui/material';
 
 // context
 import { useProductContext } from '../../../productContainer';
@@ -11,8 +11,7 @@ import Comments from './comments';
 
 const CommentsContainer = () => {
     // context
-    const { productInfo } = useProductContext();
-    const { product } = productInfo;
+    const { commentsLoading, comments } = useProductContext();
 
     return (
         <div>
@@ -28,28 +27,45 @@ const CommentsContainer = () => {
 
                 {/* comments */}
                 <div className="w-full text-gray-700">
-                    {product.comments.length ?
+                    {
 
-                        // if comments registered
-                        product.comments.map((item, index) =>
-                            <React.Fragment key={index * 57}>
-                                <Comments {...item} />
-                            </React.Fragment>
-                        ) :
+                        commentsLoading ?
+                            [...Array(4)].map((item, index) =>
+                                <div key={index * 68}>
+                                    <div className='flex flex-col gap-y-2 my-8'>
+                                        <Skeleton className='w-[10%]' />
+                                        <Skeleton className='w-[30%]' />
+                                        <Divider className='border-gray-100' />
+                                        <div>
+                                            <Skeleton className='w-[100%]' />
+                                            <Skeleton className='w-[100%]' />
+                                            <Skeleton className='w-[50%]' />
+                                        </div>
+                                    </div>
+                                    <Divider />
+                                </div>
+                            ) :
+                            comments.length ?
+                                // if comments registered
+                                comments.map((item, index) =>
+                                    <React.Fragment key={index * 57}>
+                                        <Comments {...item} />
+                                    </React.Fragment>
+                                ) :
 
-                        // no any comment there isn't
-                        <div className='capitalize'>
-                            <h6 className='mb-4 text-lg md:mt-1.5'>
-                                You can also comment on this product
-                            </h6>
-                            <p className='text-sm text-gray-500'>
-                                no comment is recorded!
-                            </p>
-                        </div>
+                                // no any comment there isn't
+                                <div className='capitalize'>
+                                    <h6 className='mb-4 text-lg md:mt-1.5'>
+                                        You can also comment on this product
+                                    </h6>
+                                    <p className='text-sm text-gray-500'>
+                                        no comment is recorded!
+                                    </p>
+                                </div>
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

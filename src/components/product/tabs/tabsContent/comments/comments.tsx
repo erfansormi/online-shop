@@ -9,7 +9,10 @@ import IsSuggest from './isSuggest';
 // types
 import { Comment } from '../../../../../types/product/productTypes';
 
-const Comments = ({ comment_text, created_at, is_buyer, rate, user, is_suggest, purchased_product, title }: Comment) => {
+const Comments = ({ comment_text, created_at, rate, is_suggest, title, user }: Comment) => {
+    const { unknown, userId } = user;
+    const { first_name, last_name } = userId;
+
     // handle rate className
     const handleRateClass = (rate: number) => {
         let className = "";
@@ -49,12 +52,27 @@ const Comments = ({ comment_text, created_at, is_buyer, rate, user, is_suggest, 
                         </h6>
                     }
 
-                    <div className='inline-flex text-gray-400 text-sm'>
+                    <div className='inline-flex text-gray-400 text-sm items-center gap-x-3'>
 
                         {/* date */}
                         <span>
                             {new Date(created_at).toLocaleDateString()}
                         </span>
+
+                        {/* user name */}
+                        <div className='text-gray-400 capitalize'>
+                            {
+                                unknown ?
+                                    <span>
+                                        online shop user
+                                    </span> :
+                                    <div className="flex items-center gap-x-1">
+                                        <span>{first_name}</span>
+                                        <span>{last_name}</span>
+                                    </div>
+                            }
+                        </div>
+
                     </div>
                 </div>
 

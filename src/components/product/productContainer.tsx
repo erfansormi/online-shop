@@ -1,17 +1,17 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 // components
 import Layout from '../layout/layout';
-import ProductImage from './detail/imageSection/productImage';
-import CenterInfo from './detail/centerInfo/centerInfo';
-import SellerBox from './detail/sellerSection/sellerBox';
 import RelatedProducts from './relatedProducts';
 import { Divider } from '@mui/material';
 import TabsContainer from './tabs/tabsContainer';
 import TopDetailContainer from './detail/topDetailContainer';
 
+// axios
+import { axiosInstance } from '../../functions/axiosInstance';
+
 // types
-import { Product, ProductDetail, SellerWithDetail, Variant } from '../../types/product/productTypes';
+import { Comment, Product, ProductDetail, SellerWithDetail, Variant } from '../../types/product/productTypes';
 
 interface Props {
     product: ProductDetail,
@@ -32,14 +32,20 @@ interface ProductInfo {
 
 interface ContextType {
     productInfo: ProductInfo
-    setProductInfo: React.Dispatch<React.SetStateAction<ProductInfo>>
+    setProductInfo: React.Dispatch<React.SetStateAction<ProductInfo>>,
+    comments: Comment[],
+    commentsLoading: boolean
 }
 
-// context
+// product context
 const ProductContext = createContext({} as ContextType);
 export const useProductContext = () => useContext(ProductContext);
 
+// general context
+import { useGeneralContext } from '../../context/generalContext';
+
 const ProductContainer = ({ product, relatedProducts }: Props) => {
+    const { general: { loading } } = useGeneralContext();
 
     // states
     const [productInfo, setProductInfo] = useState<ProductInfo>({
@@ -52,8 +58,27 @@ const ProductContainer = ({ product, relatedProducts }: Props) => {
         relatedProducts
     });
 
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [commentsLoading, setCommentsLoading] = useState(true);
+
+    const fetchComments = () => {
+        setCommentsLoading(true);
+
+        axiosInstance.get(`/api/v1/products/${product._id}/comments`)
+            .then(res => {
+                setComments(res.data)
+            })
+            .finally(() => {
+                setCommentsLoading(false);
+            })
+    }
+
+    useEffect(() => {
+        fetchComments();
+    }, [loading])
+
     return (
-        <ProductContext.Provider value={{ productInfo, setProductInfo }}>
+        <ProductContext.Provider value={{ productInfo, setProductInfo, comments, commentsLoading }}>
             <Layout max_w_3xl className='px-6 py-4'>
                 <div className='flex flex-col gap-y-8'>
 

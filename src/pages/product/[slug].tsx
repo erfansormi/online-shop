@@ -43,7 +43,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const data = await res.json();
     const paths = data.products.map((item: any) => {
         return {
-            params: { product_id: item.slug },
+            params: { slug: item.slug },
         }
     })
 
@@ -54,8 +54,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const id = params?.product_id;
-    const res = await fetch(`${process.env.URL}/api/v1/products/${id}`);
+    const slug = params?.slug;
+    const res = await fetch(`${process.env.URL}/api/v1/products/${slug}`);
     const data = await res.json();
 
     return {

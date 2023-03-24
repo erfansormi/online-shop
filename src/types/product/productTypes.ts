@@ -51,7 +51,11 @@ export interface Comment {
     is_suggest?: "no" | "yes" | "unsure",
     user: {
         unknown: boolean,
-        userId: string
+        userId: {
+            _id: string,
+            first_name: string,
+            last_name: string
+        }
     },
     is_buyer: boolean,
     purchased_product?: Pick<PurchasedProduct, "color" | "seller" | "slug">,
@@ -67,7 +71,6 @@ export interface Product {
     image: string;
     sellers: Seller[];
     attributes: Attribute[];
-    comments: Comment[];
     slug: string;
     __v: number;
     created_at: Date;
@@ -82,7 +85,6 @@ export interface ProductDetail {
     image: string;
     sellers: SellerWithDetail[];
     attributes: Attribute[];
-    comments: Comment[];
     slug: string;
     __v: number;
     created_at: Date;
