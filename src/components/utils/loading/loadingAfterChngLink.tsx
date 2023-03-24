@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Loading from './loading';
+
+// general context
+import { useGeneralContext } from '../../../context/generalContext';
 
 const LoadingAfterChngLink = () => {
     const router = useRouter()
-    const [loading, setLoading] = useState(false);
+
+    const { general, setGeneral } = useGeneralContext();
 
     useEffect(() => {
         const handleRouteChange = () => {
-            setLoading(true)
+            setGeneral({
+                ...general,
+                loading: true
+            })
             return;
         }
         const handleRouteComplete = () => {
-            setLoading(false)
+            setGeneral({
+                ...general,
+                loading: false
+            })
         }
         router.events.on('routeChangeStart', handleRouteChange)
         router.events.on('routeChangeComplete', handleRouteComplete)
@@ -23,7 +32,7 @@ const LoadingAfterChngLink = () => {
     }, [router])
 
     return (
-        <Loading loading={loading} />
+        <></>
     )
 }
 

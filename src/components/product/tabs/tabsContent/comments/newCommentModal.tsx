@@ -62,7 +62,11 @@ const NewCommentModal = ({ commentModal, setCommentModal }: Props) => {
                 loading: true
             });
             await axiosInstance.post(`/api/v1/products/${product._id}/comments`, {
-                values
+                comment_text: values.commentText,
+                is_suggest: values.isSuggest ? values.isSuggest : undefined,
+                title: values.title ? values.title : undefined,
+                rate: values.rate,
+                unknown: values.unknown,
             })
                 .then(res => {
                     toastify(res.data.message, "light", "success")
