@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
-import { maxLength, minLength, required } from "../../../../../functions/validation";
+import { maxLength, minLength, required } from "../../../../../../functions/validation";
 
 // components
-import Input from '../../../../form/input/input';
-import TextArea from '../../../../form/input/textArea';
+import Input from '../../../../../form/input/input';
+import TextArea from '../../../../../form/input/textArea';
 
-// ts
+// register comment initial values
 export interface CommentInitialValues {
     rate: number,
     title?: string,
@@ -14,7 +14,6 @@ export interface CommentInitialValues {
     unknown: boolean
 }
 
-// new comment initial values
 export const commentInitialValues: CommentInitialValues = {
     rate: 0,
     commentText: "",
@@ -22,7 +21,7 @@ export const commentInitialValues: CommentInitialValues = {
 }
 
 // validation
-export const NewCommentSchema = Yup.object().shape({
+export const RegisterCommentSchema = Yup.object().shape({
     rate: Yup.number().required(required("rate")).min(1, required("rate")),
     title: Yup.string()
         .min(3, minLength("title", 3))
@@ -35,7 +34,7 @@ export const NewCommentSchema = Yup.object().shape({
     unknown: Yup.boolean()
 });
 
-// is suggest btns
+// is suggest buttons
 interface IsSuggestBtns {
     value: "yes" | "no" | "unsure",
     color: "success" | "error" | "neutral"
@@ -56,6 +55,7 @@ export const isSuggestBtns: IsSuggestBtns[] = [
     }
 ]
 
+// inputs data (comment title and text)
 interface CommentInputs {
     label: string;
     name: keyof CommentInitialValues;

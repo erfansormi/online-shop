@@ -8,7 +8,7 @@ import { useProductContext } from '../../../productContainer';
 
 // components
 import SeeRating from '../../../../data_display/seeRating';
-import RegisterCommentModal from './newCommentModal';
+import ModalContainer from './registerCommentModal/modalContainer';
 
 const MiniRateBox = () => {
     const { productInfo: { product } } = useProductContext();
@@ -45,7 +45,7 @@ const MiniRateBox = () => {
             </div>
 
             {/* register new comment modal */}
-            <RegisterCommentModal commentModal={commentModal} setCommentModal={setCommentModal} />
+            <ModalContainer commentModal={commentModal} setCommentModal={setCommentModal} />
 
         </div>
     )
