@@ -9,7 +9,7 @@ import { Rating } from '@mui/material';
 import Label from '../../../../../data_display/label';
 import InputError from '../../../../../form/input/inputError';
 
-const RateProduct = ({ setFieldValue, errors, submitCount, handleBlur, values }: FormikProps<CommentInitialValues>) => {
+const ProductRate = ({ setFieldValue, errors, submitCount, handleBlur, values }: FormikProps<CommentInitialValues>) => {
     const [rating, setRating] = useState<number | null>(values.rate);
 
     return (
@@ -33,4 +33,4 @@ const RateProduct = ({ setFieldValue, errors, submitCount, handleBlur, values }:
     )
 }
 
-export default RateProduct;
+export default ProductRate;

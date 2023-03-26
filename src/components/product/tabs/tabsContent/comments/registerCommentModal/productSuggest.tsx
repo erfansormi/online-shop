@@ -14,7 +14,7 @@ import IsSuggest from '../isSuggest';
 import type { CommentInitialValues } from './registerCommentData';
 import { FormikProps } from 'formik';
 
-const SuggestProduct = ({ initialValues, setFieldValue }: FormikProps<CommentInitialValues>) => {
+const ProductSuggest = ({ initialValues, setFieldValue }: FormikProps<CommentInitialValues>) => {
     const [suggest, setSuggest] = useState<"yes" | "no" | "unsure" | undefined>(initialValues.isSuggest);
 
     return (
@@ -49,4 +49,4 @@ const SuggestProduct = ({ initialValues, setFieldValue }: FormikProps<CommentIni
     )
 }
 
-export default SuggestProduct;
+export default ProductSuggest;

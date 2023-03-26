@@ -12,8 +12,8 @@ interface Props extends FormikProps<CommentInitialValues> {
 }
 
 // components
-import RateProduct from './rateProduct';
-import SuggestProduct from './suggestProduct';
+import ProductRate from './productRate';
+import ProductSuggest from './productSuggest';
 import { Button, Checkbox, Divider } from '@mui/material';
 import Label from '../../../../../data_display/label';
 import InputError from '../../../../../form/input/inputError';
@@ -26,7 +26,7 @@ const ModalFormContainer = (props: Props) => {
             <div className='flex flex-col gap-y-4'>
 
                 {/* rate */}
-                <RateProduct {...props} />
+                <ProductRate {...props} />
 
                 <Divider />
 
@@ -36,7 +36,7 @@ const ModalFormContainer = (props: Props) => {
                     </h6>
 
                     {/* is suggest? */}
-                    <SuggestProduct {...props} />
+                    <ProductSuggest {...props} />
 
                     {/* comment title and text  */}
                     {

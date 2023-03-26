@@ -59,8 +59,8 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
     }
 
     useEffect(() => {
-        handleLastComment()
-    }, [user])
+        handleLastComment();
+    }, [user, comments])
 
     // handle close modal
     const handleClose = () => {
@@ -73,6 +73,7 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
 
     // form submit
     const handleSubmit = async (values: CommentInitialValues) => {
+        console.log(values)
         if (user === null) {
             toastify("please login into your account!", "light", "warning")
             handleClose();
