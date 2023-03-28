@@ -20,6 +20,10 @@ const ProfileIcon = () => {
         setAnchorEl(event.currentTarget);
     };
 
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <>
             <Box className="flex items-center text-center">

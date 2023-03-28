@@ -12,6 +12,7 @@ import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
 
 // icons
 import { MdLogout } from 'react-icons/md';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 // menu items data
 import { profileMenuItem } from './profileIconData';
@@ -30,7 +31,7 @@ interface Props {
 import { useUserContext } from '../../../../context/userContext';
 
 const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
-    const { setUser } = useUserContext();
+    const { user, setUser } = useUserContext();
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -91,21 +92,26 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
             {/* menu list */}
-            {profileMenuItem.map((item, index) =>
-                <div key={index * 13}>
-                    <MenuItem className='py-3'>
-                        <Link href={item.link} className="flex items-center">
-                            <ListItemIcon className='text-gray-600 text-2xl'>
-                                {item.icon}
-                            </ListItemIcon>
-                            <span>
-                                {item.title}
-                            </span>
-                        </Link>
-                    </MenuItem>
-                    {index == 0 && <Divider />}
-                </div>
-            )}
+            {
+                profileMenuItem(user).map((item, index) =>
+                    <div key={index * 13}>
+                        <MenuItem className='py-3' onClick={handleClose}>
+                            <Link href={item.link} className="flex items-center">
+                                <ListItemIcon className='text-gray-600 text-2xl'>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <span className={`capitalize text-gray-700 ${index === 0 ? "font-bold" : ""}`}>
+                                    {item.title}
+                                </span>
+                                {
+                                    index === 0 &&
+                                    <MdKeyboardArrowRight className="text-xl ml-8 text-gray-600" />
+                                }
+                            </Link>
+                        </MenuItem>
+                        {index == 0 && <Divider />}
+                    </div>
+                )}
 
             {/* logout */}
             <MenuItem onClick={() => setModal(true)}>
