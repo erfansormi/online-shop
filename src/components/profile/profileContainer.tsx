@@ -20,7 +20,7 @@ const ProfileContainer = ({ children }: Props) => {
                 </aside>
 
                 {/* content */}
-                <div className='w-full md:w-[70%] border p-10 border-solid border-gray-200 rounded-lg flex items-center justify-center'>
+                <div className='w-full md:w-[70%] border px-4 border-solid border-gray-200 rounded-lg h-fit'>
                     {children}
                 </div>
             </div>
