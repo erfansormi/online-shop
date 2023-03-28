@@ -21,4 +21,5 @@
     height: 70%;
     border-top-right-radius: 300px;
     border-bottom-right-radius: 300px;
+    display: block;
 }
