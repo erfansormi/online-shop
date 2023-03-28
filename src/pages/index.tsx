@@ -1,5 +1,4 @@
 import React, { useContext, createContext } from 'react'
-import Head from 'next/head';
 
 // data
 import { topSlidersData } from '../components/home/sliders/topSlidersData';
@@ -36,9 +35,6 @@ export const useHomeContext = () => useContext(HomePage);
 const Home = ({ data }: Props) => {
   return (
     <HomePage.Provider value={data}>
-      <Head>
-        <title>Home</title>
-      </Head>
       <SliderFullScreen data={topSlidersData} />
       <SpecialOffers />
       <MiddleLargeCards />

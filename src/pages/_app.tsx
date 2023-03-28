@@ -36,10 +36,16 @@ export const fredoka = Fredoka({
 // contexts
 import UserContextProvider from "../context/userContext";
 import GeneralContextProvider from "../context/generalContext";
+import Head from "next/head";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
+      <Head>
+        <title>
+          Shop Online Store
+        </title>
+      </Head>
       <UserContextProvider>
         <GeneralContextProvider>
           <ThemeProvider theme={muiTheme}>
