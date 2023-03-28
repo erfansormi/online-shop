@@ -62,6 +62,7 @@ export interface User {
     password: string,
     addresses: Address[]
     photo?: string,
+    birth_date: Date,
     reset_password_token?: string,
     reset_password_expire?: Date,
     orders: Order[],
