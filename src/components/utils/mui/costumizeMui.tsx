@@ -33,6 +33,10 @@ export const muiTheme = createTheme({
             contrastText: '#fff',
         },
         divider: "#e0e0e6",
+        action: {
+            disabledBackground: "#e0e0e6",
+            disabled: "#fff"
+        }
     },
     typography: {
         button: {
