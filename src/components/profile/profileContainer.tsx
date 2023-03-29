@@ -1,15 +1,27 @@
-import React from 'react'
+import React from 'react';
+import { useRouter } from "next/router";
+
+// user context
+import { useUserContext } from '../../context/userContext';
 
 // components
-import Layout from '../layout/layout'
-import ProfileSideMenu from './profileSideMenu'
+import Layout from '../layout/layout';
+import ProfileSideMenu from './profileSideMenu';
 
 // types
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode,
 }
 
 const ProfileContainer = ({ children }: Props) => {
+    const { user, loading } = useUserContext();
+    const router = useRouter();
+
+    // if user not logged in, redirect in home page
+    if (user === null && loading === false) {
+        router.push("/");
+    }
+
     return (
         <Layout className='mt-16'>
             <div className='flex flex-col md:flex-row gap-8'>
