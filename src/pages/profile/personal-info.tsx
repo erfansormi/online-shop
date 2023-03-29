@@ -9,12 +9,14 @@ import { useUserContext } from '../../context/userContext';
 // icons
 import { AiOutlineEdit } from 'react-icons/ai';
 
+// ts
+import { InitialPersonalInfoModal } from '../../components/profile/pages/personal-info/personalInfoData';
+
 // components
 import ProfileContainer from '../../components/profile/profileContainer';
 import { Skeleton } from '@mui/material';
-
-// ts
-import { InitialPersonalInfoModal } from '../../components/profile/pages/personal-info/personalInfoData';
+import EditEmailModal from '../../components/profile/pages/personal-info/emailModal/editEmailModal';
+import NameModalContainer from '../../components/profile/pages/personal-info/nameModal/nameModalContainer';
 
 const PersonalInfo = () => {
     const { user } = useUserContext();
@@ -26,17 +28,19 @@ const PersonalInfo = () => {
         password: false,
         birthDate: false
     }
-    const [initialValues, setInitialValues] = useState(initial);
+    const [modalsInitialValues, setModalsInitialValues] = useState(initial);
 
     return (
         <ProfileContainer>
             <div className='grid grid-cols-2 w-full'>
+
+                {/* editable user items */}
                 {
                     !!user ?
                         personalInfoData(user).map((item, index) =>
                             <div
                                 key={index * 60}
-                                className="flex items-center justify-between px-3 py-6 border-b last:border-b-0 [&:nth-child(3)]:border-b-0 border-t-0 border-x-0 odd:border-r border-solid border-gray-100"
+                                className="flex items-center justify-between px-3 py-6 border-b [&:nth-child(n+3)]:border-b-0 border-t-0 border-x-0 odd:border-r border-solid border-gray-100"
                             >
                                 <div className='flex flex-col gap-y-2'>
                                     <span className='text-gray-500 text-base capitalize'>
@@ -47,12 +51,14 @@ const PersonalInfo = () => {
                                     </span>
                                 </div>
                                 <div>
-                                    <span onClick={() => setInitialValues({ ...initial, [item.name]: true })}>
+                                    <span onClick={() => setModalsInitialValues({ ...initial, [item.name]: true })}>
                                         <AiOutlineEdit className='text-3xl cursor-pointer' />
                                     </span>
                                 </div>
                             </div>
                         ) :
+
+                        // skeleton loading 
                         <>
                             {
                                 [...Array(4)].map((item, index) =>
@@ -66,9 +72,14 @@ const PersonalInfo = () => {
                             }
                         </>
                 }
+
+                {/* modals */}
+                <NameModalContainer modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
+                <EditEmailModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
+
             </div>
         </ProfileContainer>
     )
 }
 
-export default PersonalInfo
+export default PersonalInfo;

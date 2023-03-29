@@ -4,6 +4,8 @@ import React, { useContext, useState, createContext, useEffect } from 'react';
 interface IContext {
     general: IGeneralContext,
     setGeneral: React.Dispatch<React.SetStateAction<IGeneralContext>>,
+    openLoading: () => void,
+    closeLoading: () => void
 }
 
 interface IGeneralContext {
@@ -35,6 +37,20 @@ const GeneralContextProvider = ({ children }: Props) => {
         }
     }
 
+    const openLoading = () => {
+        setGeneral({
+            ...general,
+            loading: true
+        })
+    }
+
+    const closeLoading = () => {
+        setGeneral({
+            ...general,
+            loading: false
+        })
+    }
+
     // handle page width
     useEffect(() => {
         handleWidth();
@@ -42,7 +58,7 @@ const GeneralContextProvider = ({ children }: Props) => {
     }, [])
 
     return (
-        <GeneralContext.Provider value={{ general, setGeneral }}>
+        <GeneralContext.Provider value={{ general, setGeneral, openLoading, closeLoading }}>
             {children}
         </GeneralContext.Provider>
     )
