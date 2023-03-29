@@ -116,7 +116,7 @@ const EditPasswordModal = ({ modalsInitialValues, setModalsInitialValues }: Prop
                 validationSchema={FormSchema}
                 onSubmit={handleSubmit}
             >
-                {({ handleSubmit, handleBlur, handleChange, errors, touched, values }) => (
+                {({ handleSubmit, handleBlur, handleChange, errors, touched, values, isValid }) => (
                     <form onSubmit={handleSubmit} className='flex flex-col gap-y-6'>
 
                         {/* inputs */}
@@ -141,6 +141,7 @@ const EditPasswordModal = ({ modalsInitialValues, setModalsInitialValues }: Prop
                             <Button
                                 variant="contained"
                                 type="submit"
+                                disabled={isValid}
                             >
                                 change password
                             </Button>
