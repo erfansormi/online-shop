@@ -1,5 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { axiosInstance } from '../functions/axiosInstance';
+
+// react toastify
+import { toastify } from '../components/utils/toastify/toastifyFunc';
 
 // types
 import { User } from '../types/user/userTypes';
@@ -25,21 +28,24 @@ const UserContextProvider = ({ children }: Props) => {
     const [loading, setLoading] = useState(true);
 
     const getUser = async () => {
+        setLoading(true);
+
         await axiosInstance.get("/api/v1/users/me")
             .then(res => {
-                setUser(res.data)
+                setUser(res.data);
             })
-            .catch(() => {
-                setUser(null)
+            .catch((err) => {
+                setUser(null);
+                toastify(err.response.data.message || err.message, "light", "error");
             })
             .finally(() => {
-                setLoading(false)
+                setLoading(false);
             })
     }
 
     useEffect(() => {
         getUser();
-    }, [setUser])
+    }, [])
 
     return (
         <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
