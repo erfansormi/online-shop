@@ -17,6 +17,7 @@ import ProfileContainer from '../../components/profile/profileContainer';
 import { Skeleton } from '@mui/material';
 import EditEmailModal from '../../components/profile/pages/personal-info/emailModal/editEmailModal';
 import NameModalContainer from '../../components/profile/pages/personal-info/nameModal/nameModalContainer';
+import EditPasswordModal from '../../components/profile/pages/personal-info/passwordModal/editPasswordModal';
 
 const PersonalInfo = () => {
     const { user } = useUserContext();
@@ -76,6 +77,7 @@ const PersonalInfo = () => {
                 {/* modals */}
                 <NameModalContainer modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
                 <EditEmailModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
+                <EditPasswordModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
 
             </div>
         </ProfileContainer>
