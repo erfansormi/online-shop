@@ -57,7 +57,7 @@ const Signup: React.FC = () => {
             password: e.password
         })
             .then((res) => {
-                setUser(res.data);
+                setUser(res.data.user);
                 toastify(res.data.message, "light", "success");
                 router.push("/");
             })

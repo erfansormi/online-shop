@@ -46,7 +46,7 @@ const Login = () => {
         })
             .then((res) => {
                 toastify(res.data.message, "light", "success");
-                setUser(res.data);
+                setUser(res.data.user);
                 router.push("/");
             })
             .catch(err => {
