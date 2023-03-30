@@ -46,7 +46,7 @@ const FormSchema = Yup.object().shape({
         .required(required("surname"))
 });
 
-const NameModalContainer = ({ modalsInitialValues, setModalsInitialValues }: Props) => {
+const EditNameModal = ({ modalsInitialValues, setModalsInitialValues }: Props) => {
     const { user, setUser } = useUserContext();
     const { closeLoading, openLoading } = useGeneralContext();
 
@@ -110,4 +110,4 @@ const NameModalContainer = ({ modalsInitialValues, setModalsInitialValues }: Pro
     )
 }
 
-export default NameModalContainer;
+export default EditNameModal;

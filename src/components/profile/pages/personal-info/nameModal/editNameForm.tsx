@@ -8,7 +8,7 @@ import InputError from '../../../../form/input/inputError';
 
 // types
 import type { FormikProps } from 'formik';
-import { InitialValues } from './nameModalContainer';
+import { InitialValues } from './editNameModal';
 
 // user context
 import { useUserContext } from '../../../../../context/userContext';

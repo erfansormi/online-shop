@@ -16,8 +16,9 @@ import { InitialPersonalInfoModal } from '../../components/profile/pages/persona
 import ProfileContainer from '../../components/profile/profileContainer';
 import { Skeleton } from '@mui/material';
 import EditEmailModal from '../../components/profile/pages/personal-info/emailModal/editEmailModal';
-import NameModalContainer from '../../components/profile/pages/personal-info/nameModal/nameModalContainer';
+import EditNameModal from '../../components/profile/pages/personal-info/nameModal/editNameModal';
 import EditPasswordModal from '../../components/profile/pages/personal-info/passwordModal/editPasswordModal';
+import EditBirthDateModal from '../../components/profile/pages/personal-info/birthDateModal/editBirthDateModal';
 
 const PersonalInfo = () => {
     const { user } = useUserContext();
@@ -75,9 +76,10 @@ const PersonalInfo = () => {
                 }
 
                 {/* modals */}
-                <NameModalContainer modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
+                <EditNameModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
                 <EditEmailModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
                 <EditPasswordModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
+                <EditBirthDateModal modalsInitialValues={modalsInitialValues} setModalsInitialValues={setModalsInitialValues} />
 
             </div>
         </ProfileContainer>

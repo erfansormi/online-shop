@@ -32,7 +32,7 @@ export const personalInfoData: (user: User) => PersonalInfoData[] = (user: User)
         },
         {
             title: "birth date",
-            value: `${user.birth_date ? user.birth_date : "not registered"}`,
+            value: `${user.birth_date ? new Date(user.birth_date).toLocaleDateString() : "not registered"}`,
             name: "birthDate"
         },
     ]
