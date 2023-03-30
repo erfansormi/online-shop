@@ -1,6 +1,6 @@
 // icons
 import { Avatar } from "@mui/material"
-import { IoMdSettings } from "react-icons/io"
+import { FiUser } from "react-icons/fi";
 import { BsBagFill } from 'react-icons/bs';
 import { AiOutlineHeart } from "react-icons/ai";
 
@@ -25,9 +25,9 @@ export const profileMenuItem = (user: User | null) => {
             link: "/profile/lists"
         },
         {
-            icon: <IoMdSettings />,
-            title: "Settings",
-            link: "/profile/settings"
+            icon: <FiUser />,
+            title: "personal info",
+            link: "/profile/personal-info"
         },
     ]
 }
