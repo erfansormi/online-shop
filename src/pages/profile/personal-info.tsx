@@ -34,7 +34,7 @@ const PersonalInfo = () => {
 
     return (
         <ProfileContainer>
-            <div className='grid grid-cols-2 w-full'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 w-full'>
 
                 {/* editable user items */}
                 {
@@ -42,7 +42,7 @@ const PersonalInfo = () => {
                         personalInfoData(user).map((item, index) =>
                             <div
                                 key={index * 60}
-                                className="flex items-center justify-between px-3 py-6 border-b [&:nth-child(n+3)]:border-b-0 border-t-0 border-x-0 odd:border-r border-solid border-gray-100"
+                                className="flex items-center justify-between px-3 py-6 border-b sm:[&:nth-child(n+3)]:border-b-0 border-t-0 border-x-0 sm:odd:border-r border-solid border-gray-100"
                             >
                                 <div className='flex flex-col gap-y-2'>
                                     <span className='text-gray-500 text-base capitalize'>

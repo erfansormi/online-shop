@@ -26,7 +26,7 @@ const ProfileSideMenu = () => {
         <div className='capitalize text-gray-900'>
 
             {/* header */}
-            <div className='p-5 flex items-center gap-x-4'>
+            <div className='p-5 flex md:flex-col lg:flex-row items-center gap-y-2 gap-x-4'>
                 <div>
                     <FaUserCircle className='text-gray-300 text-[3.3rem] leading-5' />
                 </div>

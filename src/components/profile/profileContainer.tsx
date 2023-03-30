@@ -23,7 +23,7 @@ const ProfileContainer = ({ children }: Props) => {
     }
 
     return (
-        <Layout className='mt-16'>
+        <Layout className='mt-4 md:mt-8'>
             <div className='flex flex-col md:flex-row gap-8'>
 
                 {/* side menu */}
