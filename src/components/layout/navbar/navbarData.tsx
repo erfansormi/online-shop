@@ -12,8 +12,8 @@ import { User } from "../../../types/user/userTypes";
 export const userLoggedInIcons = [
     {
         icon: <AiOutlineHeart />,
-        link: "/account/favorite",
-        title: "Favorite list"
+        link: "/profile/lists",
+        title: "My Lists"
     },
     {
         icon: <BsCart3 />,
