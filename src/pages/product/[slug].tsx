@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
 // general context hook
 import { useGeneralContext } from '../../context/generalContext';
+
+// axios
+import { axiosInstance } from '../../functions/axiosInstance';
 
 // components
 import ProductContainer from '../../components/product/productContainer';
@@ -30,6 +33,11 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
         })
         return
     }
+
+    // fetch product( if user token is valid, product add to recent visits user)
+    useEffect(() => {
+        axiosInstance.get(`/api/v1/products/${product.slug}`);
+    }, [])
 
     return (
         <ProductContainer product={product} relatedProducts={relatedProducts} />
