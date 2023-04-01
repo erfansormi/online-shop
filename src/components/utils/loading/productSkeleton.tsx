@@ -5,7 +5,9 @@ const ProductSkeleton = () => {
     return (
         <div className="flex flex-col gap-y-4 p-8">
             {/* image */}
-            <Skeleton className='scale-100' width={128} height={100} />
+            <div className='flex justify-center'>
+                <Skeleton className='scale-100' width={128} height={100} />
+            </div>
 
             {/* title */}
             <div>
