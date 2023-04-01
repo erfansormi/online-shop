@@ -11,12 +11,14 @@ import { toastify } from '../../../utils/toastify/toastifyFunc';
 // icons
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
+import { BsShareFill } from 'react-icons/bs';
 
 // axios
 import { axiosInstance } from '../../../../functions/axiosInstance';
+import { Tooltip } from '@mui/material';
 
 const ProductImage = () => {
-    // context
+    // contexts
     const { user, setUser } = useUserContext();
     const { productInfo } = useProductContext();
     const { product } = productInfo;
@@ -49,17 +51,41 @@ const ProductImage = () => {
         return false
     }
 
+    // handle copy product link
+    const handleCopyLink = () => {
+        if (typeof window !== "undefined") {
+            window.navigator.clipboard.writeText(window.location.href);
+            toastify("product address copied!", "light", "success")
+        }
+    }
+
     return (
         <div className='flex w-full gap-x-3'>
 
             {/* left buttons */}
-            <div className='text-slate-700 flex flex-col'>
+            <div className='text-slate-700 flex flex-col gap-y-3 text-2xl'>
+
+                {/* like product */}
                 <span onClick={handleLikeProduct} className="cursor-pointer">
                     {
                         isThereInFavorites() ?
-                            <FaHeart className='text-2xl text-red-500' /> :
-                            <FiHeart className='text-2xl' />
+                            <Tooltip title="Remove From Favorites">
+                                <div>
+                                    <FaHeart className=' text-red-500' />
+                                </div>
+                            </Tooltip> :
+                            <Tooltip title="Add To Favorites">
+                                <div>
+                                    <FiHeart />
+                                </div>
+                            </Tooltip>
+
                     }
+                </span>
+
+                {/* share product */}
+                <span className='cursor-pointer' onClick={handleCopyLink} >
+                    <BsShareFill />
                 </span>
             </div>
 
