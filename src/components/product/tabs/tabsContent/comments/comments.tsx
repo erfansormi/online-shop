@@ -10,9 +10,7 @@ import IsSuggest from './isSuggest';
 import { Comment } from '../../../../../types/product/productTypes';
 
 const Comments = ({ comment_text, created_at, rate, is_suggest, title, user }: Comment) => {
-    const { unknown, userId } = user;
-    console.log(user);
-    
+    const { unknown, userId } = user;    
     const { first_name, last_name } = userId;
 
     // handle rate className
