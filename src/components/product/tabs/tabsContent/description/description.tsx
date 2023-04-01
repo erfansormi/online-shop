@@ -2,7 +2,7 @@
 import { useProductContext } from '../../../productContainer';
 
 // components
-import TabsTitle from '../tabsTitle';
+import TabContentTitle from '../../../../data_display/tabContentTitle';
 
 const ProductDescription = () => {
     const { productInfo } = useProductContext();
@@ -10,7 +10,7 @@ const ProductDescription = () => {
     return (
         <div>
             {/* title */}
-            <TabsTitle title='description' />
+            <TabContentTitle title='description' className='mb-12' />
 
             <div className='text-gray-500 bg-white text-sm leading-[1.8] pl-2'>
                 <p>{productInfo.product.description}</p>

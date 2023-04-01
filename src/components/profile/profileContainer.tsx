@@ -24,15 +24,15 @@ const ProfileContainer = ({ children }: Props) => {
 
     return (
         <Layout className='mt-4 md:mt-8'>
-            <div className='flex flex-col md:flex-row gap-8'>
+            <div className='flex flex-col md:flex-row gap-6'>
 
                 {/* side menu */}
-                <aside className='w-full md:w-[35%] md:max-w-[380px] overflow-x-auto border border-solid border-gray-200 rounded-lg'>
+                <aside className='w-full h-fit sticky top-10 md:w-[30%] xl:w-[25%] overflow-x-auto border border-solid border-gray-200 rounded-lg'>
                     <ProfileSideMenu />
                 </aside>
 
                 {/* content */}
-                <div className='w-full border px-4 border-solid border-gray-200 rounded-lg h-fit'>
+                <div className='w-full md:w-[70%] xl:w-[75%] flex flex-col gap-y-6 h-fit'>
                     {children}
                 </div>
             </div>

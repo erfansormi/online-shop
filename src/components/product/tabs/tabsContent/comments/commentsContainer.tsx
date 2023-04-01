@@ -5,7 +5,7 @@ import { Divider, Skeleton } from '@mui/material';
 import { useProductContext } from '../../../productContainer';
 
 // components
-import TabsTitle from '../tabsTitle';
+import TabContentTitle from '../../../../data_display/tabContentTitle';
 import MiniRateBox from './miniRateBox';
 import Comments from './comments';
 
@@ -16,7 +16,7 @@ const CommentsContainer = () => {
     return (
         <div>
             {/* title */}
-            <TabsTitle title='comments and rating' />
+            <TabContentTitle title='comments and rating' className='mb-12' />
 
             <div className='flex flex-col lg:flex-row gap-x-10 gap-y-8'>
 

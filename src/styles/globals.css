@@ -124,3 +124,7 @@ img {
 .MuiBackdrop-root {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.Mui-disabled.MuiButton-root {
+  color: #fff;
+}

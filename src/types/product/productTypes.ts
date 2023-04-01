@@ -76,18 +76,8 @@ export interface Product {
     created_at: Date;
 }
 
-export interface ProductDetail {
-    rating: Rating;
-    _id: string;
-    title: string;
-    category: string;
-    description: string;
-    image: string;
+export interface ProductDetail extends Omit<Product, "sellers"> {
     sellers: SellerWithDetail[];
-    attributes: Attribute[];
-    slug: string;
-    __v: number;
-    created_at: Date;
 }
 
 export interface Slider {
