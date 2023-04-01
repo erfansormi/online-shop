@@ -54,6 +54,10 @@ interface Cart {
     total_profit_percentage: number
 }
 
+interface Activities {
+    recent_visits: Product[],
+}
+
 export interface User {
     _id: string,
     email: string,
@@ -66,8 +70,9 @@ export interface User {
     reset_password_token?: string,
     reset_password_expire?: Date,
     orders: Order[],
-    favorite_lists: any[],
     comments: Comment[],
     created_at: Date,
     cart: Cart
+    favorites_list: Product[],
+    activities: Activities
 }
