@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // formik lib
 import { Formik } from 'formik';
@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import { commentInitialValues, RegisterCommentSchema, CommentInitialValues } from './registerCommentData';
 
 // mui
-import Dialog from '@mui/material/Dialog';
 import { Divider } from '@mui/material';
 
 // react toastify
@@ -32,6 +31,7 @@ import { axiosInstance } from '../../../../../../functions/axiosInstance';
 
 // components
 import ModalFormContainer from './formContainer';
+import CustomizedModal from '../../../../../utils/modal/customizedModal';
 
 const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
     // contexts
@@ -108,31 +108,15 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
 
     return (
         <div>
-            <Dialog
+            <CustomizedModal
                 open={commentModal}
-                onClose={handleClose}
-                fullWidth
+                handleClose={handleClose}
+                title={`your point of view`}
+                description={`about ${product.title}`}
+                maxWidth="sm"
+                className='px-6'
             >
-                <div className="px-6 pt-3 pb-7 flex flex-col gap-y-4">
-
-                    {/* form title */}
-                    <div className='flex flex-col sticky justify-between top-0 bg-white z-[50] pt-4 gap-y-2'>
-                        <div className='flex justify-between'>
-                            <div className='flex flex-col gap-y-2'>
-                                <h5 className="text-gray-800 text-lg">
-                                    your point of view
-                                </h5>
-                                <span className='text-gray-500 text-sm lowercase mb-2'>
-                                    about {product.title}
-                                </span>
-                            </div>
-                            <span onClick={handleClose} className="cursor-pointer text-lg">
-                                <AiOutlineClose />
-                            </span>
-                        </div>
-                        <Divider />
-                    </div>
-
+                <div className="pb-7 flex flex-col gap-y-4">
                     {/* form body */}
                     <div>
                         <Formik
@@ -146,7 +130,7 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
                         </Formik>
                     </div>
                 </div>
-            </Dialog>
+            </CustomizedModal>
         </div>
     )
 }
