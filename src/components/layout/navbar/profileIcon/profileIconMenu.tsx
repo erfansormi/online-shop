@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// axios
-import { axiosInstance } from '../../../../functions/axiosInstance';
-
-// toast
-import { toastify } from '../../../utils/toastify/toastifyFunc';
-
-// mui
+// components
 import { Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
+import LogoutModal from './logoutModal';
 
 // icons
 import { MdLogout } from 'react-icons/md';
@@ -16,9 +11,6 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 
 // menu items data
 import { profileMenuItem } from './profileIconData';
-
-// components
-import QuestionModal from '../../../utils/modal/questionModal';
 
 // types
 interface Props {
@@ -31,27 +23,18 @@ interface Props {
 import { useUserContext } from '../../../../context/userContext';
 
 const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
-    const { user, setUser } = useUserContext();
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const { user } = useUserContext();
 
     // logout modal
     const [modal, setModal] = useState(false);
 
-    const handleLogout = async () => {
-        try {
-            await axiosInstance.get("/api/v1/users/logout")
-            setUser(null);
-            setModal(false);
-            handleClose();
-            toastify("logout successfully!", "light", "warning");
-        }
-        catch (err: any) {
-            setModal(false);
-            toastify(err.response.data.message || err.message, "light", "error");
-        }
+    // funcs
+    const profileMenuHandleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const logoutHandleClose = () => {
+        setModal(false);
     }
 
     return (
@@ -59,7 +42,7 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
             anchorEl={anchorEl}
             id="account-menu"
             open={open}
-            onClose={handleClose}
+            onClose={profileMenuHandleClose}
             PaperProps={{
                 elevation: 0,
                 sx: {
@@ -95,7 +78,7 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
             {
                 profileMenuItem(user).map((item, index) =>
                     <div key={index * 13}>
-                        <MenuItem className='py-3' onClick={handleClose}>
+                        <MenuItem className='py-3' onClick={profileMenuHandleClose}>
                             <Link href={item.link} className="flex items-center">
                                 <ListItemIcon className='text-gray-600 text-2xl'>
                                     {item.icon}
@@ -124,13 +107,12 @@ const ProfileIconMenu = ({ anchorEl, setAnchorEl, open }: Props) => {
             </MenuItem>
 
             {/* logout modal */}
-            <QuestionModal
-                buttonFunc={handleLogout}
-                description={"are you sure to logout to your account?"}
-                open={modal}
-                setOpen={setModal}
-                title={"logout account?"}
+            <LogoutModal
+                logoutHandleClose={logoutHandleClose}
+                modal={modal}
+                profileMenuHandleClose={profileMenuHandleClose}
             />
+
         </Menu>
     )
 }
