@@ -55,7 +55,7 @@ const TabsContainer = () => {
             if (commentsRef.current) {
                 let { offsetTop, offsetHeight } = commentsRef.current;
 
-                if (pageYOffset >= offsetTop - (offsetHeight / 2)) {
+                if (pageYOffset >= offsetTop - offsetHeight) {
                     setValue(1)
                 }
                 else {
