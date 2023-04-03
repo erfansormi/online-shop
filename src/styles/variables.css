@@ -1,0 +1,8 @@
+:root {
+    --navbar-height: 74px;
+    --toastify-color-error: #ff4757 !important;
+    --toastify-text-color-light: #374151 !important;
+    --toastify-color-success: #22c55e !important;
+    --toastify-color-warning: #ff8c00 !important;
+    --toastify-toast-width: fit-content !important;
+}
