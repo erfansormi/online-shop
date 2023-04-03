@@ -8,11 +8,14 @@ import SellerPerformance from "../../../data_display/sellerPerformance";
 
 // context
 import { useProductContext } from '../../productContainer';
+
+// components
 import SellerSymbol from "../../../utils/seller/sellerSymbol";
 import Consent from "../../../data_display/consent";
 import DiscountPercentage from "../../../utils/price/discountPercentage";
 import Price from "../../../utils/price/price";
 import OldPrice from "../../../utils/price/oldPrice";
+import CustomizedModal from "../../../utils/modal/customizedModal";
 
 // icons
 import { BsCheckCircle } from "react-icons/bs";
@@ -38,18 +41,13 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
 
   return (
     <>
-      <Dialog
-        fullWidth
+      <CustomizedModal
         maxWidth={"md"}
         open={changeSeller}
-        onClose={handleClose}
+        handleClose={handleClose}
+        title="change seller"
       >
-        {/* title */}
-        <DialogTitle component={"h3"} variant={"h3"}>
-          change seller
-        </DialogTitle>
-
-        <DialogContent className="md:p-5 p-0">
+        <div>
 
           {/* seller list */}
           <div className="flex flex-col">
@@ -60,7 +58,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
               >
 
                 {/* seller */}
-                <div className="mr-6 last:mr-0 justify-center flex items-center">
+                <div className="w-60 lg:w-1/4 mr-6 last:mr-0 flex items-center">
                   {/* seller logo */}
                   <div className="flex mr-1">
                     <SellerSymbol shop_name={seller.shop_name} />
@@ -73,7 +71,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                 </div>
 
                 {/* performance */}
-                <div className="mr-6 last:mr-0 items-center flex flex-col capitalize text-xs gap-y-1">
+                <div className="w-60 lg:w-1/4 mr-6 last:mr-0 items-center flex flex-col capitalize text-xs gap-y-1">
                   <div className="flex items-center">
                     <SellerPerformance performance={seller.performance} />
                   </div>
@@ -87,7 +85,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                 </div>
 
                 {/* product price */}
-                <div className="mr-6 justify-center last:mr-0 flex items-center gap-x-2">
+                <div className="w-60 lg:w-1/4 mr-6 last:mr-0 flex items-center justify-center gap-x-2">
 
                   {/* old price */}
                   <OldPrice variant={variants} className="leading-[1.8] text-sm" />
@@ -101,7 +99,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                 </div>
 
                 {/* select seller product */}
-                <div className="mr-6 last:mr-0 flex">
+                <div className="w-60 lg:w-1/4 mr-6 justify-center last:mr-0 flex">
                   {
                     // check if selected seller?
                     productInfo.selectedSeller.seller._id === seller._id ?
@@ -141,11 +139,8 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
               </div>
             ))}
           </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
+        </div>
+      </CustomizedModal>
     </>
   );
 };
