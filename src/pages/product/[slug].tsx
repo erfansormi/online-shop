@@ -25,6 +25,11 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
     // general context
     const { general, setGeneral } = useGeneralContext();
 
+    // fetch product( if user token is valid, product add to recent visits user)
+    useEffect(() => {
+        axiosInstance.get(`/api/v1/products/${product.slug}`);
+    }, [])
+
     // If the page is not yet generated, this will be displayed
     if (router.isFallback) {
         setGeneral({
@@ -33,11 +38,6 @@ const ProductDetail = ({ product, relatedProducts }: Props) => {
         })
         return
     }
-
-    // fetch product( if user token is valid, product add to recent visits user)
-    useEffect(() => {
-        axiosInstance.get(`/api/v1/products/${product.slug}`);
-    }, [])
 
     return (
         <ProductContainer product={product} relatedProducts={relatedProducts} />
