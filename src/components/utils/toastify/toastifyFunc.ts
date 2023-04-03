@@ -1,15 +1,15 @@
-import { toast, Theme, TypeOptions } from 'react-toastify';
+import { toast, TypeOptions } from 'react-toastify';
 
-export const toastify = (text: string, theme: Theme, type: TypeOptions) => {
+export const toastify = (text: string, type: TypeOptions) => {
     toast(text, {
-        position: "top-right",
+        position: "bottom-center",
         autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: theme,
+        theme: "colored",
         type: type
     })
 }

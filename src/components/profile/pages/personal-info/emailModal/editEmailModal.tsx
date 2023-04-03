@@ -50,7 +50,7 @@ const EditEmailModal = ({ modalsInitialValues, setModalsInitialValues }: Props) 
     const initialValues: InitialValues = {
         email: user ? user.email : ""
     }
-    
+
     // close modal func
     const handleClose = () => {
         setModalsInitialValues({
@@ -73,10 +73,10 @@ const EditEmailModal = ({ modalsInitialValues, setModalsInitialValues }: Props) 
                         ...user,
                         email: values.email,
                     })
-                    toastify(res.data.message, "light", "success");
+                    toastify(res.data.message, "success");
                 })
                 .catch(err => {
-                    toastify(err.response.data.message, "light", "error");
+                    toastify(err.response.data.message, "error");
                 })
                 .finally(() => {
                     closeLoading();

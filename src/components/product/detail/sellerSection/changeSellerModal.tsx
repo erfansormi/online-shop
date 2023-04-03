@@ -123,7 +123,7 @@ const ChangeSellerModal = ({ changeSeller, setChangeSeller }: Props) => {
                             })
 
                             // send toast
-                            toastify("seller changed successfully!", "light", "success")
+                            toastify("seller changed successfully!", "success")
 
                             // close modal
                             handleClose()

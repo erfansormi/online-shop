@@ -35,7 +35,7 @@ const ProductImage = () => {
                 }
             })
             .catch((err) => {
-                toastify("please login first!", "light", "error")
+                toastify("please login first!", "error")
             })
     }
 
@@ -55,7 +55,7 @@ const ProductImage = () => {
     const handleCopyLink = () => {
         if (typeof window !== "undefined") {
             window.navigator.clipboard.writeText(window.location.href);
-            toastify("product address copied!", "light", "success")
+            toastify("product address copied!", "info")
         }
     }
 

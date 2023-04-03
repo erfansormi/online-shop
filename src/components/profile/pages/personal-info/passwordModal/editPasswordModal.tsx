@@ -94,10 +94,10 @@ const EditPasswordModal = ({ modalsInitialValues, setModalsInitialValues }: Prop
                 new_password: values.newPassword
             })
                 .then(res => {
-                    toastify(res.data.message, "light", "success");
+                    toastify(res.data.message, "success");
                 })
                 .catch(err => {
-                    toastify(err.response.data.message, "light", "error");
+                    toastify(err.response.data.message, "error");
                 })
                 .finally(() => {
                     closeLoading();

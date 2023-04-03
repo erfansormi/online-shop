@@ -75,7 +75,7 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
     const handleSubmit = async (values: CommentInitialValues) => {
         console.log(values)
         if (user === null) {
-            toastify("please login into your account!", "light", "warning")
+            toastify("please login into your account!", "warning")
             handleClose();
         }
         else {
@@ -92,10 +92,10 @@ const ModalContainer = ({ commentModal, setCommentModal }: Props) => {
                 unknown: values.unknown,
             })
                 .then(res => {
-                    toastify(res.data.message, "light", "success")
+                    toastify(res.data.message, "success")
                 })
                 .catch(err => {
-                    toastify(err.response.data.message, "light", "error")
+                    toastify(err.response.data.message, "error")
                 })
                 .finally(() => {
                     setGeneral({

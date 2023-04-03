@@ -29,11 +29,11 @@ const LogoutModal = ({ logoutHandleClose, modal, profileMenuHandleClose }: Props
             setUser(null);
             logoutHandleClose();
             profileMenuHandleClose();
-            toastify("logout successfully!", "light", "warning");
+            toastify("logout successfully!", "warning");
         }
         catch (err: any) {
             logoutHandleClose();
-            toastify(err.response.data.message || err.message, "light", "error");
+            toastify(err.response.data.message || err.message, "error");
         }
     }
 

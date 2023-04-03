@@ -45,12 +45,12 @@ const Login = () => {
             password: e.password
         })
             .then((res) => {
-                toastify(res.data.message, "light", "success");
+                toastify(res.data.message, "success");
                 setUser(res.data.user);
                 router.push("/");
             })
             .catch(err => {
-                toastify(err.response.data.message, "light", "error");
+                toastify(err.response.data.message, "error");
             })
             .finally(() => {
                 setGeneral({
@@ -70,7 +70,7 @@ const Login = () => {
     return (
         <>
             <Head>
-                <title>Login</title>
+                <title>Online Shop | Login</title>
             </Head>
             <LoginContainer
                 initialValues={initialValues}

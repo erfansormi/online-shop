@@ -61,10 +61,10 @@ const EditBirthDateModal = ({ modalsInitialValues, setModalsInitialValues }: Pro
                 date
             })
                 .then(res => {
-                    toastify(res.data.message, "light", "success");
+                    toastify(res.data.message, "success");
                 })
                 .catch(err => {
-                    toastify(err.response.data.message, "light", "error");
+                    toastify(err.response.data.message, "error");
                 })
                 .finally(() => {
                     closeLoading();

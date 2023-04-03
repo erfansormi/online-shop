@@ -80,10 +80,10 @@ const EditNameModal = ({ modalsInitialValues, setModalsInitialValues }: Props) =
                         first_name: values.firstName,
                         last_name: values.lastName,
                     })
-                    toastify(res.data.message, "light", "success");
+                    toastify(res.data.message, "success");
                 })
                 .catch(err => {
-                    toastify(err.response.data.message, "light", "error");
+                    toastify(err.response.data.message, "error");
                 })
                 .finally(() => {
                     closeLoading();

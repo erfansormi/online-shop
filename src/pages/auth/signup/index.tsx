@@ -58,11 +58,11 @@ const Signup: React.FC = () => {
         })
             .then((res) => {
                 setUser(res.data.user);
-                toastify(res.data.message, "light", "success");
+                toastify(res.data.message, "success");
                 router.push("/");
             })
             .catch(err => {
-                toastify(err.response.data.message, "light", "error");
+                toastify(err.response.data.message, "error");
             })
             .finally(() => {
                 setGeneral({
@@ -82,7 +82,7 @@ const Signup: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Signup</title>
+                <title>Online Shop | Signup</title>
             </Head>
             <SignupContainer
                 handleSubmit={handleSubmit}
