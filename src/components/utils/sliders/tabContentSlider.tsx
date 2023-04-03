@@ -59,7 +59,7 @@ const TabContentSlider = ({ data, title }: Props) => {
 
                                     {/* title */}
                                     <div className='ellipsis-2 w-full h-10 overflow-hidden'>
-                                        <h4 className='text-gray-700 leading-5 text-[0.85rem]'>
+                                        <h4 className='text-gray-700 leading-5 text-[0.85rem] font-medium'>
                                             {item.title}
                                         </h4>
                                     </div>

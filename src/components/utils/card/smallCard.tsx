@@ -51,10 +51,12 @@ const SmallCard = ({ image, category, rating, title, sellers, slug }: Product) =
 
                 {/* card info */}
                 <div className='flex flex-col px-4 py-2 bg-rose-50 h-2/5'>
+
+                    {/* title */}
                     <div className='h-5 truncate w-full overflow-hidden mb-2 capitalize'>
-                        <span className='text-gray-900 text-sm'>
+                        <h5 className='text-gray-800 text-sm font-normal truncate w-36'>
                             {title}
-                        </span>
+                        </h5>
                     </div>
                     {
                         //  check if product discount there is 

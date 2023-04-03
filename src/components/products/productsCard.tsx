@@ -49,7 +49,7 @@ const ProductsCard = ({ products }: Props) => {
 
                         {/* title */}
                         <div className='h-10 mb-3.5'>
-                            <h3 className='text-sm normal-case font-bold text-gray-700 h-full ellipsis-2'>
+                            <h3 className='text-sm normal-case font-medium text-gray-700 h-full ellipsis-2'>
                                 {title}
                             </h3>
                         </div>

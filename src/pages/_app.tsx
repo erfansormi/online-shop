@@ -14,9 +14,6 @@ import '../styles/swiper.css';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-// font
-import { Fredoka } from "@next/font/google";
-
 // mui theme
 import { muiTheme } from "../components/utils/mui/costumizeMui";
 import { ThemeProvider } from "@mui/material/styles";
@@ -26,12 +23,6 @@ import Navbar from '../components/layout/navbar/navbar';
 import Footer from "../components/layout/footer/footer";
 import LoadingAfterChngLink from "../components/utils/loading/loadingAfterChngLink";
 import Loading from "../components/utils/loading/loading";
-
-// font
-export const fredoka = Fredoka({
-  subsets: ['latin'],
-  weight: ["400", "500", "600"],
-})
 
 // contexts
 import UserContextProvider from "../context/userContext";
@@ -43,7 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>
-          Shop Online Store
+          Online Shop
         </title>
       </Head>
       <UserContextProvider>
@@ -51,7 +42,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <ThemeProvider theme={muiTheme}>
             <Loading />
             <Navbar />
-            <main className={fredoka.className}>
+            <main>
               <Component {...pageProps} />
             </main>
             <Footer />

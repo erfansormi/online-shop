@@ -15,7 +15,7 @@ const OldPrice = ({ variant, size, oldPrice, className }: Props) => {
         <>
             {
                 handleOldPrice ?
-                    <span className={`text-gray-400 line-through ${size === "large" ? "leading-5 text-[1.1rem]" : className ? className : "text-sm"}`}>
+                    <span className={`text-gray-400 font-normal line-through ${size === "large" ? "leading-5 text-[1.1rem]" : className ? className : "text-sm"}`}>
                         ${handleOldPrice}
                     </span> :
                     null

@@ -41,7 +41,7 @@ export const muiTheme = createTheme({
         button: {
             textTransform: "capitalize",
             lineHeight: 2.4,
-            fontWeight: 600,
+            fontWeight: 500,
             letterSpacing: "0.03rem",
             fontFamily: "inherit"
         },
@@ -51,32 +51,32 @@ export const muiTheme = createTheme({
         h1: {
             fontSize: "1.8rem",
             lineHeight: 1.8,
-            fontWeight: "bold",
+            fontWeight: 700
         },
         h2: {
             fontSize: "1.6rem",
             lineHeight: 1.8,
-            fontWeight: "bold"
+            fontWeight: 700
         },
         h3: {
             fontSize: "1.4rem",
             lineHeight: 1.6,
-            fontWeight: "bold"
+            fontWeight: 700
         },
         h4: {
             fontSize: "1.2rem",
             lineHeight: 1.6,
-            fontWeight: "bold"
+            fontWeight: 700
         },
         h5: {
             fontSize: "1rem",
             lineHeight: 1.5,
-            fontWeight: "bold"
+            fontWeight: 700
         },
         h6: {
             fontSize: "0.87rem",
             lineHeight: 1.3,
-            fontWeight: "bold"
+            fontWeight: 700
         },
     },
     components: {

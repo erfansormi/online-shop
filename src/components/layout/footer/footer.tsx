@@ -10,9 +10,6 @@ import Input from '../../form/input/input';
 // data
 import { footerData, footerIcons } from './footerData';
 
-// font
-import { fredoka } from '../../../pages/_app';
-
 // context hook
 import { useGeneralContext } from '../../../context/generalContext';
 
@@ -21,7 +18,7 @@ const Footer = () => {
 
     return (
         <footer
-            className={`${fredoka.className} w-full capitalize`}
+            className={`w-full capitalize`}
             style={{ marginBottom: general.width != null && general.width <= 768 ? "var(--navbar-height)" : 0 }}
         >
             <Divider />
