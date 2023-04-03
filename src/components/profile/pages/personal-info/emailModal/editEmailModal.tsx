@@ -11,7 +11,7 @@ import { axiosInstance } from '../../../../../functions/axiosInstance';
 
 // components
 import CustomizedModal from '../../../../utils/modal/customizedModal';
-import Input from '../../../../form/input/input';
+import Input from '../../../../data_entry/input/input';
 import Label from '../../../../data_display/label';
 import { Button } from '@mui/material';
 
@@ -23,7 +23,7 @@ import { toastify } from '../../../../utils/toastify/toastifyFunc';
 
 // types
 import { InitialPersonalInfoModal } from '../personalInfoData';
-import InputError from '../../../../form/input/inputError';
+import InputError from '../../../../data_entry/input/inputError';
 
 interface Props {
     modalsInitialValues: InitialPersonalInfoModal,

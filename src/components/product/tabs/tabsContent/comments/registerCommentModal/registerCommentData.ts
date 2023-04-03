@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 import { maxLength, minLength, required } from "../../../../../../functions/validation";
 
 // components
-import Input from '../../../../../form/input/input';
-import TextArea from '../../../../../form/input/textArea';
+import Input from '../../../../../data_entry/input/input';
+import TextArea from '../../../../../data_entry/input/textArea';
 
 // register comment initial values
 export interface CommentInitialValues {

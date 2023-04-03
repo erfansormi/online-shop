@@ -1,10 +1,10 @@
 import React from 'react';
 
 // components
-import Input from '../../../../form/input/input';
+import Input from '../../../../data_entry/input/input';
 import Label from '../../../../data_display/label';
 import { Button } from '@mui/material';
-import InputError from '../../../../form/input/inputError';
+import InputError from '../../../../data_entry/input/inputError';
 
 // types
 import type { FormikProps } from 'formik';

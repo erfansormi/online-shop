@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button, Divider } from '@mui/material'
 
 // components
-import Input from '../../form/input/input';
+import Input from '../../data_entry/input/input';
 
 // data
 import { footerData, footerIcons } from './footerData';

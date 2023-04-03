@@ -7,7 +7,7 @@ import { CommentInitialValues } from './registerCommentData';
 // components
 import { Rating } from '@mui/material';
 import Label from '../../../../../data_display/label';
-import InputError from '../../../../../form/input/inputError';
+import InputError from '../../../../../data_entry/input/inputError';
 
 const ProductRate = ({ setFieldValue, errors, submitCount, handleBlur, values }: FormikProps<CommentInitialValues>) => {
     const [rating, setRating] = useState<number | null>(values.rate);

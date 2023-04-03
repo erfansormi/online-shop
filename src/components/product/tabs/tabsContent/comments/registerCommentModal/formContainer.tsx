@@ -16,7 +16,7 @@ import ProductRate from './productRate';
 import ProductSuggest from './productSuggest';
 import { Button, Checkbox, Divider } from '@mui/material';
 import Label from '../../../../../data_display/label';
-import InputError from '../../../../../form/input/inputError';
+import InputError from '../../../../../data_entry/input/inputError';
 
 const ModalFormContainer = (props: Props) => {
     const { values, errors, initialValues, handleChange, handleBlur, setFieldValue, touched, handleSubmit } = props;
