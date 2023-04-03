@@ -27,7 +27,7 @@ const CustomizedModal = ({ className, description, children, title, handleClose,
                 {/* head */}
                 <div className={`flex justify-between sticky top-0 z-50 bg-white ${!description ? "items-center" : ""} w-full border-b border-gray-200 border-solid border-x-0 border-t-0 mb-4 py-4`}>
                     <div className='flex flex-col gap-y-2'>
-                        <h4 className='font-bold text-base capitalize text-gray-700'>
+                        <h4 className='font-[500] text-lg capitalize text-gray-700'>
                             {title}
                         </h4>
                         {
