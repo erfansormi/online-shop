@@ -15,6 +15,7 @@ import { profileSideMenuData } from './profileData'
 
 // context
 import { useUserContext } from '../../context/userContext';
+import { Skeleton } from '@mui/material';
 
 const ProfileSideMenu = () => {
     const router = useRouter();
@@ -32,46 +33,69 @@ const ProfileSideMenu = () => {
                 </div>
                 <div className='flex items-center justify-between w-full'>
                     <div className='flex flex-col gap-y-0.5'>
+
+                        {/* name and surname */}
                         <span className='text-gray-700 text-lg font-bold'>
-                            {user?.first_name} {user?.last_name}
+                            {
+                                user ?
+                                    `${user.first_name} ${user.last_name}` :
+                                    <Skeleton className='w-32 h-6' />
+                            }
                         </span>
+
+                        {/* email */}
                         <span className='text-gray-400 text-sm normal-case'>
-                            {user?.email}
+                            {
+                                user ?
+                                    user.email :
+                                    <Skeleton className='w-44 h-4' />
+                            }
                         </span>
                     </div>
+
+                    {/* edit personal info link */}
                     <div>
-                        <Link href={"/profile/personal-info"}>
-                            <AiOutlineEdit className='text-2xl text-cyan-500' />
-                        </Link>
+                        {
+                            user &&
+                            <Link href={"/profile/personal-info"}>
+                                <AiOutlineEdit className='text-2xl text-cyan-500' />
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>
 
             {/* items */}
             <div>
-                {profileSideMenuData.map((item, index) =>
-                    <div
-                        key={index * 30}
-                        className="px-5 hover:bg-gray-100 transition duration-500 first:border-t-0 relative"
-                    >
-                        {
-                            router.pathname === item.link &&
-                            <span className={`${styles.menu_item_selected} before:bg-rose-500 before:content-['']`}>
-                            </span>
-                        }
-                        <Link
-                            href={item.link}
-                            className={`${styles.menu_item} gap-x-2 border-t border-x-0 border-b-0 border-solid border-gray-100 ${router.pathname === item.link ? `font-bold` : ""}`}
+                {
+                    profileSideMenuData.map((item, index) =>
+                        <div
+                            key={index * 30}
+                            className="px-5 hover:bg-gray-100 transition duration-500 first:border-t-0 relative"
                         >
-                            <span className='flex text-[1.5rem]'>
-                                {item.icon}
-                            </span>
-                            <span>
-                                {item.title}
-                            </span>
-                        </Link>
-                    </div>
-                )}
+                            {
+                                router.pathname === item.link &&
+                                <span className={`${styles.menu_item_selected} before:bg-rose-500 before:content-['']`}>
+                                </span>
+                            }
+                            <Link
+                                href={item.link}
+                                className={`${styles.menu_item} gap-x-2 border-t border-x-0 border-b-0 border-solid border-gray-100 ${router.pathname === item.link ? `font-bold` : ""}`}
+                            >
+                                <span className='flex text-[1.5rem]'>
+                                    {user && item.icon}
+                                </span>
+                                <span>
+                                    {
+                                        user ?
+                                            item.title :
+                                            <Skeleton className="w-28 h-5" />
+                                    }
+                                </span>
+                            </Link>
+                        </div>
+                    )
+                }
 
                 {/* exit */}
                 <div className="px-5 hover:bg-gray-100 transition duration-500 first:border-t-0 relative">
@@ -79,10 +103,14 @@ const ProfileSideMenu = () => {
                         className={`${styles.menu_item} gap-x-2 border-t border-x-0 border-b-0 border-solid border-gray-100`}
                     >
                         <span className='flex text-[1.5rem]'>
-                            <BsBoxArrowRight />
+                            {user && <BsBoxArrowRight />}
                         </span>
                         <span>
-                            exit
+                            {
+                                user ?
+                                    "exit" :
+                                    <Skeleton className="w-28 h-5" />
+                            }
                         </span>
                     </div>
                 </div>
