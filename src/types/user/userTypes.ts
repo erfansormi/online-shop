@@ -58,26 +58,6 @@ interface Activities {
     recent_visits: Product[],
 }
 
-export interface SearchAddressResponse {
-    province: string,
-    county: string,
-    district: string,
-    city: string,
-    region: string,
-    neighborhood: string,
-    title: string,
-    address: string,
-    type: string,
-    fclass: string,
-    geom: {
-        type: string,
-        coordinates: [
-            number,
-            number
-        ]
-    }
-}
-
 export interface User {
     _id: string,
     email: string,
