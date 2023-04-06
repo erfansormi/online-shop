@@ -9,3 +9,7 @@
 .mapboxgl-ctrl-attrib.mapboxgl-compact.mapboxgl-ctrl-attrib.mapboxgl-compact-show {
     display: none;
 }
+
+.mapboxgl-ctrl-attrib.mapboxgl-compact {
+    display: none !important;
+}
