@@ -1,38 +1,23 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react';
+import useAddressValues from '../../../../../store/userAddress';
 
-// types
-import { SearchAddressResponse } from '../../../../types/user/userTypes';
+const SearchedLocations = () => {
+    const { setViewport, searchedAddresses, setSearchedAddresses, setSearchInputValue } = useAddressValues(state => state.map)
 
-interface Props {
-    searchResponse: SearchAddressResponse[] | undefined;
-    setSearchResponse: Dispatch<SetStateAction<SearchAddressResponse[] | undefined>>
-    setSearchBarValue: Dispatch<SetStateAction<string>>;
-    setViewport: Dispatch<SetStateAction<{
-        latitude: number;
-        longitude: number;
-        zoom: number;
-    }>>
-}
-
-const SearchedLocations = ({ setSearchBarValue, setSearchResponse, setViewport, searchResponse }: Props) => {
     return (
         <>
             {
-                searchResponse !== undefined && searchResponse.length ?
+                searchedAddresses !== undefined && searchedAddresses.length ?
                     <div className='absolute shadow-[0_5px_4px_1px_rgba(0,0,0,0.2)] top-10 rounded-md px-4 py-2 right-0 left-0 bg-white max-h-[250px] overflow-y-auto'>
                         {
-                            searchResponse.map((item, index) =>
+                            searchedAddresses.map((item, index) =>
                                 <div
                                     key={index * 78}
                                     className="flex flex-col px-2 py-2 border-b border-solid border-gray-200 border-x-0 border-t-0 last:border-b-0 cursor-pointer transition-colors duration-300 hover:bg-gray-100"
                                     onClick={() => {
-                                        setViewport({
-                                            latitude: item.geom.coordinates[1],
-                                            longitude: item.geom.coordinates[0],
-                                            zoom: 14
-                                        });
-                                        setSearchResponse([]);
-                                        setSearchBarValue("");
+                                        setViewport(item.geom.coordinates[0], item.geom.coordinates[1], 15);
+                                        setSearchedAddresses(undefined);
+                                        setSearchInputValue("");
                                     }}
                                 >
                                     <div>
@@ -51,7 +36,7 @@ const SearchedLocations = ({ setSearchBarValue, setSearchResponse, setViewport, 
                                 </div>
                             )
                         }
-                    </div>
+                    </div >
                     : null
             }
         </>

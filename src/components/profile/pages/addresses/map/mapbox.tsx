@@ -1,49 +1,38 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 // react map gl lib
 import ReactMapGL, { Marker, GeolocateControl, FullscreenControl, NavigationControl, ViewStateChangeEvent } from "react-map-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // components
-import Input from '../../../data_entry/input/input';
+import Input from '../../../../data_entry/input/input';
 import SearchedLocations from './searchedLocations';
 import { Button, Divider } from '@mui/material';
 
 // icons
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { AiFillCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { IoIosArrowForward } from "react-icons/io";
 
-// types
-import { SearchAddressResponse } from '../../../../types/user/userTypes';
+// zustand store
+import useAddressValues from '../../../../../store/userAddress';
 
 const Mapbox = () => {
-    const [viewport, setViewport] = useState({
-        // The latitude and longitude of the center of Tehran
-        latitude: 35.68198040704668,
-        longitude: 51.38973403791937,
-        zoom: 10
-    });
-    const memoizedViewport = useMemo(() => {
-        return {
-            ...viewport
-        }
-    }, [viewport])
+    const { addressDetail, map } = useAddressValues((state) => state);
 
-    // search bar input value
-    const [searchBarValue, setSearchBarValue] = useState("");
-
-    // search response
-    const [searchResponse, setSearchResponse] = useState<SearchAddressResponse[] | undefined>([]);
-
-    // address detail modal
-    const [detailModal, setDetailModal] = useState(false);
+    const { viewport,
+        setViewport,
+        searchInputValue,
+        setSearchInputValue,
+        setSearchedAddresses
+    } = map;
 
     // handle move map
     const handleMove = (e: ViewStateChangeEvent) => {
-        setViewport(e.viewState);
+        setViewport(e.viewState.longitude, e.viewState.latitude, e.viewState.zoom);
     }
 
-    // handle search location response
+    // handle searched locations response
     const handleFetch = async () => {
         const config: any = {
             "x-api-key": process.env.MAP_IR_TOKEN as string,
@@ -52,27 +41,49 @@ const Mapbox = () => {
 
         await fetch("https://map.ir/search/v2/", {
             method: "POST",
-            body: JSON.stringify({ text: searchBarValue }),
+            body: JSON.stringify({ text: searchInputValue }),
             headers: config
         })
             .then(res => res.json())
-            .then(data => setSearchResponse(data.value))
-            .catch(err => console.log(err))
+            .then(data => setSearchedAddresses(data.value))
     }
 
     // if typing, fetch searched location not working
     useEffect(() => {
         const handleIsTyping = setTimeout(() => {
-            if (searchBarValue.length) {
+            if (searchInputValue.length) {
                 handleFetch();
             }
             else {
-                setSearchResponse([]);
+                setSearchedAddresses(undefined);
             }
         }, 1500)
 
         return () => clearTimeout(handleIsTyping)
-    }, [searchBarValue])
+    }, [searchInputValue])
+
+    // convert coordinates to address
+    const coordinatesToAddress = async () => {
+        addressDetail.setLoading(true);
+
+        await axios.get(`https://map.ir/reverse?lat=${viewport.latitude}&lon=${viewport.longitude}`, {
+            headers: {
+                "x-api-key": process.env.MAP_IR_TOKEN as string,
+                "content-type": "application/json"
+            }
+        })
+            .then(res => {
+                addressDetail.setAddressDetailValues({
+                    ...addressDetail.addressDetailValues,
+                    postal_address: res.data.address_compact,
+                    province: res.data.province,
+                    city: res.data.city
+                })
+            })
+            .finally(() => {
+                addressDetail.setLoading(false);
+            })
+    }
 
 
     return (
@@ -80,7 +91,7 @@ const Mapbox = () => {
             <ReactMapGL
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 mapboxAccessToken={process.env.MAPBOX_ACCESS_TOKEN as string}
-                {...memoizedViewport}
+                {...viewport}
                 onMove={handleMove}
                 scrollZoom={true}
             >
@@ -99,16 +110,16 @@ const Mapbox = () => {
                         <Input
                             className="bg-white h-[3rem] shadow-md focus:outline-0 relative z-40 rounded-b-none"
                             placeholder='search address'
-                            value={searchBarValue}
-                            onChange={(e) => setSearchBarValue(e.target.value)}
+                            value={searchInputValue}
+                            onChange={(e) => setSearchInputValue(e.target.value)}
                         />
 
                         {/* remove input value */}
                         <span
                             className='absolute right-5 cursor-pointer inset-y-1/4 z-50 h-fit text-gray-500 text-2xl'
                             onClick={() => {
-                                setSearchBarValue("");
-                                setSearchResponse([]);
+                                setSearchInputValue("");
+                                setSearchedAddresses(undefined);
                             }}
                         >
                             <AiFillCloseCircle />
@@ -116,12 +127,7 @@ const Mapbox = () => {
                         <Divider />
 
                         {/* city searched */}
-                        <SearchedLocations
-                            searchResponse={searchResponse}
-                            setSearchBarValue={setSearchBarValue}
-                            setSearchResponse={setSearchResponse}
-                            setViewport={setViewport}
-                        />
+                        <SearchedLocations />
                     </div>
                 </div>
             </ReactMapGL>
@@ -134,7 +140,13 @@ const Mapbox = () => {
                 </div>
                 <Button
                     variant="contained"
-                    endIcon={<IoIosArrowForward />}
+                    endIcon={addressDetail.loading ? <AiOutlineLoading3Quarters className='animate-spin' /> : <IoIosArrowForward />}
+                    disabled={addressDetail.loading}
+                    onClick={async () => {
+                        await coordinatesToAddress();
+                        map.setModal(false);
+                        addressDetail.setModal(true);
+                    }}
                 >
                     confirm and continue
                 </Button>
