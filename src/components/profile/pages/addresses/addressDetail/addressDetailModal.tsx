@@ -4,6 +4,9 @@ import { axiosInstance } from '../../../../../functions/axiosInstance';
 // data
 import { AddressSchema } from './addressDetailData';
 
+// user context hook
+import { useUserContext } from '../../../../../context/userContext';
+
 // general context hook
 import { useGeneralContext } from '../../../../../context/generalContext';
 
@@ -22,8 +25,9 @@ const AddressDetailModal = () => {
     const { setModal, modal, addressDetailValues } = useAddressValues(state => state.addressDetail);
     const { viewport } = useAddressValues(state => state.map);
 
-    // context
+    // contexts
     const { openLoading, closeLoading } = useGeneralContext();
+    const { user, setUser } = useUserContext();
 
     // close modal
     const handleClose = () => {
@@ -45,13 +49,27 @@ const AddressDetailModal = () => {
             postal_code: values.postal_code
         })
             .then(res => {
-                toastify(res.data.message, "success")
+                if (user) {
+                    setUser({
+                        ...user,
+                        addresses: [...user.addresses, {
+                            coordinates: [viewport.longitude, viewport.latitude],
+                            postal_address: values.postal_address,
+                            province: values.province,
+                            city: values.city,
+                            plaque: values.plaque,
+                            unit: values.unit,
+                            postal_code: values.postal_code
+                        }]
+                    })
+                }
+                toastify(res.data.message, "success");
             })
             .catch(err => {
-                toastify(err.response.data.message || err.message, "error")
+                toastify(err.response.data.message || err.message, "error");
             })
             .finally(() => {
-                closeLoading()
+                closeLoading();
             })
     }
 
