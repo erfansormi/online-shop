@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -17,8 +17,14 @@ import { profileSideMenuData } from './profileData'
 import { useUserContext } from '../../context/userContext';
 import { Skeleton } from '@mui/material';
 
+// components
+import LogoutModal from '../layout/navbar/profileIcon/logoutModal';
+
 const ProfileSideMenu = () => {
     const router = useRouter();
+
+    // logout modal
+    const [logoutModal, setLogoutModal] = useState(false);
 
     // user context
     const { user } = useUserContext();
@@ -101,6 +107,7 @@ const ProfileSideMenu = () => {
                 <div className="px-5 hover:bg-gray-100 transition duration-500 first:border-t-0 relative">
                     <div
                         className={`${styles.menu_item} gap-x-2 border-t border-x-0 border-b-0 border-solid border-gray-100`}
+                        onClick={() => setLogoutModal(true)}
                     >
                         <span className='flex text-[1.5rem]'>
                             {user && <BsBoxArrowRight />}
@@ -114,6 +121,12 @@ const ProfileSideMenu = () => {
                         </span>
                     </div>
                 </div>
+
+                {/* logout modal */}
+                <LogoutModal
+                    modal={logoutModal}
+                    logoutHandleClose={() => setLogoutModal(false)}
+                />
             </div>
         </div >
     )

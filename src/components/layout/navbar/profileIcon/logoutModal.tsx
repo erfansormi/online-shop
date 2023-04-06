@@ -16,7 +16,7 @@ import { toastify } from '../../../utils/toastify/toastifyFunc';
 // types
 interface Props {
     modal: boolean,
-    profileMenuHandleClose: () => void,
+    profileMenuHandleClose?: () => void,
     logoutHandleClose: () => void
 }
 
@@ -28,7 +28,9 @@ const LogoutModal = ({ logoutHandleClose, modal, profileMenuHandleClose }: Props
             await axiosInstance.get("/api/v1/users/logout")
             setUser(null);
             logoutHandleClose();
-            profileMenuHandleClose();
+            if (profileMenuHandleClose) {
+                profileMenuHandleClose();
+            }
             toastify("logout successfully!", "warning");
         }
         catch (err: any) {
