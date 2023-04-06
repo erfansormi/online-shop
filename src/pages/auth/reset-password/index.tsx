@@ -7,13 +7,12 @@ import { Formik } from 'formik'
 import * as Yup from 'yup';
 
 // mui
-import { Button, Box } from '@mui/material'
+import { Box } from '@mui/material'
 
 // components
-import FormContainer from '../../../components/form/formContainer/formContainer';
-import Input from '../../../components/form/input/input';
-import InputError from '../../../components/form/input/inputError';
-import SubmitButton from '../../../components/form/submitButton';
+import FormContainer from '../../../components/data_entry/formContainer/formContainer';
+import Input from '../../../components/data_entry/input/input';
+import SubmitButton from '../../../components/data_entry/submitButton';
 
 // validation
 const Schema = Yup.object().shape({
@@ -90,7 +89,6 @@ const RestPassword = () => {
                         </Box>
                     )}
                 </Formik>
-                {/* <Loading loading={loading} /> */}
             </FormContainer>
         </>
     )

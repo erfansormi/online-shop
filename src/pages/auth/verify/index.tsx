@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -9,16 +8,11 @@ import * as Yup from 'yup';
 
 // mui
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-
-// toatify
-import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 // components
-import Input from '../../../components/form/input/input';
-import Loading from '../../../components/utils/loading/loading';
-import FormContainer from '../../../components/form/formContainer/formContainer';
-import SubmitButton from '../../../components/form/submitButton';
+import Input from '../../../components/data_entry/input/input';
+import FormContainer from '../../../components/data_entry/formContainer/formContainer';
+import SubmitButton from '../../../components/data_entry/submitButton';
 
 // validation
 const Schema = Yup.object().shape({

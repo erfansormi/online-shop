@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 // components
-import LoginContainer from '../../../components/form/login/loginContainer';
+import LoginContainer from '../../../components/data_entry/login/loginContainer';
 
 // contexts hooks
 import { useUserContext } from '../../../context/userContext';

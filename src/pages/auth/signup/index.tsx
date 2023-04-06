@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -6,8 +6,7 @@ import Head from 'next/head';
 import { axiosInstance } from '../../../functions/axiosInstance';
 
 // components
-import SignupContainer from '../../../components/form/signup/signupContainer';
-import Loading from '../../../components/utils/loading/loading';
+import SignupContainer from '../../../components/data_entry/signup/signupContainer';
 
 // toast
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
