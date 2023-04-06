@@ -17,7 +17,7 @@ html,
 body {
   padding: 0 !important;
   margin: 0;
-  font-family: fredoka, -apple-system, BlinkMacSystemFont, Segoe UI;
+  font-family: fredoka, vazir -apple-system, BlinkMacSystemFont, Segoe UI;
   scroll-behavior: smooth;
 }
 
@@ -30,7 +30,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: fredoka, -apple-system, BlinkMacSystemFont, Segoe UI;
+  font-family: fredoka, vazir, -apple-system, BlinkMacSystemFont, Segoe UI;
 }
 
 input {

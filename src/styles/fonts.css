@@ -1,3 +1,4 @@
+/* ***** fredoka ****** */
 @font-face {
     font-family: fredoka;
     src: url("../../public/fonts/Fredoka/Fredoka-Light.ttf");
@@ -30,5 +31,30 @@
     font-family: fredoka;
     src: url("../../public/fonts/Fredoka/Fredoka-Bold.ttf");
     font-weight: 900;
+    font-style: normal;
+}
+
+/* ***** vazir ******* */
+@font-face {
+    src: url("../../public/fonts/vazir/webfonts/Vazirmatn-Medium.woff2"),
+        url("../../public/fonts/vazir/ttf/Vazirmatn-Medium.ttf");
+    font-family: vazir;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    src: url("../../public/fonts/vazir/webfonts/Vazirmatn-Regular.woff2"),
+        url("../../public/fonts/vazir/ttf/Vazirmatn-Regular.ttf");
+    font-family: vazir;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    src: url("../../public/fonts/vazir/webfonts/Vazirmatn-Bold.woff2"),
+        url("../../public/fonts/vazir/ttf/Vazirmatn-Bold.ttf");
+    font-family: vazir;
+    font-weight: 700;
     font-style: normal;
 }
