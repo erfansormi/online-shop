@@ -3,9 +3,6 @@ import React from 'react'
 // css
 import styles from "./input.module.css";
 
-// font
-import { fredoka } from '../../../pages/_app';
-
 // components
 import InputError from './inputError';
 
