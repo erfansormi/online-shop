@@ -1,17 +1,5 @@
 import type { Product, Variant } from "../product/productTypes"
 
-interface Address {
-    unit: string
-    plaque: string,
-    building: string,
-    postal_code: string,
-    neighborhood: string,
-    city: string,
-    province: string,
-    country: string,
-    postal_address: string
-}
-
 type PickProductKeys = "slug" | "image" | "title"
 export interface PurchasedProduct extends Pick<Product, PickProductKeys> {
     product: any,
@@ -58,13 +46,22 @@ interface Activities {
     recent_visits: Product[],
 }
 
+export interface Addresses {
+    postal_address: string
+    province: string,
+    city: string,
+    plaque: string,
+    unit: string
+    postal_code: string,
+    coordinates: [number, number]
+}
+
 export interface User {
     _id: string,
     email: string,
     first_name: string,
     last_name: string,
     password: string,
-    addresses: Address[]
     photo?: string,
     birth_date: Date,
     reset_password_token?: string,
@@ -74,5 +71,6 @@ export interface User {
     created_at: Date,
     cart: Cart
     favorites_list: Product[],
-    activities: Activities
+    activities: Activities,
+    addresses: Addresses[]
 }
