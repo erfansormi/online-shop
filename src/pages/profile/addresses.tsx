@@ -1,18 +1,19 @@
-import { Button } from '@mui/material';
-import React, { useState } from 'react'
-import TabContentTitle from '../../components/data_display/tabContentTitle';
-import RegisterAddressModal from '../../components/profile/pages/addresses/registerAddressModal';
+import React from 'react'
+
+// zustand store
+import useAddressValues from '../../store/userAddress';
 
 // components
+import { Button } from '@mui/material';
+import TabContentTitle from '../../components/data_display/tabContentTitle';
 import ProfileContainer from '../../components/profile/profileContainer'
 import ProfileContentContainer from '../../components/profile/profileContentContainer';
+import CustomizedModal from '../../components/utils/modal/customizedModal';
+import AddressDetailModal from '../../components/profile/pages/addresses/addressDetail/addressDetailModal';
+import Mapbox from '../../components/profile/pages/addresses/map/mapbox';
 
 const Addresses = () => {
-    const [mapOpen, setMapOpen] = useState(false);
-
-    const handleClose = () => {
-        setMapOpen(false);
-    }
+    const { map } = useAddressValues((state) => state);
 
     return (
         <ProfileContainer>
@@ -22,14 +23,25 @@ const Addresses = () => {
                     <TabContentTitle title='addresses' />
 
                     {/* register location button */}
-                    <Button variant="outlined" onClick={() => setMapOpen(true)}>
+                    <Button variant="outlined" onClick={() => map.setModal(true)}>
                         register new address
                     </Button>
                 </div>
             </ProfileContentContainer>
 
-            {/* register location modal */}
-            <RegisterAddressModal handleClose={handleClose} open={mapOpen} />
+            {/* map box modal */}
+            <CustomizedModal
+                title='new address'
+                handleClose={() => map.setModal(false)}
+                open={map.modal}
+                description='specify the address location.'
+                maxWidth="md"
+            >
+                <Mapbox />
+            </CustomizedModal>
+
+            {/* address detail modal */}
+            <AddressDetailModal />
         </ProfileContainer>
     )
 }
