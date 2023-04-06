@@ -101,7 +101,13 @@ const Mapbox = () => {
                 <GeolocateControl position='bottom-right' />
 
                 {/* marker */}
-                <Marker longitude={viewport.longitude} latitude={viewport.latitude} anchor="bottom" />
+                <Marker
+                    longitude={viewport.longitude}
+                    latitude={viewport.latitude}
+                    anchor="center"
+                    scale={0.8}
+                    color='#222'
+                />
 
                 <div className='absolute top-6 sm:right-16 sm:left-16 right-4 left-4'>
 
