@@ -26,7 +26,7 @@ const AddressDetailForm = ({ values, handleSubmit, handleBlur, handleChange, err
     return (
         <form
             onSubmit={handleSubmit}
-            className='flex flex-col gap-y-4'
+            className='flex flex-col gap-y-6'
         >
             {/* postal address */}
             <div className='flex flex-col gap-y-2'>

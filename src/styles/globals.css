@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("./fonts.css");
+@import url("fonts.css");
 @import url("variables.css");
 @import url("mui.css");
+@import url('other-libs.css');
 
 @media (max-width:767px) {
   html {

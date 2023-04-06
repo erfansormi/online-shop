@@ -96,14 +96,14 @@ const Mapbox = () => {
                 scrollZoom={true}
             >
                 {/* map buttons */}
-                <FullscreenControl position="top-right" />
-                <NavigationControl position="top-right" />
+                <NavigationControl position="bottom-left" />
+                <FullscreenControl position="bottom-left" />
                 <GeolocateControl position='bottom-right' />
 
                 {/* marker */}
                 <Marker longitude={viewport.longitude} latitude={viewport.latitude} anchor="bottom" />
 
-                <div className='absolute top-6 right-16 left-16'>
+                <div className='absolute top-6 sm:right-16 sm:left-16 right-4 left-4'>
 
                     {/* search bar */}
                     <div className='relative right-0 left-0 top-0'>
@@ -132,7 +132,7 @@ const Mapbox = () => {
                 </div>
             </ReactMapGL>
             <Divider />
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-wrap gap-y-3 justify-between items-center'>
                 <div>
                     <p className='text-gray-600 text-sm'>
                         your parcels will be sent to this position

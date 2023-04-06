@@ -80,7 +80,7 @@ const EditBirthDateModal = ({ modalsInitialValues, setModalsInitialValues }: Pro
         >
             <div className='flex flex-col mt-6 gap-y-6'>
                 <div className='flex gap-x-4'>
-                    <div className='w-full'>
+                    <div className='sm:w-full w-[30%]'>
                         <Autocomplete
                             options={years()}
                             value={year}
@@ -91,7 +91,7 @@ const EditBirthDateModal = ({ modalsInitialValues, setModalsInitialValues }: Pro
                             renderInput={(params) => <TextField variant='outlined'  {...params} label="Year" />}
                         />
                     </div>
-                    <div className='w-full'>
+                    <div className='sm:w-full w-[30%]'>
                         <Autocomplete
                             options={months()}
                             getOptionLabel={(option) => option.shortName}
@@ -102,7 +102,7 @@ const EditBirthDateModal = ({ modalsInitialValues, setModalsInitialValues }: Pro
                             renderInput={(params) => <TextField variant='outlined'  {...params} label="Month" />}
                         />
                     </div>
-                    <div className='w-full'>
+                    <div className='sm:w-full w-[30%]'>
                         <Autocomplete
                             options={days(month ? month.length : 30)}
                             getOptionLabel={(option) => option.toString()}
