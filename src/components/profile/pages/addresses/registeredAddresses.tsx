@@ -120,8 +120,8 @@ const RegisteredAddresses = () => {
                         )
                         :
                         // when no any address not registered
-                        <div>
-                            <p className='text-gray-700 text-base capitalize'>
+                        <div className='text-gray-700 text-base capitalize mt-2 py-6 px-2'>
+                            <p>
                                 you have not entered an address yet!
                             </p>
                         </div>
