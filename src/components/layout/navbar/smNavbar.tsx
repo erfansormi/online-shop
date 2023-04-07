@@ -19,7 +19,7 @@ const SmNavbar = () => {
 
     return (
         <nav
-            className='md:hidden bg-white shadow-md z-[1000] fixed bottom-0 right-0 left-0'
+            className='md:hidden bg-white shadow-md z-50 fixed bottom-0 right-0 left-0'
             style={{ height: "var(--sm-navbar-height)" }}
         >
             <div className='w-full h-full flex justify-around items-center'>

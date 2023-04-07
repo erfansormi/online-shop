@@ -26,7 +26,7 @@ const BeforeAndAfter = () => {
             >
 
                 {/* title */}
-                <div className='absolute top-2 left-2 flex flex-col items-center justify-center z-50 w-full'>
+                <div className='absolute top-2 left-2 flex flex-col items-center justify-center z-40 w-full'>
                     <h4 className='bg-[#fff] text-2xl w-fit text-rose-600'>
                         update your shoes!
                     </h4>
@@ -86,7 +86,7 @@ const BeforeAndAfter = () => {
                 </div>
 
                 {/* button */}
-                <div className='z-50 absolute bottom-2 w-full flex justify-center'>
+                <div className='z-40 absolute bottom-2 w-full flex justify-center'>
                     <Button variant="contained">
                         click for buy
                     </Button>
