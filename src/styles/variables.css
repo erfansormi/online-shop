@@ -1,5 +1,6 @@
 :root {
     --navbar-height: 74px;
+    --sm-navbar-height: 60px;
     --toastify-color-error: #ff4757 !important;
     --toastify-text-color-light: #374151 !important;
     --toastify-color-success: #22c55e !important;
