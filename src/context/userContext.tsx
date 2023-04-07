@@ -34,9 +34,8 @@ const UserContextProvider = ({ children }: Props) => {
             .then(res => {
                 setUser(res.data);
             })
-            .catch((err) => {
+            .catch(() => {
                 setUser(null);
-                toastify(err.response.data.message || err.message, "error");
             })
             .finally(() => {
                 setLoading(false);
