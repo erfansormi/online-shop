@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../../functions/axiosInstance';
 
+// spinner
+import { PulseLoader } from "react-spinners";
+
 // mui
 import { LoadingButton } from '@mui/lab';
 
@@ -12,6 +15,7 @@ import { BsTrash } from 'react-icons/bs';
 
 // types
 import { SelectedProduct, User } from '../../../types/user/userTypes';
+import { Button, ButtonGroup } from '@mui/material';
 
 interface Props {
     productId: string,
@@ -51,11 +55,11 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
     }
 
     const editBody = (body: BodyRequest) => {
-        let lastIndex = (user as User).cart.products.length - 1;
+        let productIndex = (user as User).cart.products.findIndex(item => item.product._id === productId);
 
-        body.sellerId = (user as User).cart.products[lastIndex].seller;
-        body.selectedVariant._id = (user as User).cart.products[lastIndex].variant._id;
-        body.selectedVariant.selectedColor = (user as User).cart.products[lastIndex].variant.color;
+        body.sellerId = (user as User).cart.products[productIndex].seller;
+        body.selectedVariant._id = (user as User).cart.products[productIndex].variant._id;
+        body.selectedVariant.selectedColor = (user as User).cart.products[productIndex].variant.color;
     }
 
     const handleBody = (endpoint: "add-product" | "remove-product") => {
@@ -72,8 +76,8 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
             return body
         }
 
-        // check if for remove product, there is in cart selected variant and color and seller id 
-        // if variants not matches, will remove last product in cart
+        // اگر برای حذف محصول، واریانت انتخاب شده برابر با واریانت محصول در سبد خرید نبود
+        // بادی ریکوئست اصلاح شده و سایر واریانت های محصول حذف خواهند شد
         if (!isThereProductInCart.find(item => item.variant._id === selectedVariant.variantId)) {
             editBody(body)
         }
@@ -105,70 +109,83 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
     }, [user])
 
     return (
-        <div className='mt-5 flex justify-center gap-x-3'>
-            {
-                productCount === 0 ?
-                    // add to cart
+        <div className='mt-5 flex justify-center gap-x-3 w-full'>
+            <ButtonGroup
+                variant="text"
+                aria-label="text button group"
+                color='inherit'
+                fullWidth
+            >
+                {
+                    productCount === 0 ?
+                        // add to cart
+                        <LoadingButton
+                            fullWidth
+                            color="primary"
+                            variant="contained"
+                            className="max-w-[600px] mx-auto"
+                            loading={loading}
+                            onClick={() => handleClick("add-product")}
+                        >
+                            add to cart
+                        </LoadingButton>
+                        : productCount === 1 &&
+                        //  remove from cart
+                        <LoadingButton
+                            color="primary"
+                            size='small'
+                            fullWidth
+                            className="text-xl leading-[33px] w-full max-w-[100px]"
+                            onClick={() => handleClick("remove-product")}
+                            disabled={loading}
+                        >
+                            <BsTrash className='text-xl leading-[33px]' />
+                        </LoadingButton>
+                }
+
+                {
+                    isThereProductInCart && productCount > 1 &&
+                    //  decrease item 
                     <LoadingButton
-                        variant={"contained"}
-                        fullWidth
-                        className="max-w-[600px] w-full mx-auto"
-                        loading={loading}
-                        disabled={loading}
-                        onClick={() => handleClick("add-product")}
-                    >
-                        add to cart
-                    </LoadingButton>
-                    : productCount === 1 &&
-                    //  remove from cart
-                    <LoadingButton
-                        variant={"contained"}
-                        fullWidth
+                        color="primary"
+                        size='small'
                         className="text-xl leading-[33px] w-full max-w-[100px]"
-                        loading={loading}
-                        disabled={loading}
                         onClick={() => handleClick("remove-product")}
+                        disabled={loading}
                     >
-                        <BsTrash className='text-xl leading-[33px]' />
+                        -
                     </LoadingButton>
-            }
+                }
 
-            {
-                isThereProductInCart && productCount > 1 &&
-                //  decrease item 
-                <LoadingButton
-                    variant={"contained"}
-                    className="text-xl leading-[33px] w-full max-w-[100px]"
-                    onClick={() => handleClick("remove-product")}
-                    loading={loading}
-                    disabled={loading}
-                >
-                    -
-                </LoadingButton>
-            }
+                {/* count */}
+                {
+                    productCount ?
+                        <Button className='cursor-default hover:bg-inherit'>
+                            <span className='flex items-center w-[50px] justify-center mx-2 text-gray-800 leading-[15px]'>
+                                {
+                                    loading ?
+                                        <PulseLoader size={9} color="#6b7280" /> :
+                                        productCount
+                                }
+                            </span>
+                        </Button> :
+                        null
+                }
 
-            {/* count */}
-            {
-                productCount ?
-                    <span className='flex items-center w-[50px] justify-center'>
-                        {productCount}
-                    </span> :
-                    null
-            }
-
-            {/* increase item */}
-            {
-                isThereProductInCart && productCount >= 1 &&
-                <LoadingButton
-                    variant={"contained"}
-                    className="text-xl leading-[33px] w-full max-w-[100px]"
-                    onClick={() => handleClick("add-product")}
-                    loading={loading}
-                    disabled={loading}
-                >
-                    +
-                </LoadingButton>
-            }
+                {/* increase item */}
+                {
+                    isThereProductInCart && productCount >= 1 &&
+                    <LoadingButton
+                        color="primary"
+                        size='small'
+                        className="text-xl leading-[33px] w-full max-w-[100px]"
+                        onClick={() => handleClick("add-product")}
+                        disabled={loading}
+                    >
+                        +
+                    </LoadingButton>
+                }
+            </ButtonGroup>
         </div>
     )
 }
