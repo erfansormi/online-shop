@@ -55,7 +55,7 @@ const Cart = () => {
                                     {/* products */}
                                     <div>
                                         {user.cart.products.map(item =>
-                                            <CartProducts {...item} />
+                                            <CartProducts {...item} key={item.product.slug} />
                                         )}
                                     </div>
                                 </div>

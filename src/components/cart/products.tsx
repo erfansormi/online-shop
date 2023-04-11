@@ -15,7 +15,6 @@ import CartButtons from '../utils/buttons/cartButtons';
 const CartProducts = ({ ...item }: SelectedProduct) => {
     return (
         <div
-            key={item.product.slug}
             className='flex gap-x-7 py-6 px-6 border-b border-x-0 border-t-0 border-solid border-gray-200 last:border-b-0'
         >
             <div>
