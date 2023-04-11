@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react';
+import Link from "next/link";
 
 // mui
-import { Divider } from '@mui/material';
+import { Button, Divider } from '@mui/material';
 
 // icons
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
-// context
+// contexts
 import { useProductContext } from '../productContainer';
+import { useUserContext } from '../../../context/userContext';
 
 // handle product color
 import { handleColor } from '../detail/centerInfo/contentData';
@@ -16,8 +18,7 @@ import { handleColor } from '../detail/centerInfo/contentData';
 import DiscountPercentage from '../../utils/price/discountPercentage';
 import OldPrice from '../../utils/price/oldPrice';
 import Price from '../../utils/price/price';
-import CartBtns from '../../utils/buttons/cartBtns';
-import ChangeSellerModal from '../detail/sellerSection/changeSellerModal';
+import CartButtons from '../../utils/buttons/cartButtons';
 import SellerSymbol from '../../utils/seller/sellerSymbol';
 import SellerPerformance from '../../data_display/sellerPerformance';
 import Image from 'next/image';
@@ -26,8 +27,9 @@ import Image from 'next/image';
 import { TbArrowAutofitContent } from 'react-icons/tb';
 
 const MiniBuyBox = () => {
+    // contexts
+    const { user } = useUserContext();
 
-    // context
     const { productInfo } = useProductContext();
     const { product, selectedSeller, selectedVariant } = productInfo;
     const { seller } = selectedSeller;
@@ -139,8 +141,27 @@ const MiniBuyBox = () => {
                     }
                 </div>
 
-                {/* button */}
-                {/* <CartBtns product={product} /> */}
+                {/* action buttons */}
+                {
+                    user ?
+                        // cart action
+                        <CartButtons
+                            productId={product._id}
+                            selectedVariant={{
+                                selectedColor: selectedVariant.selectedColor,
+                                variantId: selectedVariant._id
+                            }}
+                            sellerId={seller._id}
+                        /> :
+                        // login
+                        <div>
+                            <Link href={"/auth/login"}>
+                                <Button variant="outlined" fullWidth>
+                                    login
+                                </Button>
+                            </Link>
+                        </div>
+                }
             </div>
         </div>
     )
