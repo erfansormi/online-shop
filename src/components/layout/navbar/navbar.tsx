@@ -78,9 +78,17 @@ const Navbar = () => {
                                         <div className='text-2xl'>
                                             <Link href={item.link} className="flex">
                                                 <IconButton
-                                                    className='text-2xl text-gray-700 m-0'
+                                                    className='text-2xl text-gray-700 m-0 relative'
                                                 >
                                                     {item.icon}
+
+                                                    {
+                                                        item.title === "Cart" && user.cart.products_counts ?
+                                                            <span className='absolute bottom-0.5 right-0.5 text-white bg-rose-500 rounded w-4 h-4 text-xs flex items-center justify-center'>
+                                                                {user.cart.products_counts}
+                                                            </span> :
+                                                            null
+                                                    }
                                                 </IconButton>
                                             </Link>
                                         </div>

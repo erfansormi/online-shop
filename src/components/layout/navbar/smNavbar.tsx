@@ -31,7 +31,7 @@ const SmNavbar = () => {
                                     href={item.link}
                                     className={`h-full flex flex-col ${item.link !== "/" && router.pathname.includes(item.link) ? "text-rose-500" : item.link === "/" && router.pathname === "/" ? "text-rose-500" : "text-gray-700"} w-16 justify-center items-center`}
                                 >
-                                    <span className='text-2xl'>
+                                    <span className='text-2xl relative'>
                                         {item.icon}
                                     </span>
                                     <span className='capitalize text-sm'>

@@ -46,7 +46,17 @@ export const smNavData = (user: null | User) => {
     else {
         data.push(
             {
-                icon: <BsCart3 />,
+                icon:
+                    <>
+                        <BsCart3 />
+                        {
+                            user.cart.products_counts ?
+                                <span className='absolute bottom-1.5 -right-1 text-white bg-rose-500 rounded w-3.5 h-3.5 text-[0.65rem] flex items-center justify-center'>
+                                    {user.cart.products_counts}
+                                </span> :
+                                null
+                        }
+                    </>,
                 link: "/cart",
                 title: "Cart"
             },
