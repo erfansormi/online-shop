@@ -6,6 +6,7 @@ import { Button, Divider } from '@mui/material';
 
 // icons
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { TbArrowAutofitContent } from 'react-icons/tb';
 
 // contexts
 import { useProductContext } from '../productContainer';
@@ -22,9 +23,6 @@ import CartButtons from '../../utils/buttons/cartButtons';
 import SellerSymbol from '../../utils/seller/sellerSymbol';
 import SellerPerformance from '../../data_display/sellerPerformance';
 import Image from 'next/image';
-
-// icons
-import { TbArrowAutofitContent } from 'react-icons/tb';
 
 const MiniBuyBox = () => {
     // contexts
