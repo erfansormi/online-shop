@@ -35,10 +35,10 @@ const Cart = () => {
                                 <TabContentTitle title='cart' />
                             </div>
 
-                            <div className='flex gap-x-4'>
+                            <div className='flex flex-col md:flex-row gap-4'>
 
                                 {/* products section */}
-                                <div className='w-[75%] py-4 border-gray-200 border-solid border rounded-lg flex flex-col gap-y-6'>
+                                <div className='lg:w-[75%] md:w-[65%] w-full py-4 border-gray-200 border-solid border rounded-lg flex flex-col gap-y-6'>
 
                                     {/* title */}
                                     <div className='flex flex-col px-6 pt-2'>
@@ -61,7 +61,7 @@ const Cart = () => {
                                 </div>
 
                                 {/* checkout info */}
-                                <div className='text-gray-800 font-medium sticky top-24 w-[25%] capitalize px-6 py-8 h-fit border-gray-200 border-solid border rounded-lg flex flex-col gap-y-6'>
+                                <div className='lg:w-[25%] md:w-[35%] w-full text-gray-800 font-medium md:sticky top-24 capitalize px-6 py-8 h-fit border-gray-200 border-solid border rounded-lg flex flex-col gap-y-6'>
 
                                     {/* products prices */}
                                     <div className='flex items-center justify-between text-gray-600'>
