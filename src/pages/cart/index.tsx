@@ -18,7 +18,7 @@ const Cart = () => {
         if (!user && !loading) {
             router.push("/auth/login")
         }
-    }, [])
+    }, [user, loading])
 
     return (
         <>
