@@ -12,6 +12,14 @@
     color: #fff;
 }
 
+.MuiLoadingButton-loading {
+    color: transparent !important;
+}
+
+.MuiLoadingButton-loadingIndicator{
+    color: #fff;
+}
+
 .css-uzoczd-MuiPaper-root-MuiDialog-paper {
     padding: 15px;
 }

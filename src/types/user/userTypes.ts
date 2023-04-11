@@ -27,8 +27,8 @@ export interface SelectedVariant extends Omit<Variant, "colors"> {
     color: string,
 }
 
-interface SelectedProduct {
-    product: string,
+export interface SelectedProduct {
+    product: Product,
     variant: SelectedVariant & { quantity: number },
     seller: string
 }
