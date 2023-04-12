@@ -29,7 +29,7 @@ interface Props {
 const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
     const { user, setUser } = useUserContext();
     const [loading, setLoading] = useState(false);
-
+    
     const [isThereProductInCart, setIsThereProductInCart] = useState<SelectedProduct[]>([]);
     const productCount = isThereProductInCart.reduce((total, value) => total + value.variant.quantity, 0);
 
@@ -37,7 +37,7 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
         let arr: SelectedProduct[] = [];
 
         user?.cart.products.filter(item => {
-            if (item.product._id === productId && item.variant._id === selectedVariant.variantId && item.variant.color === selectedVariant.selectedColor && item.seller === sellerId) {
+            if (item.product._id === productId && item.variant._id === selectedVariant.variantId && item.variant.color === selectedVariant.selectedColor && item.seller._id === sellerId) {
                 arr.push(item);
             }
         })
