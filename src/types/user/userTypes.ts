@@ -23,6 +23,20 @@ interface Order {
     delivery_date: Date,
 }
 
+// types
+export interface Seller {
+    _id: string,
+    shop_name: string,
+    slug: string,
+    email: string,
+    performance: "great" | "very good" | "good" | "medium" | "weak" | "very weak",
+    satisfaction_percentage: number,
+    phone: string,
+    products: Product[],
+    about: string,
+    created_at: Date,
+}
+
 export interface SelectedVariant extends Omit<Variant, "colors"> {
     color: string,
 }
@@ -30,7 +44,7 @@ export interface SelectedVariant extends Omit<Variant, "colors"> {
 export interface SelectedProduct {
     product: Product,
     variant: SelectedVariant & { quantity: number },
-    seller: string
+    seller: Seller
 }
 
 interface Cart {
