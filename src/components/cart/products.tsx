@@ -8,6 +8,7 @@ import { handleColor } from '../product/detail/centerInfo/contentData';
 
 // icons
 import { TbArrowAutofitContent } from 'react-icons/tb';
+import { BsShop } from 'react-icons/bs';
 
 // components
 import CartButtons from '../utils/buttons/cartButtons';
@@ -39,7 +40,7 @@ const CartProducts = ({ ...item }: SelectedProduct) => {
                             selectedColor: item.variant.color,
                             variantId: item.variant._id
                         }}
-                        sellerId={item.seller}
+                        sellerId={item.seller._id}
                     />
                 </div>
             </div>
@@ -71,6 +72,16 @@ const CartProducts = ({ ...item }: SelectedProduct) => {
                     <span className={`w-3 h-3 block rounded-full ${handleColor(item.variant.color)}`}></span>
                     <span>
                         {item.variant.color}
+                    </span>
+                </div>
+
+                {/* seller */}
+                <div className='flex items-center gap-x-2'>
+                    <span className={`flex`}>
+                        <BsShop />
+                    </span>
+                    <span>
+                        {item.seller.shop_name}
                     </span>
                 </div>
 
