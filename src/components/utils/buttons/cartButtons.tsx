@@ -14,7 +14,7 @@ import { useUserContext } from '../../../context/userContext';
 import { BsTrash } from 'react-icons/bs';
 
 // types
-import { SelectedProduct, User } from '../../../types/user/userTypes';
+import { SelectedProduct } from '../../../types/user/userTypes';
 import { Button, ButtonGroup } from '@mui/material';
 
 interface Props {
@@ -24,15 +24,6 @@ interface Props {
         selectedColor: string,
         variantId: string
     }
-}
-
-interface BodyRequest {
-    productId: string;
-    sellerId: string;
-    selectedVariant: {
-        selectedColor: string;
-        _id: string;
-    };
 }
 
 const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
@@ -46,7 +37,7 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
         let arr: SelectedProduct[] = [];
 
         user?.cart.products.filter(item => {
-            if (item.product._id === productId) {
+            if (item.product._id === productId && item.variant._id === selectedVariant.variantId && item.variant.color === selectedVariant.selectedColor && item.seller === sellerId) {
                 arr.push(item);
             }
         })
@@ -54,51 +45,20 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
         setIsThereProductInCart(arr)
     }
 
-    const editBody = (body: BodyRequest) => {
-        let productIndex = (user as User).cart.products.findIndex(item => item.product._id === productId);
+    const handleClick = async (endpoint: "add-product" | "remove-product") => {
+        setLoading(true);
 
-        body.sellerId = (user as User).cart.products[productIndex].seller;
-        body.selectedVariant._id = (user as User).cart.products[productIndex].variant._id;
-        body.selectedVariant.selectedColor = (user as User).cart.products[productIndex].variant.color;
-    }
-
-    const handleBody = (endpoint: "add-product" | "remove-product") => {
-        let body: BodyRequest = {
+        await axiosInstance.post(`/api/v1/users/cart/${endpoint}`, {
             productId,
             sellerId,
             selectedVariant: {
                 selectedColor: selectedVariant.selectedColor,
                 _id: selectedVariant.variantId
             }
-        }
-
-        if (endpoint === "add-product") {
-            return body
-        }
-
-        // اگر برای حذف محصول، واریانت انتخاب شده برابر با واریانت محصول در سبد خرید نبود
-        // بادی ریکوئست اصلاح شده و سایر واریانت های محصول حذف خواهند شد
-        if (!isThereProductInCart.find(item => item.variant._id === selectedVariant.variantId)) {
-            editBody(body)
-        }
-        if (!isThereProductInCart.find(item => item.variant.color === selectedVariant.selectedColor)) {
-            editBody(body)
-        }
-        if (!isThereProductInCart.find(item => item.seller === sellerId)) {
-            editBody(body)
-        }
-
-        return body;
-    }
-
-    const handleClick = async (endpoint: "add-product" | "remove-product") => {
-        setLoading(true);
-
-        await axiosInstance.post(`/api/v1/users/cart/${endpoint}`, handleBody(endpoint))
+        })
             .then((res) => {
                 setUser(res.data.user);
             })
-            .catch(err => console.log(err))
             .finally(() => {
                 setLoading(false)
             })
@@ -106,7 +66,7 @@ const CartButtons = ({ productId, selectedVariant, sellerId }: Props) => {
 
     useEffect(() => {
         handleIsThereProduct()
-    }, [user])
+    }, [user, productId, selectedVariant, sellerId])
 
     return (
         <div className='mt-5 flex justify-center gap-x-3 w-full'>
