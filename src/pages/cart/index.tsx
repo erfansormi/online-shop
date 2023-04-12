@@ -53,7 +53,7 @@ const Cart = () => {
                                 {/* products */}
                                 <div>
                                     {user.cart.products.map(item =>
-                                        <CartProducts {...item} key={item.product.slug} />
+                                        <CartProducts {...item} key={item.product.slug + item.variant.size + item.variant.color + item.seller._id} />
                                     )}
                                 </div>
                             </div>
