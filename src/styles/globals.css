@@ -112,3 +112,11 @@ img {
 .border-b-gray-200:last-child {
   border: 0;
 }
+
+.border-b-gray-100 {
+  border-bottom: 1px solid #f1f1f6 !important;
+}
+
+.border-b-gray-100:last-child {
+  border: 0;
+}
