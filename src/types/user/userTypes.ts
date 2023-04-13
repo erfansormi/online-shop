@@ -67,7 +67,8 @@ export interface Addresses {
     plaque: string,
     unit: string
     postal_code: string,
-    coordinates: [number, number]
+    coordinates: [number, number],
+    _id: string
 }
 
 export interface User {
