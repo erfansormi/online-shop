@@ -9,6 +9,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Input from '../../../../data_entry/input/input';
 import SearchedLocations from './searchedLocations';
 import { Button, Divider } from '@mui/material';
+import CustomizedModal from '../../../../utils/modal/customizedModal';
 
 // icons
 import { AiFillCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai';
@@ -17,7 +18,7 @@ import { IoIosArrowForward } from "react-icons/io";
 // zustand store
 import useAddressValues from '../../../../../store/userAddress';
 
-const Mapbox = () => {
+const MapboxModal = () => {
     const { addressDetail, map } = useAddressValues((state) => state);
 
     const { viewport,
@@ -87,77 +88,85 @@ const Mapbox = () => {
 
 
     return (
-        <div className='w-full h-[470px] flex flex-col gap-y-4'>
-            <ReactMapGL
-                mapStyle="mapbox://styles/mapbox/streets-v11"
-                mapboxAccessToken={process.env.MAPBOX_ACCESS_TOKEN as string}
-                {...viewport}
-                onMove={handleMove}
-                scrollZoom={true}
-            >
-                {/* map buttons */}
-                <NavigationControl position="bottom-left" />
-                <FullscreenControl position="bottom-left" />
-                <GeolocateControl position='bottom-right' />
-
-                {/* marker */}
-                <Marker
-                    longitude={viewport.longitude}
-                    latitude={viewport.latitude}
-                    anchor="center"
-                    scale={0.8}
-                    color='#222'
-                />
-
-                <div className='absolute top-6 sm:right-16 sm:left-16 right-4 left-4'>
-
-                    {/* search bar */}
-                    <div className='relative right-0 left-0 top-0'>
-                        <Input
-                            className="bg-white h-[3rem] shadow-md focus:outline-0 relative z-40 rounded-b-none"
-                            placeholder='search address'
-                            value={searchInputValue}
-                            onChange={(e) => setSearchInputValue(e.target.value)}
-                        />
-
-                        {/* remove input value */}
-                        <span
-                            className='absolute right-5 cursor-pointer inset-y-1/4 z-50 h-fit text-gray-500 text-2xl'
-                            onClick={() => {
-                                setSearchInputValue("");
-                                setSearchedAddresses(undefined);
-                            }}
-                        >
-                            <AiFillCloseCircle />
-                        </span>
-                        <Divider />
-
-                        {/* city searched */}
-                        <SearchedLocations />
-                    </div>
-                </div>
-            </ReactMapGL>
-            <Divider />
-            <div className='flex flex-wrap gap-y-3 justify-between items-center'>
-                <div>
-                    <p className='text-gray-600 text-sm'>
-                        your parcels will be sent to this position
-                    </p>
-                </div>
-                <Button
-                    variant="contained"
-                    endIcon={addressDetail.loading ? <AiOutlineLoading3Quarters className='animate-spin' /> : <IoIosArrowForward />}
-                    disabled={addressDetail.loading}
-                    onClick={async () => {
-                        await coordinatesToAddress();
-                        map.setModal(false);
-                        addressDetail.setModal(true);
-                    }}
+        <CustomizedModal
+            title='new address'
+            handleClose={() => map.setModal(false)}
+            open={map.modal}
+            description='specify the address location.'
+            maxWidth="md"
+        >
+            <div className='w-full h-[470px] flex flex-col gap-y-4'>
+                <ReactMapGL
+                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                    mapboxAccessToken={process.env.MAPBOX_ACCESS_TOKEN as string}
+                    {...viewport}
+                    onMove={handleMove}
+                    scrollZoom={true}
                 >
-                    confirm and continue
-                </Button>
+                    {/* map buttons */}
+                    <NavigationControl position="bottom-left" />
+                    <FullscreenControl position="bottom-left" />
+                    <GeolocateControl position='bottom-right' />
+
+                    {/* marker */}
+                    <Marker
+                        longitude={viewport.longitude}
+                        latitude={viewport.latitude}
+                        anchor="center"
+                        scale={0.8}
+                        color='#222'
+                    />
+
+                    <div className='absolute top-6 sm:right-16 sm:left-16 right-4 left-4'>
+
+                        {/* search bar */}
+                        <div className='relative right-0 left-0 top-0'>
+                            <Input
+                                className="bg-white h-[3rem] shadow-md focus:outline-0 relative z-40 rounded-b-none"
+                                placeholder='search address'
+                                value={searchInputValue}
+                                onChange={(e) => setSearchInputValue(e.target.value)}
+                            />
+
+                            {/* remove input value */}
+                            <span
+                                className='absolute right-5 cursor-pointer inset-y-1/4 z-50 h-fit text-gray-500 text-2xl'
+                                onClick={() => {
+                                    setSearchInputValue("");
+                                    setSearchedAddresses(undefined);
+                                }}
+                            >
+                                <AiFillCloseCircle />
+                            </span>
+                            <Divider />
+
+                            {/* city searched */}
+                            <SearchedLocations />
+                        </div>
+                    </div>
+                </ReactMapGL>
+                <Divider />
+                <div className='flex flex-wrap gap-y-3 justify-between items-center'>
+                    <div>
+                        <p className='text-gray-600 text-sm'>
+                            your parcels will be sent to this position
+                        </p>
+                    </div>
+                    <Button
+                        variant="contained"
+                        endIcon={addressDetail.loading ? <AiOutlineLoading3Quarters className='animate-spin' /> : <IoIosArrowForward />}
+                        disabled={addressDetail.loading}
+                        onClick={async () => {
+                            await coordinatesToAddress();
+                            map.setModal(false);
+                            addressDetail.setModal(true);
+                        }}
+                    >
+                        confirm and continue
+                    </Button>
+                </div>
             </div>
-        </div>
+        </CustomizedModal>
     )
 }
-export default Mapbox;
+export default MapboxModal;
