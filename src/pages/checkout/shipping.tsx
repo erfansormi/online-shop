@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router';
+import { DateObject } from 'react-multi-date-picker';
 
 // context
 import { useUserContext } from '../../context/userContext';
+
+// checkout store
+import useCheckout from '../../store/checkout';
 
 // icons
 import { BiTimeFive } from 'react-icons/bi';
@@ -18,6 +22,8 @@ import ChooseShippingTime from '../../components/checkout/shipping/chooseShippin
 
 const Shipping = () => {
     const { user, loading } = useUserContext();
+    const { deliveryHour, deliveryDate } = useCheckout(state => state);
+    const date = new DateObject();
 
     useEffect(() => {
         if (!user && !loading) {
@@ -26,7 +32,7 @@ const Shipping = () => {
     }, [user, loading])
 
     return (
-        <Layout className='mt-10'>
+        <Layout className='md:mt-10 mt-3'>
             {
                 !user && loading ?
                     <CheckoutSkeleton /> :
@@ -65,6 +71,20 @@ const Shipping = () => {
                                             <ChooseShippingTime />
                                         </div>
                                     </div>
+
+                                    {/* selected time */}
+                                    {
+                                        deliveryDate && deliveryHour ?
+                                            <span className='mt-4 text-sm text-gray-700 flex gap-x-2'>
+                                                <span className='text-gray-500'>
+                                                    shipping time
+                                                </span>
+                                                <span className='font-medium'>
+                                                    {date.weekDays[+deliveryHour.split("-")[2]].name} - {deliveryHour.split("-")[0]} to {deliveryHour.split("-")[1]}
+                                                </span>
+                                            </span> :
+                                            null
+                                    }
                                 </div>
                             </section>
                         </div>
