@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 // contexts
 import { useUserContext } from '../../context/userContext';
@@ -36,9 +37,11 @@ const CartCheckoutBox = () => {
 
             {/* order registration */}
             <div>
-                <Button variant="contained" fullWidth>
-                    order registration
-                </Button>
+                <Link href="/checkout/shipping">
+                    <Button variant="contained" fullWidth>
+                        order registration
+                    </Button>
+                </Link>
             </div>
         </div>
     )
