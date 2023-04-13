@@ -47,13 +47,24 @@ const ChooseShippingTime = () => {
 
     return (
         <Box sx={{ width: '100%', overflow: "hidden" }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box sx={{
+                borderBottom: 1,
+                borderColor: 'divider',
+            }}>
 
                 {/* tabs title */}
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     aria-label="basic tabs example"
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    sx={{
+                        "& .MuiButtonBase-root": {
+                            minWidth: 40
+                        }
+                    }}
                 >
 
                     {/* week days from 2 days later */}
@@ -61,11 +72,11 @@ const ChooseShippingTime = () => {
                         handleWeekDays().map((item, index) =>
                             <Tab
                                 label={item.name}
-                                className='text-base'
+                                className='md:text-base text-sm'
                                 {...a11yProps(index)}
                                 key={index * 100}
                                 icon={
-                                    <span className="text-lg">
+                                    <span className="md:text-lg text-base">
                                         {date.day + index}
                                     </span>
                                 }
