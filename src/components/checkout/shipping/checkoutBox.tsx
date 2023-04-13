@@ -1,11 +1,18 @@
 import React from 'react'
+import Link from "next/link";
 
 // context
 import { useUserContext } from '../../../context/userContext';
+
+// checkout store
+import useCheckout from '../../../store/checkout';
+
+// mui
 import { Button } from '@mui/material';
 
 const CheckoutBox = () => {
     const { user } = useUserContext();
+    const checkout = useCheckout(state => state);
 
     return (
         <div className='sticky top-24 p-5 capitalize border-gray-200 border-solid rounded-lg border'>
@@ -36,10 +43,19 @@ const CheckoutBox = () => {
                 </span>
             </div>
 
-            <div className='mt-2'>
-                <Button variant="outlined" fullWidth>
-                    choose shipping time
-                </Button>
+            {/* actions buttons */}
+            <div className='mt-3'>
+                {
+                    checkout.deliveryHour && checkout.deliveryDate ?
+                        <Link href="/checkout/payment">
+                            <Button variant="contained" fullWidth>
+                                register order
+                            </Button>
+                        </Link> :
+                        <Button variant="outlined" fullWidth>
+                            choose shipping time
+                        </Button>
+                }
             </div>
         </div>
     )
