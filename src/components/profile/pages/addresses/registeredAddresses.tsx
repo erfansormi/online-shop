@@ -17,7 +17,7 @@ import { Skeleton } from '@mui/material';
 import Map, { Marker } from "react-map-gl";
 
 // data
-const addressItems = (address: Addresses, user: User) => {
+export const addressItems = (address: Addresses, user: User) => {
     return [
         {
             icon: <FaCity />,
