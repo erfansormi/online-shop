@@ -33,15 +33,15 @@ const Shipping = () => {
                     user && !loading &&
                     <div className='flex flex-col gap-y-3'>
                         <CheckoutHeader type='shipping' />
-                        <div className='flex gap-x-3'>
+                        <div className='flex flex-col md:flex-row gap-3'>
 
                             {/* checkout box */}
-                            <aside className='lg:w-1/4 w-full'>
+                            <aside className='w-full md:w-2/5 lg:w-[28%] xl:w-1/4'>
                                 <CheckoutBox />
                             </aside>
 
                             {/* checkout detail */}
-                            <section className='w-full flex flex-col gap-y-3'>
+                            <section className='w-full md:w-3/5 lg:w-[72%] xl:w-3/4 flex flex-col gap-y-3'>
 
                                 {/* order delivery address */}
                                 <OrderDeliveryAddress />
