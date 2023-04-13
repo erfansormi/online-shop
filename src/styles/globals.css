@@ -104,3 +104,11 @@ img {
 .layout-m-b {
   margin-bottom: 3.5rem;
 }
+
+.border-b-gray-200 {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.border-b-gray-200:last-child {
+  border: 0;
+}
