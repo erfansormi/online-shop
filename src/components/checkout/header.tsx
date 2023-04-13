@@ -42,9 +42,9 @@ const CheckoutHeader = ({ type }: { type: "shipping" | "payment" }) => {
                     </div>
                 </Link>
 
-                <div className={`flex md:flex-row flex-col items-center gap-2 ${type === 'checkout' ? "text-rose-500" : "text-gray-400"}`}>
-                    <hr className={`md:w-28 w-px h-16 md:h-px ${type === "checkout" ? "border-rose-500" : "border-gray-300"}  border-solid mx-2 mt-1 border-l-0 border-b-0`} />
-                    <div className={`flex items-center gap-x-2 ${type === "checkout" ? "scale-125 ml-2" : ""}`}>
+                <div className={`flex md:flex-row flex-col items-center gap-2 ${type === 'payment' ? "text-rose-500" : "text-gray-400"}`}>
+                    <hr className={`md:w-28 w-px h-16 md:h-px ${type === "payment" ? "border-rose-500" : "border-gray-300"}  border-solid mx-2 mt-1 border-l-0 border-b-0`} />
+                    <div className={`flex items-center gap-x-2 ${type === "payment" ? "scale-125 ml-2" : ""}`}>
                         <span className='flex text-2xl'>
                             <MdPayment />
                         </span>
