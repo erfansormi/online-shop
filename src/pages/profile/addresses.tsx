@@ -38,15 +38,7 @@ const Addresses = () => {
             </ProfileContentContainer>
 
             {/* map box modal */}
-            <CustomizedModal
-                title='new address'
-                handleClose={() => map.setModal(false)}
-                open={map.modal}
-                description='specify the address location.'
-                maxWidth="md"
-            >
-                <Mapbox />
-            </CustomizedModal>
+            <Mapbox />
 
             {/* address detail modal */}
             <AddressDetailModal />
