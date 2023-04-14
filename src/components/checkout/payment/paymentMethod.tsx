@@ -2,7 +2,7 @@ import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import React from 'react'
 
 const PaymentMethod = () => {
-    const [value, setValue] = React.useState('inPerson');
+    const [value, setValue] = React.useState('in person');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue((event.target as HTMLInputElement).value);
@@ -24,8 +24,8 @@ const PaymentMethod = () => {
                             value={value}
                             onChange={handleChange}
                         >
-                            <FormControlLabel value="online" control={<Radio />} label="Online Payment" disabled />
-                            <FormControlLabel value="inPerson" control={<Radio />} label="Payment In Person" />
+                            <FormControlLabel value="online" control={<Radio color="info" />} label="Online Payment" disabled />
+                            <FormControlLabel value="in person" control={<Radio color="info" />} label="Payment In Person" />
                         </RadioGroup>
                     </FormControl>
                 </div>
