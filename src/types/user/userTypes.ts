@@ -1,27 +1,4 @@
-import type { Product, Variant } from "../product/productTypes"
-
-type PickProductKeys = "slug" | "image" | "title"
-export interface PurchasedProduct extends Pick<Product, PickProductKeys> {
-    product: any,
-    seller: string,
-    price: number,
-    discount_percentage?: number,
-    count: number,
-    size?: string,
-    color: string
-}
-
-interface Order {
-    receiver_delivery: string,
-    address: string,
-    products: PurchasedProduct[],
-    total_price: number,
-    total_discount?: number,
-    payment_type: "in person" | "online",
-    shipping_cost: number,
-    order_date: Date,
-    delivery_date: Date,
-}
+import type { Product, Variant } from "../product/productTypes";
 
 // types
 export interface Seller {
@@ -69,6 +46,20 @@ export interface Addresses {
     postal_code: string,
     coordinates: [number, number],
     _id: string
+}
+
+export interface Order {
+    address: string,
+    products: SelectedProduct[],
+    payment_type: "in person" | "online",
+    order_date: Date,
+    delivery_date: Date,
+    shipping_cost: number,
+    products_counts: number,
+    products_prices: number,
+    total_prices_cart: number,
+    total_profit: number,
+    total_profit_percentage: number,
 }
 
 export interface User {
