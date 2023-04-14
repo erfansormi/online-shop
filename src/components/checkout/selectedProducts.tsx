@@ -2,37 +2,17 @@ import React from 'react';
 import Image from "next/image";
 
 // context
-import { useUserContext } from '../../../context/userContext'
+import { useUserContext } from '../../context/userContext'
 
 // icons
-import { TbTruckDelivery, TbArrowAutofitContent } from 'react-icons/tb';
-import { handleColor } from '../../product/detail/centerInfo/contentData';
+import { TbArrowAutofitContent } from 'react-icons/tb';
+import { handleColor } from '../product/detail/centerInfo/contentData';
 
 const SelectedProducts = () => {
     const { user } = useUserContext();
 
     return (
-        <div className='flex flex-col gap-y-12 text-gray-700'>
-            <div className='flex capitalize leading-5 gap-x-1 items-center'>
-                <span className='flex text-red-500 text-4xl mt-1'>
-                    <TbTruckDelivery />
-                </span>
-
-                <div className='flex flex-col'>
-                    <div className='flex items-center gap-x-1'>
-                        <span className='font-medium'>
-                            normal shipping
-                        </span>
-                        <span className='px-1 py-2 rounded-lg bg-gray-200 text-gray-600 text-[0.7rem] mt-1 leading-[1.5]'>
-                            {user?.cart.products_counts} goods
-                        </span>
-                    </div>
-
-                    <span className='text-gray-500 text-xs'>
-                        available in stock
-                    </span>
-                </div>
-            </div>
+        <div className='text-gray-700'>
 
             {/* products */}
             <div className='flex flex-wrap gap-8'>
