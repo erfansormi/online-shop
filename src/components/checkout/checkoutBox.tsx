@@ -19,6 +19,7 @@ import { Button } from '@mui/material';
 const CheckoutBox = ({ type }: { type: "payment" | "shipping" }) => {
     const { user, setUser } = useUserContext();
     const { closeLoading, openLoading } = useGeneralContext();
+    const router = useRouter();
 
     const checkout = useCheckout(state => state);
 
@@ -31,9 +32,9 @@ const CheckoutBox = ({ type }: { type: "payment" | "shipping" }) => {
             deliveryTime: checkout.deliveryHour
         })
             .then(res => {
+                router.push("/profile/orders");
                 setUser(res.data.user);
                 toastify(res.data.message, "success");
-                useRouter().push("/profile/orders");
             })
             .catch(err => {
                 toastify(err.response.data.message || err.message, "error");
