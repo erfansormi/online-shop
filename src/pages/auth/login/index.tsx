@@ -7,7 +7,7 @@ import { handleSetCookie } from '../../../functions/cookies';
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
 
 // components
-import LoginContainer from '../../../components/data_entry/login/loginContainer';
+import LoginContainer from '../../../components/pages/auth/login/loginContainer';
 
 // contexts hooks
 import { useUserContext } from '../../../context/userContext';

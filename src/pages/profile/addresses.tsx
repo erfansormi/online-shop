@@ -4,14 +4,13 @@ import React from 'react'
 import useAddressValues from '../../store/userAddress';
 
 // components
-import { Button, Divider } from '@mui/material';
+import { Button } from '@mui/material';
 import TabContentTitle from '../../components/data_display/tabContentTitle';
-import ProfileContainer from '../../components/profile/profileContainer'
-import ProfileContentContainer from '../../components/profile/profileContentContainer';
-import CustomizedModal from '../../components/utils/modal/customizedModal';
-import AddressDetailModal from '../../components/profile/pages/addresses/addressDetail/addressDetailModal';
-import Mapbox from '../../components/profile/pages/addresses/map/mapbox';
-import RegisteredAddresses from '../../components/profile/pages/addresses/registeredAddresses';
+import ProfileContainer from '../../components/pages/profile/profileContainer'
+import ProfileContentContainer from '../../components/pages/profile/profileContentContainer';
+import AddressDetailModal from '../../components/pages/profile/pages/addresses/addressDetail/addressDetailModal';
+import Mapbox from '../../components/pages/profile/pages/addresses/map/mapbox';
+import RegisteredAddresses from '../../components/pages/profile/pages/addresses/registeredAddresses';
 
 const Addresses = () => {
     const { map } = useAddressValues((state) => state);

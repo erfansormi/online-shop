@@ -13,13 +13,13 @@ import { BiTimeFive } from 'react-icons/bi';
 
 // components
 import Layout from '../../components/layout/layout';
-import CheckoutHeader from '../../components/checkout/header';
-import CheckoutBox from '../../components/checkout/checkoutBox';
-import OrderDeliveryAddress from '../../components/checkout/shipping/orderDeliveryAddress';
-import CheckoutSkeleton from '../../components/checkout/checkoutSkeleton';
-import SelectedProducts from '../../components/checkout/selectedProducts';
-import ChooseShippingTime from '../../components/checkout/shipping/chooseShippingTime';
-import ShippingMethod from '../../components/checkout/shipping/shippingMethod';
+import CheckoutHeader from '../../components/pages/checkout/header';
+import CheckoutBox from '../../components/pages/checkout/checkoutBox';
+import OrderDeliveryAddress from '../../components/pages/checkout/shipping/orderDeliveryAddress';
+import CheckoutSkeleton from '../../components/pages/checkout/checkoutSkeleton';
+import SelectedProducts from '../../components/pages/checkout/selectedProducts';
+import ChooseShippingTime from '../../components/pages/checkout/shipping/chooseShippingTime';
+import ShippingMethod from '../../components/pages/checkout/shipping/shippingMethod';
 
 const Shipping = () => {
     const { user, loading } = useUserContext();

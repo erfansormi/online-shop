@@ -10,11 +10,11 @@ import { useUserContext } from '../../context/userContext';
 
 // components
 import Layout from '../../components/layout/layout';
-import CheckoutSkeleton from '../../components/checkout/checkoutSkeleton';
-import CheckoutHeader from '../../components/checkout/header';
-import CheckoutBox from '../../components/checkout/checkoutBox';
-import PaymentMethod from '../../components/checkout/payment/paymentMethod';
-import OrderSummary from '../../components/checkout/payment/orderSummary';
+import CheckoutSkeleton from '../../components/pages/checkout/checkoutSkeleton';
+import CheckoutHeader from '../../components/pages/checkout/header';
+import CheckoutBox from '../../components/pages/checkout/checkoutBox';
+import PaymentMethod from '../../components/pages/checkout/payment/paymentMethod';
+import OrderSummary from '../../components/pages/checkout/payment/orderSummary';
 
 const Payment = () => {
     const { user, loading } = useUserContext();

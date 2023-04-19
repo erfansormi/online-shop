@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // data
-import { personalInfoData } from '../../components/profile/pages/personal-info/personalInfoData';
+import { personalInfoData } from '../../components/pages/profile/pages/personal-info/personalInfoData';
 
 // context
 import { useUserContext } from '../../context/userContext';
@@ -10,16 +10,16 @@ import { useUserContext } from '../../context/userContext';
 import { AiOutlineEdit } from 'react-icons/ai';
 
 // ts
-import { InitialPersonalInfoModal } from '../../components/profile/pages/personal-info/personalInfoData';
+import { InitialPersonalInfoModal } from '../../components/pages/profile/pages/personal-info/personalInfoData';
 
 // components
-import ProfileContainer from '../../components/profile/profileContainer';
+import ProfileContainer from '../../components/pages/profile/profileContainer';
 import { Skeleton } from '@mui/material';
-import EditEmailModal from '../../components/profile/pages/personal-info/emailModal/editEmailModal';
-import EditNameModal from '../../components/profile/pages/personal-info/nameModal/editNameModal';
-import EditPasswordModal from '../../components/profile/pages/personal-info/passwordModal/editPasswordModal';
-import EditBirthDateModal from '../../components/profile/pages/personal-info/birthDateModal/editBirthDateModal';
-import ProfileContentContainer from '../../components/profile/profileContentContainer';
+import EditEmailModal from '../../components/pages/profile/pages/personal-info/emailModal/editEmailModal';
+import EditNameModal from '../../components/pages/profile/pages/personal-info/nameModal/editNameModal';
+import EditPasswordModal from '../../components/pages/profile/pages/personal-info/passwordModal/editPasswordModal';
+import EditBirthDateModal from '../../components/pages/profile/pages/personal-info/birthDateModal/editBirthDateModal';
+import ProfileContentContainer from '../../components/pages/profile/profileContentContainer';
 
 const PersonalInfo = () => {
     const { user } = useUserContext();

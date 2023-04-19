@@ -2,11 +2,11 @@ import React, { useState, useContext, createContext } from 'react';
 import { GetStaticProps } from 'next';
 
 // data
-import { SortBy, sortByData, sortByCheapest, sortByRelevant, sortByExpensivest, sortByBestSeller, sortBySuggestion } from '../../components/products/productsData';
+import { SortBy, sortByData, sortByCheapest, sortByRelevant, sortByExpensivest, sortByBestSeller, sortBySuggestion } from '../../components/pages/products/productsData';
 
 // components
 import Layout from '../../components/layout/layout';
-import ProductsCard from '../../components/products/productsCard';
+import ProductsCard from '../../components/pages/products/productsCard';
 
 // icons
 import { BiSortDown } from 'react-icons/bi';

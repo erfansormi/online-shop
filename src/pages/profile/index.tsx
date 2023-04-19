@@ -10,11 +10,10 @@ import { Product } from '../../types/product/productTypes'
 import { axiosInstance } from '../../functions/axiosInstance'
 
 // components
-import ProfileContentContainer from '../../components/profile/profileContentContainer'
+import ProfileContentContainer from '../../components/pages/profile/profileContentContainer'
 import TabContentSlider from '../../components/utils/sliders/tabContentSlider'
-import ProfileContainer from '../../components/profile/profileContainer'
+import ProfileContainer from '../../components/pages/profile/profileContainer'
 import ProductSkeletonSlider from '../../components/utils/sliders/productSkeletonSlider'
-import TabContentTitle from '../../components/data_display/tabContentTitle'
 
 const Profile = () => {
     const { user } = useUserContext();

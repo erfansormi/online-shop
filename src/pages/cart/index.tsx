@@ -8,9 +8,9 @@ import { useUserContext } from '../../context/userContext';
 // components
 import Layout from '../../components/layout/layout';
 import TabContentTitle from '../../components/data_display/tabContentTitle';
-import CartProducts from '../../components/cart/products';
-import CartCheckoutBox from '../../components/cart/checkoutBox';
-import CartSkeletonPage from '../../components/cart/skeletonPage';
+import CartProducts from '../../components/pages/cart/products';
+import CartCheckoutBox from '../../components/pages/cart/checkoutBox';
+import CartSkeletonPage from '../../components/pages/cart/skeletonPage';
 import TabContentSlider from '../../components/utils/sliders/tabContentSlider';
 
 const Cart = () => {

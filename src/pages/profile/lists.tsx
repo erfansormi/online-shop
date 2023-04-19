@@ -9,9 +9,9 @@ import { useUserContext } from '../../context/userContext'
 import { axiosInstance } from '../../functions/axiosInstance';
 
 // components
-import ProfileContainer from '../../components/profile/profileContainer'
-import ProfileContentContainer from '../../components/profile/profileContentContainer'
-import TabContentTitle from '../../components/data_display/tabContentTitle'
+import ProfileContainer from '../../components/pages/profile/profileContainer';
+import ProfileContentContainer from '../../components/pages/profile/profileContentContainer';
+import TabContentTitle from '../../components/data_display/tabContentTitle';
 import Price from '../../components/utils/price/price';
 import DiscountPercentage from '../../components/utils/price/discountPercentage';
 import OldPrice from '../../components/utils/price/oldPrice';

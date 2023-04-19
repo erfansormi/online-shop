@@ -1,18 +1,18 @@
 import React, { useContext, createContext } from 'react'
+import { GetStaticProps } from 'next';
 
 // data
-import { topSlidersData } from '../components/home/sliders/topSlidersData';
+import { topSlidersData } from '../components/pages/home/sliders/topSlidersData';
 
 // components
 import SliderFullScreen from '../components/utils/sliders/sliderFullScreen';
-import CheapestProducts from '../components/home/sliders/cheapestProducts';
-import SpecialOffers from '../components/home/sliders/specialOffers';
-import MiddleLargeCards from '../components/home/cards/middleLargeCards';
-import MiddleMediumCards from '../components/home/cards/middleMediumCards';
-import Categories from '../components/home/categories/categories';
-import BottomLargeCards from '../components/home/cards/bottomLargeCard';
-import BeforeAndAfter from '../components/home/beforeAndAfter';
-import { GetStaticProps } from 'next';
+import CheapestProducts from '../components/pages/home/sliders/cheapestProducts';
+import SpecialOffers from '../components/pages/home/sliders/specialOffers';
+import MiddleLargeCards from '../components/pages/home/cards/middleLargeCards';
+import MiddleMediumCards from '../components/pages/home/cards/middleMediumCards';
+import Categories from '../components/pages/home/categories/categories';
+import BottomLargeCards from '../components/pages/home/cards/bottomLargeCard';
+import BeforeAndAfter from '../components/pages/home/beforeAndAfter';
 
 // types
 import { Product } from '../types/product/productTypes';

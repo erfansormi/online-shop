@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 // context
-import { useUserContext } from '../../context/userContext'
+import { useUserContext } from '../../context/userContext';
 
 // components
-import ProfileContainer from '../../components/profile/profileContainer'
-import CheckoutSkeleton from "../../components/checkout/checkoutSkeleton";
+import ProfileContainer from '../../components/pages/profile/profileContainer'
+import CheckoutSkeleton from "../../components/pages/checkout/checkoutSkeleton";
 import TabContentSlider from '../../components/utils/sliders/tabContentSlider';
-import OrdersHistory from '../../components/profile/pages/orders/ordersHistory';
+import OrdersHistory from '../../components/pages/profile/pages/orders/ordersHistory';
 
 const Orders = () => {
     const { user, loading } = useUserContext();

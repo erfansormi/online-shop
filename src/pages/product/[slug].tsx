@@ -9,7 +9,7 @@ import { useGeneralContext } from '../../context/generalContext';
 import { axiosInstance } from '../../functions/axiosInstance';
 
 // components
-import ProductContainer from '../../components/product/productContainer';
+import ProductContainer from '../../components/pages/product/productContainer';
 
 // types
 import { Product, ProductDetail } from '../../types/product/productTypes';

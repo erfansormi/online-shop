@@ -7,7 +7,7 @@ import { handleSetCookie } from '../../../functions/cookies';
 import { axiosInstance } from '../../../functions/axiosInstance';
 
 // components
-import SignupContainer from '../../../components/data_entry/signup/signupContainer';
+import SignupContainer from '../../../components/pages/auth/signup/signupContainer';
 
 // toast
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
