@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { handleSetCookie } from '../../../functions/cookies';
 
 // toatify
 import { toastify } from '../../../components/utils/toastify/toastifyFunc';
@@ -47,7 +48,7 @@ const Login = () => {
             .then((res) => {
                 toastify(res.data.message, "success");
                 setUser(res.data.user);
-                router.push("/");
+                handleSetCookie("token", res.data.token)
             })
             .catch(err => {
                 toastify(err.response.data.message, "error");

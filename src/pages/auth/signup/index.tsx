@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { handleSetCookie } from '../../../functions/cookies';
 
 // axios
 import { axiosInstance } from '../../../functions/axiosInstance';
@@ -58,7 +59,7 @@ const Signup: React.FC = () => {
             .then((res) => {
                 setUser(res.data.user);
                 toastify(res.data.message, "success");
-                router.push("/");
+                handleSetCookie("token", res.data.token)
             })
             .catch(err => {
                 toastify(err.response.data.message, "error");

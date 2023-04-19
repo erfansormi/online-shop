@@ -1,4 +1,5 @@
 import React from 'react'
+import { clearCookie } from '../../../../functions/cookies';
 
 // context
 import { useUserContext } from '../../../../context/userContext';
@@ -27,6 +28,7 @@ const LogoutModal = ({ logoutHandleClose, modal, profileMenuHandleClose }: Props
         try {
             await axiosInstance.get("/api/v1/users/logout")
             setUser(null);
+            clearCookie("token")
             logoutHandleClose();
             if (profileMenuHandleClose) {
                 profileMenuHandleClose();
