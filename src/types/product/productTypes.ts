@@ -1,5 +1,3 @@
-import { PurchasedProduct } from "../user/userTypes";
-
 export interface Rating {
     rate: number;
     count: number;
@@ -58,7 +56,6 @@ export interface Comment {
         }
     },
     is_buyer: boolean,
-    purchased_product?: Pick<PurchasedProduct, "color" | "seller" | "slug">,
     created_at: Date
 }
 

@@ -45,7 +45,7 @@ export interface Addresses {
     unit: string
     postal_code: string,
     coordinates: [number, number],
-    _id: string
+    _id: any
 }
 
 export interface Order {

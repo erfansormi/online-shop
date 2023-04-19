@@ -59,7 +59,8 @@ const AddressDetailModal = () => {
                             city: values.city,
                             plaque: values.plaque,
                             unit: values.unit,
-                            postal_code: values.postal_code
+                            postal_code: values.postal_code,
+                            _id: undefined
                         }]
                     })
                 }
