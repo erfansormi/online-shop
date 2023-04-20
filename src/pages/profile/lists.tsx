@@ -57,9 +57,8 @@ const Lists = () => {
                                                 key={index * 71}
                                                 className="py-4 px-3 odd:border-r even:border-r-0 border-gray-100 border-solid border-l-0 border-t-0 border-b hover:shadow-md transition-shadow duration-500 w-full"
                                             >
+                                                {/* image */}
                                                 <Link href={`/product/${item.slug}`} className="flex flex-col gap-y-8 w-full">
-
-                                                    {/* image */}
                                                     <div className='w-full flex justify-center'>
                                                         <Image
                                                             src={item.image}
@@ -91,20 +90,20 @@ const Lists = () => {
                                                             <OldPrice oldPrice={item.sellers[0].variants[0].old_price} />
                                                         }
                                                     </div>
-
-                                                    {/* remove from favorites button */}
-                                                    <div>
-                                                        <Button
-                                                            variant="outlined"
-                                                            size='small'
-                                                            className="font-[500]"
-                                                            color="neutral"
-                                                            onClick={() => handleClick(item._id)}
-                                                        >
-                                                            remove from favorites
-                                                        </Button>
-                                                    </div>
                                                 </Link>
+
+                                                {/* remove from favorites button */}
+                                                <div className='mt-8'>
+                                                    <Button
+                                                        variant="outlined"
+                                                        size='small'
+                                                        className="font-[500]"
+                                                        color="neutral"
+                                                        onClick={() => handleClick(item._id)}
+                                                    >
+                                                        remove from favorites
+                                                    </Button>
+                                                </div>
                                             </section>
                                         )
                                 }
