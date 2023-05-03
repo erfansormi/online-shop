@@ -46,7 +46,7 @@ import { useGeneralContext } from '../../../context/generalContext';
 
 const ProductContainer = ({ product, relatedProducts }: Props) => {
     const { general: { loading } } = useGeneralContext();
-
+    
     // states
     const [productInfo, setProductInfo] = useState<ProductInfo>({
         product,
@@ -76,6 +76,19 @@ const ProductContainer = ({ product, relatedProducts }: Props) => {
     useEffect(() => {
         fetchComments();
     }, [loading])
+
+    // update product detail
+    useEffect(() => {
+        setProductInfo({
+            product,
+            selectedSeller: product.sellers[0],
+            selectedVariant: {
+                ...product.sellers[0].variants.find(item => item.available) as SelectedVariant,
+                selectedColor: (product.sellers[0].variants.find(item => item.available) as SelectedVariant).colors[0]
+            },
+            relatedProducts
+        })
+    }, [product])
 
     return (
         <ProductContext.Provider value={{ productInfo, setProductInfo, comments, commentsLoading }}>

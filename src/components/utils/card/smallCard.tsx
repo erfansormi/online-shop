@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from "next/router";
 
 // mui
 import { Skeleton } from '@mui/material';
@@ -16,11 +15,13 @@ import Price from '../price/price';
 
 const SmallCard = ({ image, title, sellers, slug }: Product) => {
     const [imageLoaded, setImageLoaded] = useState(false);
-    const router = useRouter();
 
     return (
         <section className='w-full h-full flex flex-col justify-between h-64 overflow-hidden w-44'>
-            <Link href={`/product/${slug}`} target={router.asPath.startsWith("/product/") ? '_top' : "_self"} className="block h-full">
+            <Link
+                href={`/product/${slug}`}
+                className="block h-full"
+            >
 
                 {/* card image */}
                 <div className='flex justify-center items-center bg-white h-3/5 overflow-hidden'>

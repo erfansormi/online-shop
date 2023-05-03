@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Divider, Skeleton } from '@mui/material';
 
 // context
@@ -69,4 +69,4 @@ const CommentsContainer = () => {
     )
 }
 
-export default CommentsContainer;
+export default memo(CommentsContainer);
