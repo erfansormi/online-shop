@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { handleSetCookie } from '../../../functions/cookies';
 
@@ -27,8 +26,6 @@ import { useUserContext } from '../../../context/userContext';
 import { useGeneralContext } from '../../../context/generalContext';
 
 const Signup: React.FC = () => {
-    const router = useRouter();
-
     // contexts
     const { user, setUser } = useUserContext();
     const { general, setGeneral } = useGeneralContext();
@@ -74,8 +71,8 @@ const Signup: React.FC = () => {
 
     // if user logged in, navigate to home
     useEffect(() => {
-        if (user !== null) {
-            router.push("/");
+        if (user !== null && typeof window !== "undefined") {
+              window.location.href = "/";
         }
     }, [user])
 
